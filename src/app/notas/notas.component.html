@@ -1,3 +1,15 @@
-<p>
-  notas works!
-</p>
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-content">
+           <div class="input-field col s6">
+              <select name="grado" multiple materialize="material_select" [disabled]="isDisabled?true:null">
+                <option value="" disabled selected>Escoge</option>
+                <option *ngFor="let option of selectOptions" [value]="option.value">{{option.name}}</option>
+              </select>
+              <label>Materialize Multi Select</label>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
