@@ -1,15 +1,75 @@
-<div class="row">
-    <div class="col s12 m7">
-      <div class="card">
-        <div class="card-content">
-           <div class="input-field col s6">
-              <select name="grado" multiple materialize="material_select" [disabled]="isDisabled?true:null">
-                <option value="" disabled selected>Escoge</option>
-                <option *ngFor="let option of selectOptions" [value]="option.value">{{option.name}}</option>
-              </select>
-              <label>Materialize Multi Select</label>
-            </div>
-        </div>
-      </div>
-    </div>
+<div class="container" *ngIf="hideElement==true" >
+	<div class="notas ">
+  		<div class="card">
+    		<div class="card-content ">
+				<h5 class="center" >Selecciona <br> <strong> el grado y la sección </strong> </h5>
+				<div class="divider"></div>
+				<div class="row">
+			    	<div class="col s10 m7 l7 offset-s1 offset-l2">
+			            <div class="input-field" >
+						    <select materialize="material_select" [disabled]="isDisabled?true:null">
+						      <option value="" disabled selected>Grados</option>
+						      <option value="1">Primer Grado</option>
+						      <option value="2">Segundo Grado</option>
+						      <option value="3">Tercer Grado</option>
+						      <option value="3">Cuarto Grado</option>
+						      <option value="3">Quinto Grado</option>
+						      <option value="3">Sexto Grado</option>
+						    </select>
+						    <label>Seleccionar Grado</label>
+						</div>
+			        </div>
+			    </div>
+				<div class="row">
+				    <div class="col s10 m7 l7 offset-s1 offset-l2">
+			           <div class="input-field" >
+						    <select materialize="material_select" [disabled]="isDisabled?true:null">
+						      <option value="" disabled selected>Sección</option>
+						      <option value="1">Sección "A"</option>
+						      <option value="2">Sección "B"</option>
+						      <option value="3">Sección "C"</option>
+						      <option value="3">Sección "D"</option>
+						      <option value="3">Sección "E"</option>
+						      <option value="3">Sección "F"</option>
+						    </select>
+						    <label>Seleccionar Sección</label>
+						</div>    
+						<button class="btn waves-effect waves-light right" type="submit" name="action" (click)="onClick()">
+							Enviar
+						</button>	
+				    </div>
+				</div> 
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container" *ngIf="hideElement==false">
+	<div class="row">
+		<div class="col s12 m7 l6 offset-l3 ">
+			<table class="highlight centered responsive-table">
+		        <thead>
+		          <tr>
+		              <th>Nombres</th>
+		              <th>Apellidos</th>
+		              <th>Grado</th>
+		              <th>Sección</th>
+		              <th>Cargar Notas</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>{{Alvin}}</td>
+		            <td>{{Eclair}}</td>
+		            <td>{{Eclair}}</td>
+		            <td>{{Eclair}}</td>
+		            <td>
+		            	<a href="">
+		            		<img src="assets/icons/icons8-add-64.png">
+		            	</a>
+		            </td>
+		          </tr>
+		        </tbody>
+		    </table>			
+		</div>		
+	</div>	
 </div>
