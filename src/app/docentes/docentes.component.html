@@ -1,3 +1,67 @@
-<p>
-  docentes works!
-</p>
+<div class="row" style="padding-top: 40px">
+	<div class="col s12 m7 l6 offset-l3">
+	  <div class="card">
+	    <div class="card-content">
+	       <div class="row">
+	       		<h5 class="center-align">Agregar Docente</h5>
+	       		<div class="divider"></div>
+			    <form class="col s12">
+			    	<div class="row">
+				        <div class="col l6">
+				          <div class="input-field inline">
+				            <input id="cedula" type="number" class="validate">
+				            <label for="cedula">Cédula</label>
+				          </div>
+				        </div>
+			    	</div>
+			      <div class="row">
+			        <div class="input-field col s6">
+			          <input id="first_name" type="text" class="validate">
+			          <label for="first_name">Nombres</label>
+			        </div>
+			        <div class="input-field col s6">
+			          <input id="last_name" type="text" class="validate">
+			          <label for="last_name">Apellidos</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="direcion" type="text" class="validate">
+			          <label for="disabled">Dirección</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="date" type="date" class="datepicker" materialize="pickadate" [materializeParams]="[{format: 'dd/mm/yyyy'}]">
+			          <label for="date">Fecha de Nacimiento</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12">
+			          <input id="email" type="email" class="validate">
+			          <label for="email">Email</label>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="col s6 l6">
+			          <div class="input-field inline">
+			            <input id="telefono_local" type="text" class="validate">
+			            <label for="telefono">Telefono local</label>
+			          </div>
+			        </div> 
+			        <div class="col s6 l3 offset-l3">
+			          <div class="input-field inline">
+			            <input id="telefono_celu" type="text" class="validate">
+			            <label for="telefono">Telefono Celular</label>
+			          </div>
+			        </div>
+			      </div>
+			    </form>
+				 </div>
+	    <div class="card-action">
+	      <a href="#" class="left">Enviar</a>
+	      <a href="#" class="right">Regresar</a>
+	    </div>
+	  </div>
+	</div>
+</div>
