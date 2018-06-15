@@ -9,12 +9,12 @@
 			            <div class="input-field" >
 						    <select materialize="material_select" [disabled]="isDisabled?true:null">
 						      <option value="" disabled selected>Grados</option>
-						      <option value="1">Primer Grado</option>
-						      <option value="2">Segundo Grado</option>
-						      <option value="3">Tercer Grado</option>
-						      <option value="3">Cuarto Grado</option>
-						      <option value="3">Quinto Grado</option>
-						      <option value="3">Sexto Grado</option>
+						      <option value="2">Primer Grado</option>
+						      <option value="1">Segundo Grado</option>
+						      <option value="1">Tercer Grado</option>
+						      <option value="4">Cuarto Grado</option>
+						      <option value="5">Quinto Grado</option>
+						      <option value="6">Sexto Grado</option>
 						    </select>
 						    <label>Seleccionar Grado</label>
 						</div>
@@ -24,13 +24,10 @@
 				    <div class="col s10 m7 l7 offset-s1 offset-l2">
 			           <div class="input-field" >
 						    <select materialize="material_select" [disabled]="isDisabled?true:null">
-						      <option value="" disabled selected>Sección</option>
+						      <option value="" disabled>Sección</option>
 						      <option value="1">Sección "A"</option>
-						      <option value="2">Sección "B"</option>
-						      <option value="3">Sección "C"</option>
-						      <option value="3">Sección "D"</option>
-						      <option value="3">Sección "E"</option>
-						      <option value="3">Sección "F"</option>
+						      <option value="3">Sección "B"</option>
+						      <option value="4">Sección "C"</option>
 						    </select>
 						    <label>Seleccionar Sección</label>
 						</div>    
@@ -63,7 +60,7 @@
 		            <td>{{Eclair}}</td>
 		            <td>{{Eclair}}</td>
 		            <td>
-		            	<a href="">
+		            	<a routerLink="/app-boletin-descrip">
 		            		<img src="assets/icons/icons8-add-64.png">
 		            	</a>
 		            </td>

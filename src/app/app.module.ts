@@ -11,7 +11,9 @@ import { EstudiantesComponent } from './estudiantes/estudiantes.component';
 import { DocentesComponent } from './docentes/docentes.component';
 import { PdfComponent } from './pdf/pdf.component';
 import { NotasComponent } from './notas/notas.component';
-import { EstadisticasComponent } from './estadisticas/estadisticas.component'
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { UsersComponent } from './users/users.component';
+import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component'
     DocentesComponent,
     PdfComponent,
     NotasComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    UsersComponent,
+    BoletinDescripComponent
   ],
   imports: [
     BrowserModule,
