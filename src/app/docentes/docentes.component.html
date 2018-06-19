@@ -5,47 +5,47 @@
 	       <div class="row">
 	       		<h5 class="center-align">Agregar Docente</h5>
 	       		<div class="divider"></div>
-			    <form class="col s12">
+			    <form class="col s12" (ngSubmit)="doSubmit()">
 			    	<div class="row">
 				        <div class="col l6">
 				          <div class="input-field inline">
-				            <input id="cedula" type="number" class="validate">
+				            <input id="cedula" type="number" class="validate" name="apellidos" [(ngModel)]="Docentes.cedula" required>
 				            <label for="cedula">Cédula</label>
 				          </div>
 				        </div>
 			    	</div>
 			      <div class="row">
 			        <div class="input-field col s6">
-			          <input id="first_name" type="text" class="validate">
+			          <input id="first_name" type="text" class="validate" name="apellidos" [(ngModel)]="Docentes.nombres" required>
 			          <label for="first_name">Nombres</label>
 			        </div>
 			        <div class="input-field col s6">
-			          <input id="last_name" type="text" class="validate">
+			          <input id="last_name" type="text" class="validate" name="apellidos" [(ngModel)]="Docentes.apellidos" required>
 			          <label for="last_name">Apellidos</label>
 			        </div>
 			      </div>
 			      <div class="row">
 			        <div class="input-field col s12">
-			          <input id="direcion" type="text" class="validate">
+			          <input id="direcion" type="text" class="validate" name="apellidos" [(ngModel)]="Docentes.direccion" required>
 			          <label for="disabled">Dirección</label>
 			        </div>
 			      </div>
 			      <div class="row">
 			        <div class="input-field col s12">
-			          <input id="date" type="date" class="datepicker" materialize="pickadate" [materializeParams]="[{format: 'dd/mm/yyyy'}]">
+			          <input id="date" type="date" class="datepicker" materialize="pickadate" [materializeParams]="[{format: 'yyyy/mm/dd'}]" name="apellidos" [(ngModel)]="Docentes.dateofbirth" required>
 			          <label for="date">Fecha de Nacimiento</label>
 			        </div>
 			      </div>
 			      <div class="row">
 			        <div class="input-field col s12">
-			          <input id="email" type="email" class="validate">
+			          <input id="email" type="email" class="validate" name="apellidos" [(ngModel)]="Docentes.correo" required>
 			          <label for="email">Email</label>
 			        </div>
 			      </div>
 			      <div class="row">
 			        <div class="col s6 l6">
 			          <div class="input-field inline">
-			            <input id="telefono_local" type="text" class="validate">
+			            <input id="telefono_local" type="text" class="validate" name="apellidos" [(ngModel)]="Docentes.telefono" required>
 			            <label for="telefono">Telefono local</label>
 			          </div>
 			        </div> 
@@ -56,6 +56,9 @@
 			          </div>
 			        </div>
 			      </div>
+			      <button class="btn btn-warning btn-lg" pButton label="Enviar">
+			      	enviar
+				</button>
 			    </form>
 				 </div>
 	    <div class="card-action">

@@ -1,11 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
 const path = require('path');
 const http = require('http');
 const app = express();
+const expressSanitizer = require('express-sanitizer');
 
 // Routes
 const database = require('./server/routes/database.ts');
+require('./server/passport.ts')(passport);
+const userRoutes = require('./server/routes/user.ts');
+const docentesRoutes = require('./server/routes/docentes.ts');
 
 // Parsers
 app.use(bodyParser.json());
@@ -14,8 +20,19 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// database location
-app.use('/database', database);
+app.use(expressSanitizer());
+
+app.use(session({
+	secret: 'mySecretKey',
+	resave: true,
+	saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Initial routes
+app.use('/api', userRoutes);
+app.use('/api', docentesRoutes);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

@@ -8,16 +8,25 @@ import { PdfComponent } from './pdf/pdf.component'
 import { NotasComponent } from './notas/notas.component'
 import { EstadisticasComponent } from './estadisticas/estadisticas.component'
 import { UsersComponent } from './users/users.component'
+import { PerfilComponent } from './users/perfil/perfil.component'
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component'
 
 const APP_ROUTES = [
   { 
-  	path: '', 
-  	component: MenuComponent, 
-  	pathMatch: 'full' 
+    path: '', 
+    component: MenuComponent, 
+    pathMatch: 'full' 
   },
   { 
-  	path: 'app-docentes', 
+  	path: 'app-menu', 
+  	component: MenuComponent,
+  },
+  { 
+    path: 'app-docentes', 
+    component: DocentesComponent 
+  },
+  { 
+  	path: 'app-docentes/:id', 
   	component: DocentesComponent 
   },
   { 
@@ -45,8 +54,12 @@ const APP_ROUTES = [
     component: UsersComponent 
   },
   { 
-  	path: 'signup', 
-  	component: UsersComponent 
+    path: 'signup', 
+    component: UsersComponent 
+  },
+  { 
+  	path: 'app-perfil', 
+  	component: PerfilComponent 
   }
 ]
 

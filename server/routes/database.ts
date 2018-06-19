@@ -20,4 +20,4 @@ const db = (() => {
 	return this;
 })();
 
-module.exports = router;
+module.exports = db;

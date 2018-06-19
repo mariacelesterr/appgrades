@@ -1,9 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
+import { FormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Routing
 import { Routing } from './app.routing';
+
+//Service
+import { UserService } from './services/user.service'
+import { ApiService } from './services/api.service'
+import { DocentesService } from './services/docentes.service'
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -13,7 +21,8 @@ import { PdfComponent } from './pdf/pdf.component';
 import { NotasComponent } from './notas/notas.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { UsersComponent } from './users/users.component';
-import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component'
+import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component';
+import { PerfilComponent } from './users/perfil/perfil.component'
 
 @NgModule({
   declarations: [
@@ -25,14 +34,22 @@ import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip
     NotasComponent,
     EstadisticasComponent,
     UsersComponent,
-    BoletinDescripComponent
+    BoletinDescripComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    FormsModule,
     MaterializeModule,
-    Routing
+    Routing,
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    UserService,
+    DocentesService,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
