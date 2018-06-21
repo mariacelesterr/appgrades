@@ -12,6 +12,8 @@ import { Routing } from './app.routing';
 import { UserService } from './services/user.service'
 import { ApiService } from './services/api.service'
 import { DocentesService } from './services/docentes.service'
+import { EstudiantesService } from './services/estudiantes.service';
+import { NotasService } from './services/notas.service';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -48,6 +50,8 @@ import { PerfilComponent } from './users/perfil/perfil.component'
     ApiService,
     UserService,
     DocentesService,
+    EstudiantesService,
+    NotasService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

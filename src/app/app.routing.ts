@@ -30,7 +30,11 @@ const APP_ROUTES = [
   	component: DocentesComponent 
   },
   { 
-  	path: 'app-estudiantes', 
+    path: 'app-estudiantes', 
+    component: EstudiantesComponent 
+  },
+  { 
+  	path: 'app-estudiantes/:id', 
   	component: EstudiantesComponent 
   },
   { 
@@ -46,7 +50,7 @@ const APP_ROUTES = [
     component: EstadisticasComponent 
   },
   { 
-    path: 'app-boletin-descrip', 
+    path: 'app-notas/boletin-descrip/:id', 
     component: BoletinDescripComponent 
   },
   { 

@@ -2,40 +2,42 @@
 	<div class="notas ">
   		<div class="card">
     		<div class="card-content ">
-				<h5 class="center" >Selecciona <br> <strong> el grado y la sección </strong> </h5>
-				<div class="divider"></div>
-				<div class="row">
-			    	<div class="col s10 m7 l7 offset-s1 offset-l2">
-			            <div class="input-field" >
-						    <select materialize="material_select" [disabled]="isDisabled?true:null">
-						      <option value="" disabled selected>Grados</option>
-						      <option value="2">Primer Grado</option>
-						      <option value="1">Segundo Grado</option>
-						      <option value="1">Tercer Grado</option>
-						      <option value="4">Cuarto Grado</option>
-						      <option value="5">Quinto Grado</option>
-						      <option value="6">Sexto Grado</option>
-						    </select>
-						    <label>Seleccionar Grado</label>
-						</div>
-			        </div>
-			    </div>
-				<div class="row">
-				    <div class="col s10 m7 l7 offset-s1 offset-l2">
-			           <div class="input-field" >
-						    <select materialize="material_select" [disabled]="isDisabled?true:null">
-						      <option value="" disabled>Sección</option>
-						      <option value="1">Sección "A"</option>
-						      <option value="3">Sección "B"</option>
-						      <option value="4">Sección "C"</option>
-						    </select>
-						    <label>Seleccionar Sección</label>
-						</div>    
-						<button class="btn waves-effect waves-light right" type="submit" name="action" (click)="onClick()">
-							Enviar
-						</button>	
+				<h5 class="center">Selecciona <strong> el grado y la sección </strong> </h5>
+				<form class="col s12" (ngSubmit)="doSubmit()">
+					<div class="divider"></div>
+					<div class="row">
+				    	<div class="col s10 m7 l7 offset-s1 offset-l2">
+				            <div class="input-field" >
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="grados" [(ngModel)]="estudiantes.id_grados" required>
+							      <option value="" disabled selected>Grados</option>
+							      <option value="2">Primer Grado</option>
+							      <option value="1">Segundo Grado</option>
+							      <option value="1">Tercer Grado</option>
+							      <option value="4">Cuarto Grado</option>
+							      <option value="5">Quinto Grado</option>
+							      <option value="6">Sexto Grado</option>
+							    </select>
+							    <label>Seleccionar Grado</label>
+							</div>
+				        </div>
 				    </div>
-				</div> 
+					<div class="row">
+					    <div class="col s10 m7 l7 offset-s1 offset-l2">
+				           <div class="input-field" >
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="seccion" [(ngModel)]="estudiantes.id_seccion" required>
+							      <option value="" disabled>Sección</option>
+							      <option value="1">Sección "A"</option>
+							      <option value="3">Sección "B"</option>
+							      <option value="4">Sección "C"</option>
+							    </select>
+							    <label>Seleccionar Sección</label>
+							</div>    
+							<button class="btn waves-effect waves-light right" type="submit" name="action">
+								Enviar
+							</button>	
+					    </div>
+					</div> 					
+				</form>
 			</div>
 		</div>
 	</div>
@@ -54,13 +56,13 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <tr>
-		            <td>{{Alvin}}</td>
-		            <td>{{Eclair}}</td>
-		            <td>{{Eclair}}</td>
-		            <td>{{Eclair}}</td>
+		          <tr *ngFor="let estudiantes of estudiantes">
+		            <td>{{estudiantes.nombres}}</td>
+		            <td>{{estudiantes.apellidos}}</td>
+		            <td>{{estudiantes.id_grados}}</td>
+		            <td>{{estudiantes.id_seccion}}</td>
 		            <td>
-		            	<a routerLink="/app-boletin-descrip">
+		            	<a routerLink='/app-notas/boletin-descrip/{{estudiantes.id_estudiantes}}'>
 		            		<img src="assets/icons/icons8-add-64.png">
 		            	</a>
 		            </td>

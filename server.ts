@@ -11,7 +11,9 @@ const expressSanitizer = require('express-sanitizer');
 const database = require('./server/routes/database.ts');
 require('./server/passport.ts')(passport);
 const userRoutes = require('./server/routes/user.ts');
+const estudiantesRoutes = require('./server/routes/estudiantes.ts');
 const docentesRoutes = require('./server/routes/docentes.ts');
+const notasRoutes = require('./server/routes/notas.ts');
 
 // Parsers
 app.use(bodyParser.json());
@@ -32,7 +34,9 @@ app.use(passport.session());
 
 //Initial routes
 app.use('/api', userRoutes);
+app.use('/api', estudiantesRoutes);
 app.use('/api', docentesRoutes);
+app.use('/api', notasRoutes);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
