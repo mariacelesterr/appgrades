@@ -23,8 +23,7 @@ router.post('/app-notas',  (req, res) => {
 	});
 });
 router.post('/app-notas/app-boletin-descrip/:id',  (req, res) => {
-	console.log(req.body);
-
+	
 	db.getConnection((err, connection) => {
 		if (err) {
 			res.status(500).send({message: err});
@@ -53,6 +52,24 @@ router.get('/app-notas/app-boletin-descrip/:id',(req, res )=>{
 				if (err) {
 					res.status(500).send({message: err});
 				} else {
+					res.status(200).send(result);
+				}
+			});
+		}
+	});
+});
+router.get('/app-pdf/:id',(req, res )=>{
+	db.getConnection((err, connection) => {
+		if (err) {
+			res.status(500).send({message: err});
+		} else {
+			connection.query('SELECT * FROM notas_descrip WHERE id_notas_descrip = ?', [req.params.id], (err, result) => {
+				connection.release();
+
+				if (err) {
+					res.status(500).send({message: err});
+				} else {
+					
 					res.status(200).send(result);
 				}
 			});

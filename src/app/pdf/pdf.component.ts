@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Notas } from '../models/notas';
+import { NotasService } from '../services/notas.service'
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
@@ -9,12 +12,19 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
   styleUrls: ['./pdf.component.css']
 })
 export class PdfComponent implements OnInit {
-
+  notas: Notas = new Notas;
   constructor(
-  	private _location: Location) 
+  	private _location: Location,
+    private notasService: NotasService,
+    private route: ActivatedRoute, 
+    private router: Router) 
   { pdfMake.vfs = pdfFonts.pdfMake.vfs; }
 
   ngOnInit() {
+    this.route.params
+      .switchMap((params: Params) => this.notasService.obtenerNotas(params['id']))
+      .subscribe(data => this.notas = data);
+      console.log(this.notas);
   }
   goBack(){
 		this._location.back();
@@ -47,7 +57,7 @@ export class PdfComponent implements OnInit {
           width: '*'
         },
         {
-          text: 'Estudiante: '+ 'Maria Celeste Rivas Ruiz Mejias ',
+          text: 'Estudiante: '+ this.notas[0].id_estudiantes,
           alignment: 'left'
         },
         {
@@ -86,22 +96,31 @@ export class PdfComponent implements OnInit {
         },
         {
           text:[
+                  '\nProyecto',
+                  '\n' + this.notas[0].proyecto
+                  ],
+          alignment: 'center',
+          bold: true,
+          italics: true
+        },
+        {
+          text:[
                   '\nFORMACIÓN PERSONAL, SOCIAL Y COMUNICACIÓN:',
-                  '\nAqui va texto'
+                  '\n' + this.notas[0].descrip_1
                   ],
           alignment: 'justify'
         },
         {
           text:[
                   '\nRELACIÓN ENTRE COMPONENTES DEL AMBIENTE:',
-                  '\nAqui va texto'
+                  '\n'+ this.notas[0].descrip_2
                   ],
           alignment: 'justify',
         },
         {
           text:[
                   '\nRECOMENDACIONES AL REPRESENTANTE:',
-                  '\nAqui va texto'
+                  '\n' + this.notas[0].descrip_3
                   ],
           alignment: 'justify',
         },
@@ -119,7 +138,7 @@ export class PdfComponent implements OnInit {
               text: ['_____________________','\nFirma del Docente'],              
             }
           ],
-          margin: [0, 420, 0, 0]
+          margin: [0, 370, 0, 0]
         }
       ]
     }

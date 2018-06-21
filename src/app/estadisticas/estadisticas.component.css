@@ -1,0 +1,14 @@
+@media only screen and (min-width: 1200px){
+	.modal{
+		 width: 50% !important ; 
+		 height: 50% !important ; 
+		 top: 30%;
+	}
+}
+@media only screen and (max-width: 992px){
+	.modal{
+		 width: 50% !important ; 
+		 height: 50% !important ; 
+		 top: 30%;
+	}
+}

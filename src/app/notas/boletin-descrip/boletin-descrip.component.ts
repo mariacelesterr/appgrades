@@ -39,14 +39,13 @@ export class BoletinDescripComponent implements OnInit {
 		this._location.back();
 	}
   doSubmit() {
-    console.log(this.estudiantes);
     this.notas.id_estudiantes = this.estudiantes[0].id_estudiantes; 
     this.notas.id_grado = this.estudiantes[0].id_grados; 
     this.notas.id_seccion = this.estudiantes[0].id_seccion; 
     //this.notas.id_periodo = estudiantes.;
     this.route.params
     .switchMap((params: Params) => this.notasService.agregarNotas(this.notas, params['id']))
-      .subscribe(data => this.notas = data);
+      .subscribe(data => this.router.navigate(['/app-pdf/', data.id_notas_descrip]));
   }
 
 }

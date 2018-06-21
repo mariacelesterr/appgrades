@@ -10,6 +10,7 @@ export class NotasService {
 
 	private estudiantesUrl = 'api/app-notas';
 	private boletin_descrip = '/api/app-notas/app-boletin-descrip/';
+	private pdf = '/api/app-pdf/';
 
 	constructor(private apiService: ApiService) {
 	}
@@ -31,6 +32,14 @@ export class NotasService {
 		const _formParams: any = {};
 		const _bodyData: any = {};
 		const url = this.boletin_descrip + id;
+
+		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
+	}
+	obtenerNotas(id: number): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+		const url = this.pdf + id;
 
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
 	}

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Estudiantes } from '../models/estudiantes';
 import { UserService } from '../services/user.service';
 import { EstudiantesService } from '../services/estudiantes.service';
+import {MaterializeAction} from 'angular2-materialize';
 
 @Component({
   selector: 'app-estudiantes',

@@ -38,7 +38,7 @@ const APP_ROUTES = [
   	component: EstudiantesComponent 
   },
   { 
-  	path: 'app-pdf', 
+  	path: 'app-pdf/:id', 
   	component: PdfComponent 
   },
   { 

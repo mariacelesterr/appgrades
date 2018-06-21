@@ -1,3 +1,32 @@
-<p>
-  estadisticas works!
-</p>
+<a class="waves-effect waves-light btn modal-trigger" (click)="openModal()">Modal</a>
+ 
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <h4 class="center-align">Calificación Cualitativa del Alumno</h4>
+    <div class="divider"></div>
+    <div class="row center">
+      <div class="col s6 m3 l3">
+         <input type="image" src="assets/icons/icons8-puzzled-80.png">
+        <br><span> Recuperación </span>
+      </div>
+      <div class="col s6 m3 l3">
+         <input type="image" src="assets/icons/icons8-happy-80.png">
+        <br><span> Aprobado</span>
+      </div>
+      <div class="col s6 m3 l3">
+    
+         <input type="image" src="assets/icons/icons8-wink-80.png">
+        <br><span> Destacado </span>
+      </div>
+      <div class="col s6 m3 l3">
+    	 <input type="image" src="assets/icons/icons8-cool-80.png">
+        <br><span> Excelente</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
