@@ -24,7 +24,8 @@ import { NotasComponent } from './notas/notas.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { UsersComponent } from './users/users.component';
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component';
-import { PerfilComponent } from './users/perfil/perfil.component'
+import { PerfilComponent } from './users/perfil/perfil.component';
+import { PeriodoComponent } from './periodo/periodo.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PerfilComponent } from './users/perfil/perfil.component'
     EstadisticasComponent,
     UsersComponent,
     BoletinDescripComponent,
-    PerfilComponent
+    PerfilComponent,
+    PeriodoComponent
   ],
   imports: [
     BrowserModule,

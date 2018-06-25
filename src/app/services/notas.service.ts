@@ -9,8 +9,9 @@ import 'rxjs/Rx';
 export class NotasService {
 
 	private estudiantesUrl = 'api/app-notas';
-	private boletin_descrip = '/api/app-notas/app-boletin-descrip/';
-	private pdf = '/api/app-pdf/';
+	private boletin_descripUrl = '/api/app-notas/app-boletin-descrip/';
+	private pdfUrl = '/api/app-pdf/';
+	private periodosUrl= 'api/app-periodo'
 
 	constructor(private apiService: ApiService) {
 	}
@@ -25,13 +26,13 @@ export class NotasService {
 		const _params: any = {};
 		const _formParams: any = {};
 
-		return this.apiService.perform('post', this.boletin_descrip + id, notas, _params, _formParams);
+		return this.apiService.perform('post', this.boletin_descripUrl + id, notas, _params, _formParams);
 	}
 	obtenerEstudi(id: number): Observable<any> {
 		const _params: any = {};
 		const _formParams: any = {};
 		const _bodyData: any = {};
-		const url = this.boletin_descrip + id;
+		const url = this.boletin_descripUrl + id;
 
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
 	}
@@ -39,8 +40,22 @@ export class NotasService {
 		const _params: any = {};
 		const _formParams: any = {};
 		const _bodyData: any = {};
-		const url = this.pdf + id;
+		const url = this.pdfUrl + id;
 
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
+	}
+	agregarPeriodo(periodo: any): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const url = this.periodosUrl +"-agregar";
+
+		return this.apiService.perform('post', url, periodo, _params, _formParams);
+	}
+	obtenerPeriodo(): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+
+		return this.apiService.perform('get', this.periodosUrl, _bodyData, _params, _formParams);
 	}
 }

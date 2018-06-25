@@ -10,6 +10,7 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component'
 import { UsersComponent } from './users/users.component'
 import { PerfilComponent } from './users/perfil/perfil.component'
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component'
+import { PeriodoComponent } from './periodo/periodo.component'
 
 const APP_ROUTES = [
   { 
@@ -34,6 +35,14 @@ const APP_ROUTES = [
     component: EstudiantesComponent 
   },
   { 
+    path: 'app-periodo', 
+    component: PeriodoComponent 
+  },
+  { 
+    path: 'app-periodo-agregar', 
+    component: PeriodoComponent 
+  },
+  { 
   	path: 'app-estudiantes/:id', 
   	component: EstudiantesComponent 
   },
@@ -51,6 +60,10 @@ const APP_ROUTES = [
   },
   { 
     path: 'app-notas/boletin-descrip/:id', 
+    component: BoletinDescripComponent 
+  },
+  { 
+    path: 'app-notas/boletin-descrip', 
     component: BoletinDescripComponent 
   },
   { 

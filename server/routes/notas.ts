@@ -77,4 +77,39 @@ router.get('/app-pdf/:id',(req, res )=>{
 	});
 });
 
+router.post('/app-periodo-agregar', (req, res) => {
+	db.getConnection((err, connection) => {
+		if (err) {
+			res.status(500).send({message: err});
+		} else {
+			connection.query('INSERT INTO periodo SET ?', req.body, (err, result) => {
+				connection.release();
+
+				if (err) {
+					res.status(500).send({message: err});
+				} else {
+					res.status(200).send({result});
+				}
+			});
+		}
+	});
+});
+router.get('/app-periodo', (req, res) => {
+	db.getConnection((err, connection) => {
+		if (err) {
+			res.status(500).send({message: err});
+		} else {
+			connection.query('SELECT * FROM periodo', (err, result) => {
+				connection.release();
+
+				if (err) {
+					res.status(500).send({message: err});
+				} else {
+					res.status(200).send(result);
+				}
+			});
+		}
+	});
+});
+
 module.exports =  router;

@@ -21,7 +21,8 @@ export class DocentesComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    //this.userdata = this.userService.getUserData();
+    this.DocentesService.obtenerPromedio()
+      .subscribe(data => console.log(data));
 
     /*if (!this.userdata) {
       this.router.navigate(['/login']);
@@ -33,7 +34,7 @@ export class DocentesComponent implements OnInit {
   doSubmit() {
   if (this.route.snapshot.url[0].path === 'app-docentes') {
       //this.Docentes.id_user= this.userdata.id;
-      this.DocentesService.createCampground(this.Docentes)
+      this.DocentesService.crearDocente(this.Docentes)
         .subscribe(data => this.router.navigate(['/app-docentes', data.id_docentes]));
         console.log(this.Docentes);
     }

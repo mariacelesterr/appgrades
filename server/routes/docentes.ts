@@ -4,7 +4,6 @@ const router = express.Router();
 const db = require('./database.ts');
 const authentication = require('../authentication.ts');
 
-// create one campground
 router.post('/app-docentes',  (req, res) => {
 
 	db.getConnection((err, connection) => {
@@ -23,5 +22,24 @@ router.post('/app-docentes',  (req, res) => {
 		}
 	});
 });
+//SELECT id_alumno, AVG(valor_nota) FROM tabla GROUP BY id_alumno;
+router.get('/app-docentes', (req, res) => {
+	db.getConnection((err, connection) => {
+		if (err) {
+			res.status(500).send({message: err});
+		} else {
+			connection.query('SELECT id_grado, id_seccion, AVG(nota_cuali) FROM notas_descrip GROUP BY id_grado, id_seccion', (err, results) => {
+				connection.release();
+
+				if (err) {
+					res.status(500).send({message: err});
+				} else {
+					res.send(results);
+				}
+			});
+		}
+	});
+});
+
 
 module.exports =  router;
