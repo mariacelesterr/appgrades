@@ -1,0 +1,63 @@
+<div class="container"  *ngIf="route.snapshot.url[0].path == 'app-periodo-agregar'">
+	<div class="notas ">
+  		<div class="card">
+    		<div class="card-content ">
+				<h5 class="center">Agregar Periodos </h5>
+				<div class="divider"></div>
+				<form class="col s12" (ngSubmit)="doSubmit()" >
+					<div class="row ">
+				      <div class="col s6">
+				        <div class="input-field">
+				          <input id="date" type="date" class="datepicker center-align " materialize="pickadate" [materializeParams]="[datepickerset]" name="dateofbirth" [(ngModel)]="periodos1" required>
+				          <label for="date">Fecha de Inicio</label>
+				        </div>
+				      </div>
+				      <div class="col s6">
+				        <div class="input-field">
+				          <input id="date" type="text" class="datepicker center-align" materialize="pickadate" [materializeParams]="[datepickerset]" name="dateofbirth" [(ngModel)]="periodos2" required>
+				          <label for="date">Fecha de Culminación</label>
+				        </div>
+					    <button type="submit" class="waves-effect waves-teal btn-flat right">
+					    	enviar
+					    </button>
+				      </div>
+				    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container"  *ngIf="route.snapshot.url[0].path == 'app-periodo'">
+	<div class="notas ">
+  		<div class="card">
+    		<div class="card-content ">
+				<h5 class="center">Periodos</h5>
+				<div class="divider"></div>
+				<table class="centered">
+			        <thead>
+			          <tr>
+			              <th>Periodo</th>
+			              <th>--</th>
+			              <th>Eliminar periodo</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr *ngFor="let periodos of periodo">
+			            <td>{{periodos.descrip_peri}}</td>
+			            <td>
+			            	
+			            </td>
+			             <td>
+			             	<a routerLink='/app-periodo/{{periodos.id_periodo}}'>
+			             		--
+			             	</a> 
+			             </td>
+			          </tr>
+			          
+			        </tbody>
+			      </table>
+			</div>
+		</div>
+  	<a class="btn-floating btn-large waves-effect waves-light red right" routerLink='/app-periodo-agregar'><i class="material-icons">add</i></a>
+	</div>
+</div>
