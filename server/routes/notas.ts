@@ -42,17 +42,27 @@ router.post('/app-notas/app-boletin-descrip/:id',  (req, res) => {
 });
 
 router.get('/app-notas/app-boletin-descrip/:id',(req, res )=>{
+	let estudiantes = [],
+		periodos = [];
 	db.getConnection((err, connection) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
 			connection.query('SELECT * FROM estudiantes WHERE id_estudiantes = ?', [req.params.id], (err, result) => {
+				if (err) {
+					res.status(500).send({message: err});
+				} else {
+					estudiantes = result[0];
+				}
+			});
+			connection.query('SELECT * FROM periodo', (err, result) => {
 				connection.release();
 
 				if (err) {
 					res.status(500).send({message: err});
 				} else {
-					res.status(200).send(result);
+					periodos = result;
+					res.status(200).send({estudiantes: estudiantes, periodos: periodos});
 				}
 			});
 		}
