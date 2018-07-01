@@ -18,11 +18,5 @@ export class DocentesService {
 
 		return this.apiService.perform('post', this.docentesUrl, docentes, _params, _formParams);
 	}
-	obtenerPromedio(): Observable<any> {
-		const _params: any = {};
-		const _formParams: any = {};
-		const _bodyData: any = {};
-		return this.apiService.perform('get', this.docentesUrl, _bodyData, _params, _formParams);
-	}
 
 }

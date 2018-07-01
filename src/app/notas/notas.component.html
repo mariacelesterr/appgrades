@@ -2,11 +2,14 @@
 	<div class="notas ">
   		<div class="card">
     		<div class="card-content ">
-				<h5 class="center">Selecciona <strong> el grado y la sección </strong> </h5>
+				<h5 class="center">Notas Descriptivas </h5>
 				<form class="col s12" (ngSubmit)="doSubmit()">
 					<div class="divider"></div>
+						<div class="row">
+							<p class="center"> Debes seleccionar <strong>el grado y la sección </strong> de tu curso</p>
+						</div>
 					<div class="row">
-				    	<div class="col s10 m7 l7 offset-s1 offset-l2">
+				    	<div class="col s6 m6 l6">
 				            <div class="input-field" >
 							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="grados" [(ngModel)]="estudiantes.id_grados" required>
 							      <option value="" disabled selected>Grados</option>
@@ -20,18 +23,20 @@
 							    <label>Seleccionar Grado</label>
 							</div>
 				        </div>
-				    </div>
-					<div class="row">
-					    <div class="col s10 m7 l7 offset-s1 offset-l2">
+				        <div class="col s6 m6 l6">
 				           <div class="input-field" >
 							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="seccion" [(ngModel)]="estudiantes.id_seccion" required>
-							      <option value="" disabled selected="">Sección</option>
+							      <option value="" disabled selected>Secciones</option>
 							      <option value="1">Sección "A"</option>
 							      <option value="3">Sección "B"</option>
 							      <option value="4">Sección "C"</option>
 							    </select>
 							    <label>Seleccionar Sección</label>
-							</div>    
+							</div>  	
+				        </div>
+				    </div>
+					<div class="row">
+					    <div class="col s10 m7 l7 offset-s1 offset-l2 right">
 							<button class="btn waves-effect waves-light right" type="submit" name="action">
 								Enviar
 							</button>	

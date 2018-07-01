@@ -60,6 +60,7 @@ export class ApiService {
 				return Observable.throw(error);
 			})
 			.map(this.getJson);
+
 	}
 
 	private getJson(response: Response) {

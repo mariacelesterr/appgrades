@@ -1,36 +1,102 @@
-<a class="waves-effect waves-teal btn-flat  modal-trigger" (click)="openModal()">Enviar</a>
- 
-<!-- Modal Structure -->
-<div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
-  <div class="modal-content">
-    <h4 class="center-align">Calificación Cualitativa del Alumno</h4>
-    <div class="divider"></div>
-    	<div class="row">
-    		<p>
-    			Antes de continuar... Debes escoger en la escala de calificación para determinar si el alumno supera los niveles de aprendizaje requeridos o no los alcanza.
-    		</p>
-    	</div>
-	    <div class="row center">
-	      <div class="col s6 m3 l3">
-	         <input type="image" value="10" name="nota_cuali" (click)="notas.nota_cuali = 10" src="assets/icons/icons8-puzzled-80.png">
-	        <br><span> Recuperación </span>
-	      </div>
-	      <div class="col s6 m3 l3">
-	         <input type="image" value="16" name="nota_cuali" (click)="notas.nota_cuali = 16" src="assets/icons/icons8-happy-80.png">
-	        <br><span> Aprobado</span>
-	      </div>
-	      <div class="col s6 m3 l3">
-	         <input type="image" value="18" name="nota_cuali" (click)="notas.nota_cuali = 18" src="assets/icons/icons8-wink-80.png">
-	        <br><span > Destacado </span>
-	      </div>
-	      <div class="col s6 m3 l3">
-	    	 <input type="image" value="20" name="nota_cuali" (click)="notas.nota_cuali = 20"src="assets/icons/icons8-cool-80.png">
-	        <br><span> Excelente</span>
-	      </div>
-	    </div> 
-  </div>
-  <div class="modal-footer">
-    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
+<div class="container" *ngIf="hideElement == true">
+	<div class="notas ">
+  		<div class="card">
+    		<div class="card-content ">
+				<h5 class="center">Estadísticas</h5>
+				<form class="col s12" (ngSubmit)="doSubmit()">
+					<div class="divider"></div>
+						<div class="row">
+							<p class="center"> Debes seleccionar <strong>el grado, la sección y el periodo</strong> a consultar </p>
+						</div>
+					<div class="row">
+				    	<div class="col s6 m6 l6">
+				            <div class="input-field" >
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="grados" [(ngModel)]="estadisticas.id_grado" required>
+							      <option value="" disabled selected>Grados</option>
+							      <option value="2">Primer Grado</option>
+							      <option value="1">Segundo Grado</option>
+							      <option value="1">Tercer Grado</option>
+							      <option value="4">Cuarto Grado</option>
+							      <option value="5">Quinto Grado</option>
+							      <option value="6">Sexto Grado</option>
+							    </select>
+							    <label>Seleccionar Grado</label>
+							</div>
+				        </div>
+				        <div class="col s6 m6 l6">
+				           <div class="input-field" >
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="seccion" [(ngModel)]="estadisticas.id_seccion" required>
+							      <option value="" disabled selected>Secciones</option>
+							      <option value="1">Sección "A"</option>
+							      <option value="3">Sección "B"</option>
+							      <option value="4">Sección "C"</option>
+							    </select>
+							    <label>Seleccionar Sección</label>
+							</div>  	
+				        </div>
+				    </div>
+					<div class="row">
+						 <div class="col s6 m6 l9 offset-l4">
+				           <div class="input-field inline">
+					          	<select materialize="material_select" [materializeSelectOptions]="" name="periodos" required [(ngModel)]="estadisticas.id_periodo">
+					          		<option value="" disabled selected>Periodos</option>
+							      	<option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
+							    </select>
+							    <label>Seleccionar Periodo</label>
+				        	</div> 	
+				        </div>
+					</div> 
+					<div class="row">
+					    <div class="col s6 m6 l10 right">
+							<button class="btn waves-effect waves-light right" type="submit" name="action">
+								Enviar
+							</button>	
+					    </div>
+						
+					</div>					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container" *ngIf="hideElement == false">
+	<div  *ngIf="hideElement1 == true">
+		<div class="notas " style="padding-bottom: 50px; padding-top: 40px">
+	  		<div class="card">
+	    		<div class="card-content ">
+					<h5 class="center">¡NOTA IMPORTANTE!</h5>
+						<div class="divider"></div>
+							<div class="row">
+								<p class="center"> Los resultados se mostrarán por lapso <br><br> Para saber el valor númerico del promedio en general de cada lapso tiene que colocar el ratón sobre cada reglon y abajo aparecerá la leyenda del mismo </p>
+							</div>
+							<div class="row" style="padding-top: 40px">
+							    <div class="col s6 m6 l10 right">
+									<button class="btn waves-effect waves-light right" type="submit" name="action" (click)="grafica()">
+										Aceptar
+									</button>
+									<button class="btn waves-effect waves-light left" type="submit" name="action" (click)="goBack()">
+										Regresar
+									</button>	
+								</div>		
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	
+
+<div class="container" *ngIf="hideElement1 == false">
+	<div class="notas ">
+  		<div class="card">
+    		<div class="card-content ">
+				<h5 class="center">Promedio de alumnos por lapso</h5>
+				<div class="divider"></div>		
+				<div class="row">
+				    <div class="col s6 m6 l10 right">
+						<div mk-morris-js [options]="chartBarOptions" [data]="chartBarData" type="Bar"></div>	
+					</div>		
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

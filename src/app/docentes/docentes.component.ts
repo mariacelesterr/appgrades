@@ -21,9 +21,6 @@ export class DocentesComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.DocentesService.obtenerPromedio()
-      .subscribe(data => console.log(data));
-
     /*if (!this.userdata) {
       this.router.navigate(['/login']);
     }*/

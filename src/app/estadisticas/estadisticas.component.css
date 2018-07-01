@@ -1,4 +1,4 @@
-@media only screen and (min-width: 1200px){
+/*@media only screen and (min-width: 1200px){
 	.modal{
 		 width: 50% !important ; 
 		 height: 50% !important ; 
@@ -11,4 +11,21 @@
 		 height: 50% !important ; 
 		 top: 30%;
 	}
+}*/
+.notas{
+	margin-top: 135px;
+	margin-bottom: 135px;
+}
+.divider{
+	margin-bottom: 30px;
+}
+@media only screen and (min-width:  992px){
+	.container {
+	    width: 40%;
+	}
+	.notas{
+		margin-top: 110px;
+		margin-bottom: 130px;
+	}
+	
 }

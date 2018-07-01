@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
 import { FormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { MorrisJsModule } from 'angular-morris-js';
 
 // Routing
 import { Routing } from './app.routing';
@@ -14,6 +15,7 @@ import { ApiService } from './services/api.service'
 import { DocentesService } from './services/docentes.service'
 import { EstudiantesService } from './services/estudiantes.service';
 import { NotasService } from './services/notas.service';
+import { EstadisticasService } from './services/estadisticas.service';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -46,6 +48,7 @@ import { PeriodoComponent } from './periodo/periodo.component'
     HttpModule,
     FormsModule,
     MaterializeModule,
+    MorrisJsModule,
     Routing,
   ],
   providers: [
@@ -54,6 +57,7 @@ import { PeriodoComponent } from './periodo/periodo.component'
     DocentesService,
     EstudiantesService,
     NotasService,
+    EstadisticasService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

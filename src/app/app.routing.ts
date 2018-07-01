@@ -59,6 +59,10 @@ const APP_ROUTES = [
     component: EstadisticasComponent 
   },
   { 
+    path: 'app-estadisticas/detalles', 
+    component:  EstadisticasComponent 
+  },
+  { 
     path: 'app-notas/boletin-descrip/:id', 
     component: BoletinDescripComponent 
   },

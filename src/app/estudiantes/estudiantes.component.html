@@ -5,7 +5,7 @@
 	       <div class="row">
 	       		<h5 class="center-align">Agregar Estudiante</h5>
 	       		<div class="divider"></div>
-			    <form class="col s12" (ngSubmit)="doSubmit()">
+			    <form class="col s12">
 			    	<div class="row">
 				        <div class="col l4">
 				          <div class="input-field inline">
@@ -84,13 +84,10 @@
 						</div>
 			        </div>
 			      </div>
-			       <button class="btn btn-warning btn-lg" pButton label="Enviar">
-			      	enviar
-					</button>
 			    </form>
 			</div>
 	    <div class="card-action">
-	      <a href="#" class="left">Enviar</a>
+	      <a (click)="doSubmit()" class="left">Enviar</a>
 	      <a class="right" (click)="goBack()">Regresar</a>
 	    </div>
 	  </div>
