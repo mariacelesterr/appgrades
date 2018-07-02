@@ -1,0 +1,66 @@
+<div class="container"  *ngIf="route.snapshot.url[0].path == 'app-secciones-agregar'">
+	<div class="row grados">
+  		<div class="card col s12 m5 l6 offset-l3">
+    		<div class="card-content">
+				<h5 class="center">Agregar Secciones</h5>
+				<div class="divider"></div>
+				<form class="col s12" (ngSubmit)="doSubmit()" >
+					<div class="row ">
+				      <div class="col s12 m7 l7 offset-l3">
+				        <div class="input-field">
+				          <input placeholder="Ej. Sección A" id="first_name" type="text" class="validate" pattern="[A-Za-z]{4-16}">
+				          <label for="first_name">Ingresa la sección</label>
+				        </div>
+				      </div>
+				    </div>
+				    <button class="waves-effect waves-green btn-flat right">
+				    	enviar
+				    </button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container"  *ngIf="route.snapshot.url[0].path == 'app-secciones'">
+	<div class="row grados">
+  		<div class="card col s12 m6 l6 offset-m3 offset-l3">
+    		<div class="card-content">
+				<h5 class="center">Secciones</h5>
+				<div class="divider"></div>
+				<div>
+					<div class="">
+						<table class="centered">
+				        <thead>
+				          <tr>
+				              <th>Sección</th>
+				              <th>--</th>
+				              <th>Eliminar Sección</th>
+				          </tr>
+				        </thead>
+				        <tbody>
+				          <tr *ngFor="let seccion of secciones">
+				            <td>{{seccion.descrp_sec}}</td>
+				            <td>
+				            	
+				            </td>
+				             <td>
+				             	<a routerLink='/app-periodo/{{seccion.id_periodo}}'>
+				             		--
+				             	</a> 
+				             </td>
+				          </tr>
+				          
+				        </tbody>
+				      </table>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col s5 m5 l6 offset-l3">
+				<a class="btn-floating btn-large waves-effect waves-light red right" routerLink='/app-secciones-agregar'><i class="material-icons">add</i></a>
+			</div>
+		</div>
+	</div>
+</div>

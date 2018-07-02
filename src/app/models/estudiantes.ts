@@ -9,4 +9,5 @@ export class Estudiantes {
 	correo: string;
 	id_grados: number;
 	id_seccion: number;
+	id_periodo: number;
 }

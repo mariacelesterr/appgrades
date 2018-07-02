@@ -10,8 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router'
 export class PeriodoComponent implements OnInit {
  	periodos1: string;
   periodos2: string;
-  periodo: any = {
+  periodo: any ;
+  periodo1: any = {
     descrip_peri: " ",
+    id_periodo: null
   };
  	datepickerset : any;
 
@@ -50,9 +52,9 @@ export class PeriodoComponent implements OnInit {
       if(per1[2]===per2[2])
         alert("No pueden cuincidir los años");
       else{
-          this.periodo.descrip_peri = per1[2] + "-" + per2[2];
-          this.notasService.agregarPeriodo(this.periodo)
-            .subscribe(data => this.periodo = data);
+          this.periodo1.descrip_peri = per1[2] + "-" + per2[2];
+          this.notasService.agregarPeriodo(this.periodo1)
+            .subscribe(data => this.periodo1 = data);
             alert('Se ha añadido el periodo satisfactoriamente');
           }
   }

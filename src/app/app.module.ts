@@ -16,6 +16,8 @@ import { DocentesService } from './services/docentes.service'
 import { EstudiantesService } from './services/estudiantes.service';
 import { NotasService } from './services/notas.service';
 import { EstadisticasService } from './services/estadisticas.service';
+import { GradosService } from './services/grados.service';
+import { SeccionesService } from './services/secciones.service';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -27,7 +29,9 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { UsersComponent } from './users/users.component';
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component';
 import { PerfilComponent } from './users/perfil/perfil.component';
-import { PeriodoComponent } from './periodo/periodo.component'
+import { PeriodoComponent } from './periodo/periodo.component';
+import { GradosComponent } from './grados/grados.component';
+import { SeccionesComponent } from './secciones/secciones.component'
 
 @NgModule({
   declarations: [
@@ -41,7 +45,9 @@ import { PeriodoComponent } from './periodo/periodo.component'
     UsersComponent,
     BoletinDescripComponent,
     PerfilComponent,
-    PeriodoComponent
+    PeriodoComponent,
+    GradosComponent,
+    SeccionesComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +64,8 @@ import { PeriodoComponent } from './periodo/periodo.component'
     EstudiantesService,
     NotasService,
     EstadisticasService,
+    GradosService,
+    SeccionesService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

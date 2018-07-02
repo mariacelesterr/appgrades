@@ -11,6 +11,8 @@ import { UsersComponent } from './users/users.component'
 import { PerfilComponent } from './users/perfil/perfil.component'
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component'
 import { PeriodoComponent } from './periodo/periodo.component'
+import { GradosComponent } from './grados/grados.component'
+import { SeccionesComponent } from './secciones/secciones.component'
 
 const APP_ROUTES = [
   { 
@@ -51,8 +53,24 @@ const APP_ROUTES = [
   	component: PdfComponent 
   },
   { 
-  	path: 'app-notas', 
-  	component: NotasComponent 
+    path: 'app-notas', 
+    component: NotasComponent 
+  },
+  { 
+    path: 'app-grados', 
+    component: GradosComponent 
+  },
+  { 
+    path: 'app-grados-agregar', 
+    component: GradosComponent 
+  },
+  { 
+    path: 'app-secciones', 
+    component: SeccionesComponent 
+  },
+  { 
+  	path: 'app-secciones-agregar', 
+  	component: SeccionesComponent 
   },
   { 
     path: 'app-estadisticas', 

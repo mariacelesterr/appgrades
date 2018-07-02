@@ -15,6 +15,7 @@ const estudiantesRoutes = require('./server/routes/estudiantes.ts');
 const docentesRoutes = require('./server/routes/docentes.ts');
 const notasRoutes = require('./server/routes/notas.ts');
 const estadisticasRoutes = require('./server/routes/estadisticas.ts');
+const escuelaRoutes = require('./server/routes/escuela.ts');
 
 // Parsers
 app.use(bodyParser.json());
@@ -39,6 +40,7 @@ app.use('/api', estudiantesRoutes);
 app.use('/api', docentesRoutes);
 app.use('/api', notasRoutes);
 app.use('/api', estadisticasRoutes);
+app.use('/api', escuelaRoutes);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

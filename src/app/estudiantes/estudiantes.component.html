@@ -9,7 +9,7 @@
 			    	<div class="row">
 				        <div class="col l4">
 				          <div class="input-field inline">
-				            <input id="cedula" type="number" class="validate">
+				            <input id="cedula" type="number" class="validate" [(ngModel)]="estudiantes.cedula" required name="cedula">
 				            <label for="cedula">Cédula</label>
 				          </div>
 				        </div>
@@ -55,8 +55,8 @@
 			        </div>
 			      </div>
 			      <div class="row">
-			        <div class="col s6 l6">
-			          <div class="input-field" >
+			        <div class="col s4 m4 l4">
+			         	<div class="input-field" >
 						    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_grados" [(ngModel)]="estudiantes.id_grados" required>
 						      <option value="" disabled selected>Grados</option>
 						      <option value="1">Primer Grado</option>
@@ -69,7 +69,7 @@
 						    <label>Seleccionar Grado</label>
 						</div>
 			        </div> 
-			        <div class="col s6 l6">
+			        <div class="col s4 m4 l4">
 			          <div class="input-field" >
 						    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estudiantes.id_seccion" required>
 						      <option value="" disabled selected>Sección</option>
@@ -82,6 +82,15 @@
 						    </select>
 						    <label>Seleccionar Sección</label>
 						</div>
+			        </div>
+			        <div class="col s4 m4 l4 ">
+			        	<div class="input-field inline">
+				          	<select materialize="material_select" [materializeSelectOptions]="" name="periodos" required [(ngModel)]="estudiantes.id_periodo">
+				          		<option value="" disabled selected>Periodos</option>
+						      	<option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
+						    </select>
+						    <label>Seleccionar Periodo</label>
+				        </div> 
 			        </div>
 			      </div>
 			    </form>
