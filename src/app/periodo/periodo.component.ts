@@ -58,5 +58,12 @@ export class PeriodoComponent implements OnInit {
             alert('Se ha añadido el periodo satisfactoriamente');
           }
   }
+  borrarPer(id: number) {
+    if (this.route.snapshot.url[0].path === 'app-periodo') {
+      this.notasService.borrarPeriodo(id).subscribe(data => {
+          alert('Se ha borrado con exito la sección');
+      });
+    }
+  }
 
 }

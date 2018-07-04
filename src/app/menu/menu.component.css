@@ -5,6 +5,26 @@ a:link
 	{ 
 		text-decoration:none; 
 	} 
-a:visited {color: black;  font-family: arial; text-decoration: none }
-a:hover { color: black; font-family: arial; text-decoration: none }
-*{outline:none !important;}*:focus {outline: none !important;}textarea:focus, input:focus{outline: none !important;}	a{text-decoration: none !important;outline: none !important;}
+a{
+	color: black;  
+	font-family: arial; 
+	text-decoration: none;
+	}
+a:hover { 
+	color: black; 
+	font-family: arial; 
+	text-decoration: none 
+}
+* {
+	outline:none !important;
+ }
+ *:focus {
+ 	outline: none !important;
+ 	}
+textarea:focus, input:focus { 
+	outline: none !important;
+	}	
+a{
+	text-decoration: none !important;
+	outline: none !important;
+}

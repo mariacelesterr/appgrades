@@ -57,7 +57,7 @@ export class ApiService {
 		return this.http.request(urlPath, requestOptions)
 			.catch((error) => {
 				// FIXME, need to handle error
-				return Observable.throw(error);
+				return Observable.throw(error.json());
 			})
 			.map(this.getJson);
 

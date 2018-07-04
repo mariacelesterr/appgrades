@@ -8,7 +8,7 @@
 					<div class="row ">
 				      <div class="col s12 m7 l7 offset-l3">
 				        <div class="input-field">
-				          <input placeholder="Ej. Sección A" id="first_name" type="text" class="validate" pattern="[A-Za-z]{4-16}">
+				          <input placeholder="Ej. Sección A" id="first_name" type="text" class="validate" pattern="[A-Za-z]" name="secciones" [(ngModel)]="secciones_obj.descrp_sec">
 				          <label for="first_name">Ingresa la sección</label>
 				        </div>
 				      </div>
@@ -44,9 +44,9 @@
 				            	
 				            </td>
 				             <td>
-				             	<a routerLink='/app-periodo/{{seccion.id_periodo}}'>
-				             		--
-				             	</a> 
+				             	<button (click)="borrarSec(seccion.id_seccion)">
+				             		<img src="assets/icons/icons8-cancel-80.png">
+				             	</button>
 				             </td>
 				          </tr>
 				          
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col col s5 m5 l6 offset-l3">
+			<div class="col col s12 m12 l6 offset-l3">
 				<a class="btn-floating btn-large waves-effect waves-light red right" routerLink='/app-secciones-agregar'><i class="material-icons">add</i></a>
 			</div>
 		</div>

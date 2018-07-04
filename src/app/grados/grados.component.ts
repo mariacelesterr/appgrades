@@ -28,6 +28,15 @@ export class GradosComponent implements OnInit {
             .subscribe(data => this.grados_obj = data);
             alert('Se ha añadido el el grado satisfactoriamente');    
   }
-  
+  borrarGra(id: number) {
+    if (this.route.snapshot.url[0].path === 'app-grados') {
+      this.gradosService.borrarGrados(id).subscribe(data => {
+        if (data.status === 200) {
+          this.router.navigate(['/app-menu']);
+          alert('Se ha borrado con exito el grado')
+        }
+      });
+    }
+  }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router'
 import { UserService } from '../services/user.service'
 
@@ -17,13 +18,21 @@ export class UsersComponent implements OnInit {
 	signupSuccessful: boolean = false;
 
 	message: string = '';
+	public form: FormGroup;
 
   	constructor(
   	private route: ActivatedRoute,
   	private router: Router,
-  	private userService: UserService) {}
+  	private userService: UserService,
+  	private formBuilder: FormBuilder,
+  	) {}
 
   	ngOnInit() {
+	  	this.form = this.formBuilder.group({
+	  		 username: ['maria_rr_13@gmail.com', [ Validators.required, Validators.email ] ],
+
+	  		password: ['', [ Validators.required, Validators.minLength(4) ] ]
+	  	});	
 		if (this.route.snapshot.url[0].path === 'login') {
 			if (this.userService.getUserData()) {
 				this.router.navigate(['/login']);
@@ -34,6 +43,13 @@ export class UsersComponent implements OnInit {
 			this.doLogout();
 		}
 	  }
+  	doSomething() {
+		if (this.route.snapshot.url[0].path === 'login') {
+			this.doLogin();
+		} else {
+			this.doSignup();
+		}
+	}
 	auth() {
 		if (this.route.snapshot.url[0].path === 'login') {
 			this.doLogin();
@@ -41,7 +57,6 @@ export class UsersComponent implements OnInit {
 			this.doSignup();
 		}
 	}
-
 	doLogin() {
 		this.userService.doLogin(this.username, this.password, this.remember)
 			.subscribe(data => {

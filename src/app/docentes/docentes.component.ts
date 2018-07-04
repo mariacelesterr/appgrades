@@ -32,7 +32,7 @@ export class DocentesComponent implements OnInit {
   if (this.route.snapshot.url[0].path === 'app-docentes') {
       //this.Docentes.id_user= this.userdata.id;
       this.DocentesService.crearDocente(this.Docentes)
-        .subscribe(data => this.router.navigate(['/app-docentes', data.id_docentes]));
+        .subscribe(data => this.router.navigate(['/app-docentes', data.id_docentes]), error => console.log(error));
         console.log(this.Docentes);
     }
   }

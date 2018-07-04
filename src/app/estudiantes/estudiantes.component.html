@@ -1,5 +1,5 @@
 <div class="row" style="padding-top: 40px">
-	<div class="col s12 m7 l6 offset-l3">
+	<div class="col s12 m6 l6 offset-l3 offset-m3">
 	  <div class="card">
 	    <div class="card-content">
 	       <div class="row">
@@ -21,7 +21,7 @@
 					     </div>
 				        <div class="col s6 l4">
 				          <div class="input-field inline">
-				            <input id="telefono_celu" type="text" class="validate" name="telefono" [(ngModel)]="estudiantes.nombres" required>
+				            <input id="telefono_celu" type="text" class="validate" name="telefono" [(ngModel)]="estudiantes.celular" required>
 				            <label for="telefono">Teléfono Celular</label>
 				          </div>
 				        </div>
@@ -59,12 +59,7 @@
 			         	<div class="input-field" >
 						    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_grados" [(ngModel)]="estudiantes.id_grados" required>
 						      <option value="" disabled selected>Grados</option>
-						      <option value="1">Primer Grado</option>
-						      <option value="2">Segundo Grado</option>
-						      <option value="3">Tercer Grado</option>
-						      <option value="3">Cuarto Grado</option>
-						      <option value="3">Quinto Grado</option>
-						      <option value="3">Sexto Grado</option>
+						      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
 						    </select>
 						    <label>Seleccionar Grado</label>
 						</div>
@@ -73,12 +68,7 @@
 			          <div class="input-field" >
 						    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estudiantes.id_seccion" required>
 						      <option value="" disabled selected>Sección</option>
-						      <option value="1">Sección "A"</option>
-						      <option value="2">Sección "B"</option>
-						      <option value="3">Sección "C"</option>
-						      <option value="3">Sección "D"</option>
-						      <option value="3">Sección "E"</option>
-						      <option value="3">Sección "F"</option>
+						      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
 						    </select>
 						    <label>Seleccionar Sección</label>
 						</div>
@@ -101,6 +91,17 @@
 	    </div>
 	  </div>
 	</div>
+</div>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+  </ul>
 </div>
 
 

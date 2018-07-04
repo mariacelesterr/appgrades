@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-	    <form class="col s12 m6 l6 offset-l3" (ngSubmit)="auth()">
+	    <form [formGroup]="form" (ngSubmit)="doSomething()" class="col s12 m6 l6 offset-l3">
 	    	<div class="card ">
 		        <div class="card-content center">
 		          <span *ngIf="route.snapshot.url[0].path == 'login'" class="card-title">Iniciar Sesión</span>
@@ -8,13 +8,14 @@
 		          <div class="divider"></div>
 			     	<div class="row">
 				        <div class="input-field col s12">
-				          <input type="text" class="form-control" name="username" [(ngModel)]="username" required>
+				          <input type="email" class="form-control" name="username" [(ngModel)]="username" required formControlName="username">
 				          <label for="email">Email</label>
+				          
 				        </div>
 			      	</div>
 				    <div class="row">
 				        <div class="input-field col s12">
-				          <input type="password" class="form-control" name="password" [(ngModel)]="password" required>
+				          <input type="password" class="form-control" name="password" [(ngModel)]="password" required formControlName="password">
 				          <label for="password">Password</label>
 				        </div>
 				    </div>
@@ -25,16 +26,12 @@
 						¿Tienes una cuenta? <a routerLink="/login"> Iniciar Sesión </a>
 					</p>
 					<div class="card-action">
-			          <a href="#" class="left">Enviar</a>
-			          <button class="btn btn-primary btn-lg"
-			        *ngIf="route.snapshot.url[0].path == 'login'"
-			        pButton
-			        label="Login"></button>
-			<button class="btn btn-warning btn-lg"
-			        *ngIf="route.snapshot.url[0].path == 'signup'"
-			        pButton
-			        label="Sign Up">
-			</button>
+			          <a *ngIf="route.snapshot.url[0].path == 'login'" class="left" (click)="auth()">Enviar</a>
+			          <a *ngIf="route.snapshot.url[0].path == 'signup'" class="left" (click)="doSignup()" >Enviar</a>
+			          <button type="submit" class="left" [disabled]="!form.invalid" *ngIf="route.snapshot.url[0].path == 'login'">
+			          	Enviar 
+			          </button>
+
 			          <a href="#" class="right">Regresar</a>
 			        </div>
 				</div>

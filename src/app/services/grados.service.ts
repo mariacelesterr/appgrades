@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class GradosService {
 
-	private gradosUrl = 'api/app-grados/';  // URL to web api
+	private gradosUrl = 'api/app-grados';  // URL to web api
 
 	constructor(private apiService: ApiService) {
 	}
@@ -30,6 +30,6 @@ export class GradosService {
 		const _formParams: any = {};
 		const _bodyData: any = {};
 
-		return this.apiService.perform('delete', this.gradosUrl + id, _bodyData, _params, _formParams);
+		return this.apiService.perform('delete', this.gradosUrl + '/' + id, _bodyData, _params, _formParams);
 	}
 }

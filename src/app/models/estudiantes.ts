@@ -6,6 +6,7 @@ export class Estudiantes {
 	dateofbirth: string;
 	direccion: string;
 	telefono: string;
+	celular: string;
 	correo: string;
 	id_grados: number;
 	id_seccion: number;

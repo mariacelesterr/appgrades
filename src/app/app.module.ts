@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MorrisJsModule } from 'angular-morris-js';
 
@@ -53,6 +53,7 @@ import { SeccionesComponent } from './secciones/secciones.component'
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterializeModule,
     MorrisJsModule,
     Routing,

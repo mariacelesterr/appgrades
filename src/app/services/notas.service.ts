@@ -63,4 +63,11 @@ export class NotasService {
 
 		return this.apiService.perform('get', this.periodosUrl, _bodyData, _params, _formParams);
 	}
+	borrarPeriodo(id: number): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+
+		return this.apiService.perform('delete', this.periodosUrl + '/' + id, _bodyData, _params, _formParams);
+	}
 }

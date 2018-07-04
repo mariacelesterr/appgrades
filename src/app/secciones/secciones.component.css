@@ -1,14 +1,17 @@
 .grados{
 	margin-top: 135px;
-	margin-bottom: 135px;
 }
 .divider{
 	margin-bottom: 30px;
 }
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+}
 @media only screen and (min-width:  992px){
 	.grados{
 		margin-top: 160px;
-		margin-bottom: 230px;
 	}
 	
 }

@@ -11,25 +11,18 @@
 					<div class="row">
 				    	<div class="col s6 m6 l6">
 				            <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="grados" [(ngModel)]="estudiantes.id_grados" required>
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_grados" [(ngModel)]="estudiantes.id_grados" required>
 							      <option value="" disabled selected>Grados</option>
-							      <option value="2">Primer Grado</option>
-							      <option value="1">Segundo Grado</option>
-							      <option value="1">Tercer Grado</option>
-							      <option value="4">Cuarto Grado</option>
-							      <option value="5">Quinto Grado</option>
-							      <option value="6">Sexto Grado</option>
+							      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
 							    </select>
 							    <label>Seleccionar Grado</label>
 							</div>
 				        </div>
 				        <div class="col s6 m6 l6">
 				           <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="seccion" [(ngModel)]="estudiantes.id_seccion" required>
-							      <option value="" disabled selected>Secciones</option>
-							      <option value="1">Sección "A"</option>
-							      <option value="3">Sección "B"</option>
-							      <option value="4">Sección "C"</option>
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estudiantes.id_seccion" required>
+							      <option value="" disabled selected>Sección</option>
+							      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
 							    </select>
 							    <label>Seleccionar Sección</label>
 							</div>  	
@@ -49,7 +42,7 @@
 </div>
 <div class="container" *ngIf="hideElement==false">
 	<div class="row">
-		<div class="col s12 m7 l6 offset-l3 ">
+		<div class="col s12 m7 l8 offset-l4 ">
 			<table class="highlight centered responsive-table">
 		        <thead>
 		          <tr>

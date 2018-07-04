@@ -44,9 +44,9 @@
 				            	
 				            </td>
 				             <td>
-				             	<a routerLink='/app-periodo/{{grado.id_periodo}}'>
+				             	<button (click)="borrarGra(grado.id_grados)">
 				             		<img src="assets/icons/icons8-cancel-80.png">
-				             	</a> 
+				             	</button>
 				             </td>
 				          </tr>
 				          
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col col s5 m5 l6 offset-l3">
+			<div class="col col s12 m12 l6 offset-l3">
 				<a class="btn-floating btn-large waves-effect waves-light red right" routerLink='/app-grados-agregar'><i class="material-icons">add</i></a>
 			</div>
 		</div>

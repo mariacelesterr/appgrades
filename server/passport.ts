@@ -66,7 +66,7 @@ module.exports = (passport) => {
 							}
 
 							if (rows.length) {
-								return done(err, false, {message: 'This username is already taken.'});
+								return done(err, false, {message: 'El email ya existe'});
 							} else {
 								// if there is no user with that username, create the user
 								let newUserMysql = {
