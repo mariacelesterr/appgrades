@@ -70,4 +70,5 @@ export class NotasService {
 
 		return this.apiService.perform('delete', this.periodosUrl + '/' + id, _bodyData, _params, _formParams);
 	}
+	
 }

@@ -21,6 +21,23 @@ router.post('/app-estudiantes', (req, res) => {
 		}
 	});
 });
+router.get('/app-buscar-estudiantes', (req, res) => {
+	db.getConnection((err, connection) => {
+		if (err) {
+			res.status(500).send({message: err});
+		} else {
+			connection.query('SELECT * FROM estudiantes', (err, result) => {
+				connection.release();
+
+				if (err) {
+					res.status(500).send({message: err});
+				} else {
+					res.status(200).send(result);
+				}
+			});
+		}
+	});
+});
 
 
 module.exports = router;

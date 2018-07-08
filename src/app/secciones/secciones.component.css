@@ -1,8 +1,9 @@
-.grados{
-	margin-top: 135px;
-}
+
 .divider{
 	margin-bottom: 30px;
+}
+input[type=text]:not(.browser-default){
+	padding-top: 20px;
 }
 button {
   background: none;
@@ -10,8 +11,6 @@ button {
   color: inherit;
 }
 @media only screen and (min-width:  992px){
-	.grados{
-		margin-top: 160px;
-	}
+	
 	
 }

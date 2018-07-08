@@ -1,3 +1,12 @@
 .divider{
 	margin-bottom: 16px;
 }
+.btn-floating i{
+	margin-top: 4px;
+}
+.hola{
+	background-color: #24292e;
+}
+.fixed-action-btn {
+  bottom: 70px;  
+}

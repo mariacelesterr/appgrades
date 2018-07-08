@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
+import { FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Estudiantes } from '../models/estudiantes';
 import { UserService } from '../services/user.service';
@@ -18,6 +19,8 @@ export class EstudiantesComponent implements OnInit {
   grado: any ;
   secciones: any;
   periodo: any;
+  datepickerset: any;
+  @ViewChild('f') form: any;
 
   constructor(
     private _location: Location,
@@ -29,22 +32,84 @@ export class EstudiantesComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
+    this.datepickerset = {
+      format: 'dd/mm/yyyy',
+      selectMonths: true,
+      today: false,
+      selectYears: 50,
+      closeOnSelect: true,
+      //max: new Date(),
+      //disable: [true],
+      clear: 'Cerrar',
+      close: 'Guardar',
+      buttonImageOnly: false,
+      formatSubmit: "yyyy",
+      monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
+      monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+      weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+      weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+      weekdaysLetter: [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
+    }
+  
     this.estadisticasService.obtenerPeriodo()
-      .subscribe(data => this.periodo = data)
+      .subscribe(
+        data =>{ 
+          this.periodo = data;
+          if (this.periodo.length === null){
+              alert('No hay peridos para escoger. Dirijase hasta la sección de periodo');
+              this.router.navigate(['/'])}    
+        },
+        error => {
+          alert('Hubo en error al cargar los periodos');
+          console.log(error);
+        });
     this.gradosService.obtenerGrados()
-      .subscribe(data => this.grado = data)
+      .subscribe(
+        data => {
+          this.grado = data;
+          if(this.grado.length === null){
+            alert('No hay grados para escoger. Dirijase hasta la sección de grados');
+              this.router.navigate(['/'])}
+          },
+          error => {
+          alert('Hubo en error al cargar los grados');
+          console.log(error);
+        })
     this.seccionesService.obtenerSecciones()
-    .subscribe(data => this.secciones = data);
+      .subscribe(data => {
+        this.secciones = data;
+        if(this.secciones === null){
+          alert('No hay secciones para escoger. Dirijase hasta la sección de secciones');
+          this.router.navigate(['/'])}
+      },
+      error=>{
+          alert('Hubo en error al cargar las secciones');
+          console.log(error);
+    });
   }
   
   goBack(){
     this._location.back();
   }
   doSubmit() {
-  if (this.route.snapshot.url[0].path === 'app-estudiantes') {
-      this.EstudiantesService.agregarEstudi(this.estudiantes)
-        .subscribe(data => this.router.navigate(['/app-estudiantes', data.id_estudiantes]));
-        console.log(this.estudiantes);
+    if (this.route.snapshot.url[0].path === 'app-estudiantes') {
+      if(this.form.valid){
+        this.EstudiantesService.agregarEstudi(this.estudiantes)
+          .subscribe(
+            data => {
+              alert('Se ha añadido el estudiante con exito');
+              this.router.navigate(['/app-estudiantes', data.id_estudiantes]);
+            },
+            error=>{
+              alert('Ha ocurrido un error intentelo de nuevo');
+              console.log(error);
+              this.router.navigate(['/'])
+
+            });
+      }
+      else{
+        alert('Los datos son erroneos, verifiquelos e intentelo de nuevo')
+      }
     }
   }
 

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgModule,Component,OnInit,ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
+import { FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { toast } from 'angular2-materialize';
 import { UserService } from '../services/user.service'
 
 @Component({
@@ -11,28 +14,28 @@ import { UserService } from '../services/user.service'
 export class UsersComponent implements OnInit {
 
 	username: string = '';
+	email: string = '';
 	password: string = '';
 	remember: boolean = false;
+	public obj: any = {
+		email:'',
+	    password:''
+	};
 
 	error: boolean = false;
 	signupSuccessful: boolean = false;
 
 	message: string = '';
-	public form: FormGroup;
+	@ViewChild('f') form: any;
 
   	constructor(
   	private route: ActivatedRoute,
   	private router: Router,
   	private userService: UserService,
-  	private formBuilder: FormBuilder,
   	) {}
 
-  	ngOnInit() {
-	  	this.form = this.formBuilder.group({
-	  		 username: ['maria_rr_13@gmail.com', [ Validators.required, Validators.email ] ],
-
-	  		password: ['', [ Validators.required, Validators.minLength(4) ] ]
-	  	});	
+  	ngOnInit() {	
+  		//toast("I am the best toast there is!", 4000);
 		if (this.route.snapshot.url[0].path === 'login') {
 			if (this.userService.getUserData()) {
 				this.router.navigate(['/login']);
@@ -44,21 +47,30 @@ export class UsersComponent implements OnInit {
 		}
 	  }
   	doSomething() {
-		if (this.route.snapshot.url[0].path === 'login') {
+  		if (this.form.valid) {
+  			if (this.route.snapshot.url[0].path === 'login') {
 			this.doLogin();
-		} else {
-			this.doSignup();
-		}
+			} else {
+				this.doSignup();
+			}
+	      console.log("Form Submitted!");
+	      this.form.reset();
+    	}
 	}
 	auth() {
-		if (this.route.snapshot.url[0].path === 'login') {
-			this.doLogin();
-		} else {
-			this.doSignup();
-		}
+		if (this.form.valid) {
+  			if (this.route.snapshot.url[0].path === 'login') {
+				this.doLogin();
+			} else {
+				this.doSignup();
+			}
+    		//toast("I am the best toast there is!");
+	      	console.log("Form Submitted!");
+	      	this.form.reset();
+    	}
 	}
 	doLogin() {
-		this.userService.doLogin(this.username, this.password, this.remember)
+		this.userService.doLogin(this.obj.email, this.obj.password, this.remember)
 			.subscribe(data => {
 				this.userService.setUserData(data);
 				console.log(data);
@@ -67,7 +79,7 @@ export class UsersComponent implements OnInit {
 	}
 
 	doSignup() {
-		this.userService.doSignup(this.username, this.password)
+		this.userService.doSignup(this.obj.email, this.obj.password)
 			.subscribe(data => {
 				this.signupSuccessful = true;
 				this.router.navigate(['/app-estudiantes']);

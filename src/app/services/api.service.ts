@@ -51,7 +51,7 @@ export class ApiService {
 		const methodName = method.toLowerCase();
 
 		if (!this.http[methodName]) {
-			throw new Error(`Unknown HTTP method: ${method}`);
+			throw new Error(`Método HTTP desconocido: ${method}`);
 		}
 
 		return this.http.request(urlPath, requestOptions)

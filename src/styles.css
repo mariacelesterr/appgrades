@@ -4,3 +4,6 @@ button {
   border: 0;
   color: inherit;
 }
+.card {
+  margin-top: 50px;
+}

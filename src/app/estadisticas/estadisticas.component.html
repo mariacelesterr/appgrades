@@ -5,38 +5,31 @@
 				<h5 class="center">Estadísticas</h5>
 				<form class="col s12" (ngSubmit)="doSubmit()">
 					<div class="divider"></div>
-						<div class="row">
-							<p class="center"> Debes seleccionar <strong>el grado, la sección y el periodo</strong> a consultar </p>
-						</div>
+					<div class="row">
+						<p class="center"> Debes seleccionar <strong>el grado, la sección y el periodo</strong> a consultar </p>
+					</div>
 					<div class="row">
 				    	<div class="col s6 m6 l6">
 				            <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="grados" [(ngModel)]="estadisticas.id_grado" required>
-							      <option value="" disabled selected>Grados</option>
-							      <option value="2">Primer Grado</option>
-							      <option value="1">Segundo Grado</option>
-							      <option value="1">Tercer Grado</option>
-							      <option value="4">Cuarto Grado</option>
-							      <option value="5">Quinto Grado</option>
-							      <option value="6">Sexto Grado</option>
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estadisticas.id_grado" required>
+							      <option value="" disabled selected> Grados</option>
+							      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grado">{{grados.descrip_gra}}</option> 
 							    </select>
 							    <label>Seleccionar Grado</label>
 							</div>
 				        </div>
 				        <div class="col s6 m6 l6">
 				           <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="seccion" [(ngModel)]="estadisticas.id_seccion" required>
-							      <option value="" disabled selected>Secciones</option>
-							      <option value="1">Sección "A"</option>
-							      <option value="3">Sección "B"</option>
-							      <option value="4">Sección "C"</option>
+							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estadisticas.id_seccion" required>
+							      <option value="" disabled selected>Sección</option>
+							      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
 							    </select>
 							    <label>Seleccionar Sección</label>
 							</div>  	
 				        </div>
 				    </div>
 					<div class="row">
-						 <div class="col s6 m6 l9 offset-l4">
+						<div class="col s6 m9 l9 offset-s3 offset-m4 offset-l4">
 				           <div class="input-field inline">
 					          	<select materialize="material_select" [materializeSelectOptions]="" name="periodos" required [(ngModel)]="estadisticas.id_periodo">
 					          		<option value="" disabled selected>Periodos</option>
@@ -44,16 +37,18 @@
 							    </select>
 							    <label>Seleccionar Periodo</label>
 				        	</div> 	
-				        </div>
-					</div> 
+				    	</div>
+					</div> 			
 					<div class="row">
-					    <div class="col s6 m6 l10 right">
-							<button class="btn waves-effect waves-light right" type="submit" name="action">
-								Enviar
-							</button>	
-					    </div>
-						
-					</div>					
+					    <div class="card-action">
+					    	<div class="col s12 m12 l12">
+							    <button  type="submit" class="right ">
+						      		<a>Enviar</a>
+							    </button>
+							    <a class="left" (click)="goBack()">Regresar</a>
+					    	</div>
+					    </div>	
+				    </div>
 				</form>
 			</div>
 		</div>
@@ -61,7 +56,7 @@
 </div>
 <div class="container" *ngIf="hideElement == false">
 	<div  *ngIf="hideElement1 == true">
-		<div class="notas " style="padding-bottom: 50px; padding-top: 40px">
+		<div class="notas">
 	  		<div class="card">
 	    		<div class="card-content ">
 					<h5 class="center">¡NOTA IMPORTANTE!</h5>

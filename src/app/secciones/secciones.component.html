@@ -1,21 +1,50 @@
 <div class="container"  *ngIf="route.snapshot.url[0].path == 'app-secciones-agregar'">
 	<div class="row grados">
-  		<div class="card col s12 m5 l6 offset-l3">
+  		<div class="card col s12 m8 l6 offset-m2 offset-l3">
     		<div class="card-content">
 				<h5 class="center">Agregar Secciones</h5>
 				<div class="divider"></div>
-				<form class="col s12" (ngSubmit)="doSubmit()" >
+				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()" >
 					<div class="row ">
+				        <p class="center">
+				        	Debes introducir la letra de la sección
+				        </p>
 				      <div class="col s12 m7 l7 offset-l3">
-				        <div class="input-field">
-				          <input placeholder="Ej. Sección A" id="first_name" type="text" class="validate" pattern="[A-Za-z]" name="secciones" [(ngModel)]="secciones_obj.descrp_sec">
+				        <div class="input-field" [ngClass]="{
+						        'has-danger': secciones.invalid && (secciones.dirty || secciones.touched),
+						        'has-success': secciones.valid && (secciones.dirty || secciones.touched)}">
+				          <input placeholder="Ej. Sección A" 
+				          id="first_name" 
+				          type="text" 
+				          class="validate"
+				          name="secciones" 
+				          [(ngModel)]="secciones_obj.descrp_sec"
+				          required
+				          maxlength="9" 
+				          #secciones="ngModel"
+				          onkeydown="if ((event.keyCode >= 65 && event.keyCode <= 90)||(event.keyCode >= 97 && event.keyCode <=122) || event.key == 'Ñ' || event.key == 'ñ') return true 
+				          	else return false "
+				         onkeyup="this.value=this.value.toUpperCase()"
+				         >
+				          <div class="form-control-feedback"
+							     *ngIf="secciones.errors && (secciones.dirty || secciones.touched)">
+								<p  color="red" class="center" *ngIf="secciones.errors.required" >Este campo en obligatorio</p>
+								<p class="center" *ngIf="secciones.errors.pattern">Solo puedes ingresar letras</p>
+							</div>
 				          <label for="first_name">Ingresa la sección</label>
 				        </div>
 				      </div>
 				    </div>
-				    <button class="waves-effect waves-green btn-flat right">
-				    	enviar
-				    </button>
+				    <div class="row">
+					    <div class="card-action">
+					    	<div class="col s12 m12 l12">
+							    <button  class="right ">
+						      		<a>Enviar</a>
+							    </button>
+							    <a class="left" (click)="goBack()">Regresar</a>
+					    	</div>
+					    </div>	
+				    </div>
 				</form>
 			</div>
 		</div>

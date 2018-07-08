@@ -1,17 +1,21 @@
 <div class="container" *ngIf="hideElement==true" >
-	<div class="notas ">
-  		<div class="card">
+	<div class="row">
+  		<div class="card col s12 m5 l6 offset-l3">
     		<div class="card-content ">
 				<h5 class="center">Notas Descriptivas </h5>
-				<form class="col s12" (ngSubmit)="doSubmit()">
+				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()">
 					<div class="divider"></div>
-						<div class="row">
-							<p class="center"> Debes seleccionar <strong>el grado y la sección </strong> de tu curso</p>
-						</div>
+					<div class="row">
+						<p class="center"> Debes seleccionar <strong>el grado y la sección </strong> de tu curso</p>
+					</div>
 					<div class="row">
 				    	<div class="col s6 m6 l6">
 				            <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_grados" [(ngModel)]="estudiantes.id_grados" required>
+							    <select materialize="material_select" 
+							    name="id_grados" 
+							    [(ngModel)]="estudiantes.id_grados" 
+							    required
+							    #id_grados="ngModel">
 							      <option value="" disabled selected>Grados</option>
 							      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
 							    </select>
@@ -20,7 +24,12 @@
 				        </div>
 				        <div class="col s6 m6 l6">
 				           <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estudiantes.id_seccion" required>
+							    <select 
+							    materialize="material_select"
+							     name="id_seccion" 
+							     [(ngModel)]="estudiantes.id_seccion" 
+							     required
+							     #id_seccion="ngModel">
 							      <option value="" disabled selected>Sección</option>
 							      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
 							    </select>
@@ -28,13 +37,32 @@
 							</div>  	
 				        </div>
 				    </div>
+				    <div class="row">
+						<div class="col s6 m9 l9 offset-s3 offset-m4 offset-l4">
+				           <div class="input-field inline">
+					          	<select materialize="material_select" 
+					          	[materializeSelectOptions]="" 
+					          	name="periodos" 
+					          	required 
+					          	[(ngModel)]="estudiantes.id_periodo"
+					          	#peridos="ngModel">
+					          		<option value="" disabled selected>Periodos</option>
+							      	<option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
+							    </select>
+							    <label>Seleccionar Periodo</label>
+				        	</div> 	
+				    	</div>
+					</div> 
 					<div class="row">
-					    <div class="col s10 m7 l7 offset-s1 offset-l2 right">
-							<button class="btn waves-effect waves-light right" type="submit" name="action">
-								Enviar
-							</button>	
-					    </div>
-					</div> 					
+					    <div class="card-action">
+					    	<div class="col s12 m12 l12">
+							    <button  type="submit" class="right ">
+						      		<a>Enviar</a>
+							    </button>
+							    <a class="left" (click)="goBack()">Regresar</a>
+					    	</div>
+					    </div>	
+				    </div>					
 				</form>
 			</div>
 		</div>
@@ -42,7 +70,7 @@
 </div>
 <div class="container" *ngIf="hideElement==false">
 	<div class="row">
-		<div class="col s12 m7 l8 offset-l4 ">
+		<div class="col s12 m7 l12">
 			<table class="highlight centered responsive-table">
 		        <thead>
 		          <tr>

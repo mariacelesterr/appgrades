@@ -5,6 +5,8 @@ import {MaterializeAction} from 'angular2-materialize';
 import { Notas } from '../models/notas'
 import { EstadisticasService } from '../services/estadisticas.service';
 import { MorrisJsModule } from 'angular-morris-js';
+import { GradosService } from '../services/grados.service';
+import { SeccionesService } from '../services/secciones.service';
 
 @Component({
   selector: 'app-estadisticas',
@@ -12,6 +14,8 @@ import { MorrisJsModule } from 'angular-morris-js';
   styleUrls: ['./estadisticas.component.css']
 })
 export class EstadisticasComponent implements OnInit {
+    grado: any ;
+    secciones: any;
   public promedio: any;
   public periodo: any ;
   public hideElement = true;
@@ -24,15 +28,22 @@ export class EstadisticasComponent implements OnInit {
     id_periodo:0
   };
 
-  constructor( private estadisticasService: EstadisticasService,
+  constructor( 
               private route: ActivatedRoute,
               private router: Router,
-              private _location: Location) { }
+              private _location: Location,
+              private estadisticasService : EstadisticasService,
+              private gradosService: GradosService,
+              private seccionesService: SeccionesService) { }
 
   ngOnInit() {
     if (this.route.snapshot.url[0].path === 'app-estadisticas') {
       this.estadisticasService.obtenerPeriodo()
       .subscribe(data => this.periodo = data)
+       this.gradosService.obtenerGrados()
+        .subscribe(data => this.grado = data)
+      this.seccionesService.obtenerSecciones()
+      .subscribe(data => this.secciones = data);
     }
       this.chartBarOptions = {
         xkey: 'x',
@@ -41,6 +52,7 @@ export class EstadisticasComponent implements OnInit {
         resize: true
       };
       this.chartBarData =  [];
+     
     }
   doSubmit() {
     this.hideElement = false;

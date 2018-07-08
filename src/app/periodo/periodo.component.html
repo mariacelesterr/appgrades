@@ -4,21 +4,50 @@
     		<div class="card-content ">
 				<h5 class="center">Agregar Periodos </h5>
 				<div class="divider"></div>
-				<form class="col s12" (ngSubmit)="doSubmit()" >
+				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()" >
 					<div class="row ">
 				      <div class="col s6">
-				        <div class="input-field">
-				          <input id="date" type="date" class="datepicker center-align " materialize="pickadate" [materializeParams]="[datepickerset]" name="dateofbirth" [(ngModel)]="periodos1" required>
+				        <div class="input-field" 
+				        [ngClass]="{ 
+				        'has-danger': periodos1.invalid && (periodos1.dirty || periodos1.touched),
+				        'has-success': periodos1.valid && (periodos1.dirty || periodos1.touched)}">
+				          <input id="date" 
+				          type="text" 
+				          class="datepicker center-align" 
+				          materialize="pickadate" 
+				          [materializeParams]="[datepickerset]" 
+				          name="inicio" 
+				          [(ngModel)]="inicio" 
+				          required
+				          #periodos1="ngModel">
+				          <div class="form-control-feedback"
+							     *ngIf="periodos1.errors && (periodos1.dirty || periodos1.touched)">
+								<p  color="red" class="center" *ngIf="periodos1.errors.required" >Este campo en obligatorio</p>
+							</div>
 				          <label for="date">Fecha de Inicio</label>
 				        </div>
 				      </div>
 				      <div class="col s6">
-				        <div class="input-field">
-				          <input id="date" type="text" class="datepicker center-align" materialize="pickadate" [materializeParams]="[datepickerset]" name="dateofbirth" [(ngModel)]="periodos2" required>
+				        <div class="input-field" [ngClass]="{ 'has-danger': periodos2.invalid && (periodos2.dirty || periodos2.touched),'has-success': periodos2.valid && (periodos2.dirty || periodos2.touched)}">
+				          <input id="date" 
+				          type="text" 
+				          class="datepicker center-align" 
+				          materialize="pickadate" 
+				          [materializeParams]="[datepickerset]"
+				          name="final" 
+				          [(ngModel)]="final" 
+				          required
+				          #periodos2="ngModel">
+				          <div class="form-control-feedback"
+							     *ngIf="periodos2.errors && (periodos2.dirty || periodos2.touched)">
+								<p  color="red" class="center" *ngIf="periodos2.errors.required" >Este campo en obligatorio</p>
+							</div>
 				          <label for="date">Fecha de Culminación</label>
 				        </div>
-					    <button type="submit" class="waves-effect waves-teal btn-flat right">
-					    	enviar
+					    <button type="submit" 
+					    		class="waves-effect waves-teal btn-flat right"
+					    		[disabled]="f.invalid" >
+					    		Enviar
 					    </button>
 				      </div>
 				    </div>

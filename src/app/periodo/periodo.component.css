@@ -1,13 +1,17 @@
 .divider{
 	margin-bottom: 30px;
 }
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+}
+input[type=text]:not(.browser-default){
+	padding-top: 20px;
+}
 @media only screen and (min-width:  992px){
 	.container {
 	    width: 40%;
-	}
-	.notas{
-		margin-top: 100px;
-		margin-bottom: 130px;
 	}
 	
 }

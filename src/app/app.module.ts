@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'angular2-materialize';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MorrisJsModule } from 'angular-morris-js';
 
@@ -22,6 +22,7 @@ import { SeccionesService } from './services/secciones.service';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { EstudiantesComponent } from './estudiantes/estudiantes.component';
+import { BuscarEstudiantesComponent } from './estudiantes/buscar.estudiantes.component';
 import { DocentesComponent } from './docentes/docentes.component';
 import { PdfComponent } from './pdf/pdf.component';
 import { NotasComponent } from './notas/notas.component';
@@ -38,6 +39,7 @@ import { SeccionesComponent } from './secciones/secciones.component'
     AppComponent,
     MenuComponent,
     EstudiantesComponent,
+    BuscarEstudiantesComponent,
     DocentesComponent,
     PdfComponent,
     NotasComponent,
@@ -53,7 +55,6 @@ import { SeccionesComponent } from './secciones/secciones.component'
     BrowserModule,
     HttpModule,
     FormsModule,
-    ReactiveFormsModule,
     MaterializeModule,
     MorrisJsModule,
     Routing,

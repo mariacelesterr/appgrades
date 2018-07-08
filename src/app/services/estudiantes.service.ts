@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 export class EstudiantesService {
 
 	private estudiantesUrl = 'api/app-estudiantes';  // URL to web api
+	private buscarestudiantesUrl = 'api/app-buscar-estudiantes';  // URL to web api
 
 	constructor(private apiService: ApiService) {
 	}
@@ -17,5 +18,12 @@ export class EstudiantesService {
 		const _formParams: any = {};
 
 		return this.apiService.perform('post', this.estudiantesUrl, estudiantes, _params, _formParams);
+	}
+	obtenerEstudiantes(): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+
+		return this.apiService.perform('get', this.buscarestudiantesUrl , _bodyData , _params, _formParams);
 	}
 }

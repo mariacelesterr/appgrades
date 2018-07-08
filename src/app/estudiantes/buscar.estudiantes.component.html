@@ -1,0 +1,105 @@
+<div class="container"  *ngIf="hideElement == false">
+	<div class="row ">
+  		<div class="card col s12 m6 l6 offset-m3 offset-l3">
+    		<div class="card-content ">
+    			<div class="row"> 
+					<h5 class="center">Buscar estudiantes</h5>
+					<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()">
+						<div class="divider"></div>
+							<div class="row">
+								<p class="center"> Debes seleccionar <strong>el grado, la sección y el periodo</strong> a consultar </p>
+							</div>
+						<div class="row">
+					    	<div class="col s6 m6 l6">
+					    		<div class="input-field">
+						            <select 
+									    materialize="material_select" 
+									    name="grados" 
+									    [(ngModel)]="estudiantes.id_grados" 
+									    required
+									    #grados="ngModel">
+									    	<option value="" disabled selected>Grados</option>
+									    	<option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
+									</select>
+								    <div class="form-control-feedback"
+									     *ngIf="grados.errors && (grados.dirty || grados.touched)">
+										<p class="center" *ngIf="grados.errors.required" >Este campo en obligatorio</p>
+									</div>
+									<label>Seleccionar Grado</label>
+						        </div>		
+					    	</div>
+					        <div class="col s6 m6 l6">
+					           <div class="input-field" >
+								    <select materialize="material_select" 
+								     name="id_seccion" 
+								     [(ngModel)]="estudiantes.id_seccion" 
+								     required
+								     #seccion="ngModel">
+								      <option value="" disabled selected>Sección</option>
+								      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
+								    </select>
+								    <label>Seleccionar Sección</label>
+								</div>  	
+					        </div>
+					    </div>
+						<div class="row">
+							 <div class="col s6 m6 l9 offset-l4 offset-m3 offset-s3">
+					           <div class="input-field inline">
+						          	<select materialize="material_select" 
+						          	[materializeSelectOptions]="" 
+						          	name="periodos" 
+						          	required 
+						          	[(ngModel)]="estudiantes.id_periodo"
+						          	#periodos="ngModel">
+						          		<option value="" disabled selected>Periodos</option>
+								      	<option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
+								    </select>
+								    <label>Seleccionar Periodo</label>
+					        	</div> 	
+					        </div>
+						</div> 				
+					</form>
+    			</div>
+				<div class="row">
+					<div class="card-action">
+				      <a (click)="doSubmit()" class="right">Enviar</a>
+				      <a class="left" (click)="goBack()">Regresar</a>
+				    </div>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row ">
+  		<div class="card col s12 m6 l6 offset-m3 offset-l3">
+    		<div class="card-content ">
+    			<div class="row"> 
+    				<h5 class="center-align">Estudiantes</h5>
+		       		<div class="divider"></div>
+					<ul class="collection">
+					    <li class="collection-item avatar" *ngFor="let estudiantes of estudiantes">
+					    	<i class="material-icons circle">
+					      		<img src="assets/icons/icons8-user-avatar-filled-50.png">
+					    	</i>
+					      <span class="title">{{estudiantes.nombres}} {{estudiantes.apellidos}}</span>
+					      <p>{{estudiantes.id_grados}}<br>
+					         {{estudiantes.id_seccion}}
+					      </p>
+					      <a href="#!" 
+					       class="secondary-content tooltipped"
+					       materialize="tooltip" 
+					       data-position="right" 
+					       data-delay="10" 
+					       data-tooltip="Información del estudiante ">
+					      	<i class="material-icons">
+					      		<img src="assets/icons/icons8-info-80.png">
+					      	</i>
+					      </a>
+					    </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	

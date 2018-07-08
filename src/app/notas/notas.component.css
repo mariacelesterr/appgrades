@@ -1,17 +1,7 @@
-.notas{
-	margin-top: 135px;
-	margin-bottom: 135px;
-}
+
 .divider{
 	margin-bottom: 30px;
 }
 @media only screen and (min-width:  992px){
-	.container {
-	    width: 40%;
-	}
-	.notas{
-		margin-top: 150px;
-		margin-bottom: 190px;
-	}
 	
 }

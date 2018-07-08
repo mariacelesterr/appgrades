@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NotasService } from '../services/notas.service';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
+import { FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { NotasService } from '../services/notas.service';
 
 @Component({
   selector: 'app-periodo',
@@ -8,14 +9,15 @@ import { Router, ActivatedRoute } from '@angular/router'
   styleUrls: ['./periodo.component.css']
 })
 export class PeriodoComponent implements OnInit {
- 	periodos1: string;
-  periodos2: string;
-  periodo: any ;
-  periodo1: any = {
-    descrip_peri: " ",
+ 	public periodos1: any ={
+    descrip_peri: '',
     id_periodo: null
   };
+  periodo: any ;
  	datepickerset : any;
+  final: any;
+  inicio: any;
+  @ViewChild('f') form: any;
 
   constructor(private notasService: NotasService,
               private route: ActivatedRoute,
@@ -27,7 +29,7 @@ export class PeriodoComponent implements OnInit {
       selectMonths: true,
       today: false,
       selectYears: 10,
-      closeOnSelect: true,
+      //closeOnSelect: true,
       //max: new Date(),
       //disable: [true],
       clear: 'Cerrar',
@@ -47,23 +49,49 @@ export class PeriodoComponent implements OnInit {
 
   doSubmit() {
     var separador = "/";
-    var per1= this.periodos1.split(separador);
-    var per2 = this.periodos2.split(separador);
+    var per1= this.inicio.split(separador);
+    var per2 = this.final.split(separador);
+    var result = [];
+    if (this.form.valid) {
       if(per1[2]===per2[2])
         alert("No pueden cuincidir los años");
+      else if(per1[2]>per2[2])
+        alert('Periodo no permitido');
       else{
-          this.periodo1.descrip_peri = per1[2] + "-" + per2[2];
-          this.notasService.agregarPeriodo(this.periodo1)
-            .subscribe(data => this.periodo1 = data);
-            alert('Se ha añadido el periodo satisfactoriamente');
-          }
+          this.periodos1.descrip_peri = per1[2] + "-" + per2[2];
+          this.periodo.forEach(function(element) {
+            for (const prop in element) {
+              result.push(element[prop]);}
+            });
+          var existe = result.includes(this.periodos1.descrip_peri) // true
+          if(existe === true )
+            alert('Este periodo ya existe');
+          else{
+            this.notasService.agregarPeriodo(this.periodos1)
+              .subscribe( data => {
+                  alert('Se ha añadido el periodo satisfactoriamente');
+                  this.router.navigate(['/'])
+                },error =>{
+                  console.log(error);
+                })
+          }   
+      }
+    }
+    this.form.reset();
   }
+
   borrarPer(id: number) {
     if (this.route.snapshot.url[0].path === 'app-periodo') {
-      this.notasService.borrarPeriodo(id).subscribe(data => {
-          alert('Se ha borrado con exito la sección');
-      });
+      this.notasService.borrarPeriodo(id).subscribe(data => 
+          {
+            alert('Se ha borrado con exito el periodo');
+            this.router.navigate(['/'])
+          },
+          error => {
+            console.log(error);
+            alert('Lo sentimos ha ocurrido un error ')} );
     }
   }
+  
 
 }

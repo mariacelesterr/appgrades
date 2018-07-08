@@ -1,45 +1,123 @@
-<div class="row" style="padding-top: 40px">
+<div class="row">
 	<div class="col s12 m7 l6 offset-l3">
 	  <div class="card">
 	    <div class="card-content">
 	       <div class="row">
 	       		<h5 class="center-align">Agregar Docente</h5>
 	       		<div class="divider"></div>
-			    <form class="col s12">
+			    <form #f="ngForm" class="col s12">
 			    	<div class="row">
 				        <div class="col l6">
-				          <div class="input-field inline">
-				            <input id="cedula" type="number" class="validate" name="apellidos" [(ngModel)]="Docentes.cedula" required>
+				          <div class="input-field inline" [ngClass]="{
+						        'has-danger': cedula.invalid && (cedula.dirty || cedula.touched),
+						        'has-success': cedula.valid && (cedula.dirty || cedula.touched)}">
+				            <input id="cedula" 
+				            type="number" 
+				            class="validate" 
+				            name="cedula" 
+				            [(ngModel)]="Docentes.cedula" 
+				            required
+					        minlength="4"
+			       			#cedula="ngModel">
+			       			<div class="form-control-feedback"
+							     *ngIf="cedula.errors && (cedula.dirty || cedula.touched)">
+								<p class="center" *ngIf="cedula.errors.required" >Este campo es obligatorio</p>
+								<p class="center" *ngIf="cedula.errors.minlength">La cédula debe tener como mínimo 4 dígitos</p>
+							</div>
 				            <label for="cedula">Cédula</label>
 				          </div>
 				        </div>
 			    	</div>
 			      <div class="row">
-			        <div class="input-field col s6">
-			          <input id="first_name" type="text" class="validate" name="apellidos" [(ngModel)]="Docentes.nombres" required>
+			        <div class="input-field col s6" [ngClass]="{
+						        'has-danger': nombres.invalid && (nombres.dirty || nombres.touched),
+						        'has-success': nombres.valid && (nombres.dirty || nombres.touched)}">
+				        <input id="nombres" 
+				        type="text" 
+				        class="validate" 
+				        name="nombres" 
+				        [(ngModel)]="Docentes.nombres" 
+				        required
+				        minlength="4"
+		       			#nombres="ngModel">
+		       			<div class="form-control-feedback"
+						     *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
+							<p class="center" *ngIf="nombres.errors.required" >Este campo es obligatorio</p>
+							<p class="center" *ngIf="nombres.errors.minlength">El campo no puede estar vacío</p>
+						</div>
 			          <label for="first_name">Nombres</label>
 			        </div>
 			        <div class="input-field col s6">
-			          <input id="last_name" type="text" class="validate" name="apellidos" [(ngModel)]="Docentes.apellidos" required>
-			          <label for="last_name">Apellidos</label>
+			        	<input id="apellidos" 
+			        	type="text" 
+			        	class="validate" 
+			        	name="apellidos" 
+			        	[(ngModel)]="Docentes.apellidos" 
+			        	required
+			        	minlength="4"
+		       			#apellidos="ngModel">
+		       			<div class="form-control-feedback"
+						     *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
+							<p class="center" *ngIf="apellidos.errors.required" >Este campo es obligatorio</p>
+							<p class="center" *ngIf="apellidos.errors.minlength">El campo no puede estar vacío</p>
+						</div>
+			        	<label for="apellidos">Apellidos</label>
 			        </div>
 			      </div>
 			      <div class="row">
 			        <div class="input-field col s12">
-			          <input id="direcion" type="text" class="validate" name="apellidos" [(ngModel)]="Docentes.direccion" required>
-			          <label for="disabled">Dirección</label>
+				        <input id="direcion" 
+				        type="text" 
+				        class="validate" 
+				        name="direccion" 
+				        [(ngModel)]="Docentes.direccion" 
+				        required
+				        minlength="4"
+		       			#direccion="ngModel">
+		       			<div class="form-control-feedback"
+						     *ngIf="direccion.errors && (direccion.dirty || direccion.touched)">
+							<p class="center" *ngIf="direccion.errors.required" >Este campo es obligatorio</p>
+							<p class="center" *ngIf="direccion.errors.minlength">El campo no puede estar vacío</p>
+						</div>
+				        <label for="direccion">Dirección</label>
 			        </div>
 			      </div>
 			      <div class="row">
-			        <div class="input-field col s12">
-			          <input id="date" type="date" class="datepicker" materialize="pickadate" [materializeParams]="[{format: 'yyyy/mm/dd'}]" name="apellidos" [(ngModel)]="Docentes.dateofbirth" required>
-			          <label for="date">Fecha de Nacimiento</label>
+			        <div class="input-field col s6 m6 l6">
+				        <input id="date" 
+				        type="date" 
+				        class="datepicker center-align" 
+				        materialize="pickadate" 
+				         
+				        name="dateofbirth" 
+				        [(ngModel)]="Docentes.dateofbirth" 
+				        required
+				        [materializeParams]="[datepickerset]"
+				        minlength="4"
+		       			#dateofbirth="ngModel">
+		       			<div class="form-control-feedback"
+						     *ngIf="dateofbirth.errors && (dateofbirth.dirty || dateofbirth.touched)">
+							<p class="center" *ngIf="dateofbirth.errors.required" >Este campo es obligatorio</p>
+							<p class="center" *ngIf="dateofbirth.errors.minlength">El campo no puede estar vacío</p>
+						</div>
+				        <label for="date">Fecha de Nacimiento</label>
 			        </div>
-			      </div>
-			      <div class="row">
-			        <div class="input-field col s12">
-			          <input id="email" type="email" class="validate" name="apellidos" [(ngModel)]="Docentes.correo" required>
-			          <label for="email">Email</label>
+			        <div class="input-field col s6 m6 l6">
+				        <input id="email" 
+				        type="email" 
+				        class="validate" 
+				        name="email" 
+				        [(ngModel)]="Docentes.correo" 
+				        required
+				        minlength="4"
+					    pattern="[^ @]*@[^ @]*"
+					    #email="ngModel">
+					    <div class="form-control-feedback"
+						     *ngIf="email.errors && (email.dirty || email.touched)">
+							<p class="center" *ngIf="email.errors.required">Este campo es obligatorio</p>
+							<p class="center" *ngIf="email.errors.pattern">Correo inválido</p>
+						</div>
+				        <label for="email">Email</label>
 			        </div>
 			      </div>
 			      <div class="row">
@@ -59,8 +137,8 @@
 			    </form>
 				 </div>
 	    <div class="card-action">
-	      <a (click)="doSubmit()" class="left">Enviar</a>
-	      <a class="right" (click)="goBack()">Regresar</a>
+	      <a (click)="doSubmit()" class="right">Enviar</a>
+	      <a class="left" (click)="goBack()">Regresar</a>
 	    </div>
 	  </div>
 	</div>
