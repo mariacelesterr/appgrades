@@ -83,10 +83,10 @@
 					      		<img src="assets/icons/icons8-user-avatar-filled-50.png">
 					    	</i>
 					      <span class="title">{{estudiantes.nombres}} {{estudiantes.apellidos}}</span>
-					      <p>{{estudiantes.id_grados}}<br>
-					         {{estudiantes.id_seccion}}
+					      <p>{{estudiantes.descrip_gra}}<br>
+					         {{estudiantes.descrp_sec}}
 					      </p>
-					      <a href="#!" 
+					      <a [routerLink]="['/app-detalles-estudiantes',estudiantes.id_estudiantes]" 
 					       class="secondary-content tooltipped"
 					       materialize="tooltip" 
 					       data-position="right" 

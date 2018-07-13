@@ -38,21 +38,21 @@
 	    	<span>Asignaturas</span>
 	    </a>
       </div>
+      	<div class="col s4 ">
+	        <a [routerLink]="['app-notas']">
+		     	<img class="hoverable" src="assets/icons/icons8-schedule-80.png">
+			    <br>
+			    <span>Horarios</span>
+		    </a>
+      	</div>
+    </div>
+    <div class="divider"></div>	
+    <div class="row">
       <div class="col s4">
         <a [routerLink]="['app-periodo']">
 	      	<img class="hoverable" src="assets/icons/icons8-plus-1-day-80.png">
 	      	<br>
 	    	<span>Periodos</span>
-	    </a>
-      </div>
-    </div>
-    <div class="divider"></div>	
-    <div class="row">
-      <div class="col s4 ">
-        <a [routerLink]="['app-notas']">
-	     	<img class="hoverable" src="assets/icons/icons8-schedule-80.png">
-		    <br>
-		    <span>Horarios</span>
 	    </a>
       </div>
       <div class="col s4">
@@ -96,3 +96,6 @@
     </div>
 
 </div>
+<button class="btn waves-effect waves-light right" type="submit" name="action" (click)="grafica()">
+								Aceptar
+							</button>

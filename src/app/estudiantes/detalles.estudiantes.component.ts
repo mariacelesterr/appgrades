@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormsModule, FormGroup, FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Estudiantes } from '../models/estudiantes';
 import { UserService } from '../services/user.service';
 import { EstudiantesService } from '../services/estudiantes.service';
@@ -10,11 +10,11 @@ import { GradosService } from '../services/grados.service';
 import { SeccionesService } from '../services/secciones.service';
 
 @Component({
-  selector: 'app-estudiantes',
-  templateUrl: './estudiantes.component.html',
+  selector: 'app-detalles-estudiantes',
+  templateUrl: './detalles.estudiantes.component.html',
   styleUrls: ['./estudiantes.component.css']
 })
-export class EstudiantesComponent implements OnInit {
+export class DetallesEstudiantesComponent implements OnInit {
   estudiantes: Estudiantes = new Estudiantes();
   grado: any ;
   secciones: any;
@@ -32,26 +32,19 @@ export class EstudiantesComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    this.datepickerset = {
-      format: 'dd/mm/yyyy',
-      selectMonths: true,
-      today: false,
-      selectYears: 50,
-      closeOnSelect: true,
-      //max: new Date(),
-      //disable: [true],
-      clear: 'Cerrar',
-      close: 'Guardar',
-      buttonImageOnly: false,
-      formatSubmit: "yyyy",
-      monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
-      monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
-      weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
-      weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
-      weekdaysLetter: [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
-    }
-  
-    this.estadisticasService.obtenerPeriodo()
+    if (this.route.snapshot.url[0].path == 'app-detalles-estudiantes'){
+          this.route.params
+            .switchMap((params: Params) => this.EstudiantesService.obtenerEstudi(params['id']))
+            .subscribe(data =>{
+              this.estudiantes = data;
+              if(this.estudiantes == null)
+                alert('No hay estudiante para mostrar')},
+              error =>{
+                alert('Hubo un error al buscar el estudiante');
+                this.router.navigate(['/']);
+              })         
+      }
+       this.estadisticasService.obtenerPeriodo()
       .subscribe(
         data =>{ 
           this.periodo = data;
@@ -92,26 +85,38 @@ export class EstudiantesComponent implements OnInit {
     this._location.back();
   }
   doSubmit() {
-    if (this.route.snapshot.url[0].path === 'app-estudiantes') {
-      if(this.form.valid){
-        this.EstudiantesService.agregarEstudi(this.estudiantes)
-          .subscribe(
-            data => {
-              alert('Se ha añadido el estudiante con exito');
-              this.router.navigate(['/app-detalles-estudiantes', data.id_estudiantes]);
-            },
-            error=>{
-              alert('Ha ocurrido un error intentelo de nuevo');
-              console.log(error);
-              this.router.navigate(['/'])
+    if(this.form.valid){
+      console.log(this.estudiantes);
+      this.EstudiantesService.editEstudi(this.estudiantes)
+        .subscribe(
+          data => {
+            alert('Se ha actualizado el estudiante con exito');
+            this.router.navigate(['/app-buscar-estudiantes']);
+          },
+          error=>{
+            alert('Ha ocurrido un error intentelo de nuevo');
+            console.log(error);
+            this.router.navigate(['/'])
 
-            });
-      }
-      else{
-        alert('Los datos son erroneos, verifiquelos e intentelo de nuevo')
-      }
+          });
     }
+    else{
+      alert('Los datos son erroneos, verifiquelos e intentelo de nuevo')
+    }
+  
   }
+  borrarEstu(id: number) {
+    this.route.params
+      .switchMap((params: Params) => this.EstudiantesService.borrarEstudiante(params['id']))
+      .subscribe(data => 
+        {
+          alert('Se ha borrado con exito el estudiante');
+          this.router.navigate(['/'])
+        },
+        error => {
+          console.log(error);
+          alert('Lo sentimos ha ocurrido un error ')} );   
+      }
 
 }
 

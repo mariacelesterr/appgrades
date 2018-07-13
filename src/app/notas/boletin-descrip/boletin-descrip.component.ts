@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter} from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MaterializeAction } from 'angular2-materialize';
@@ -20,6 +20,7 @@ export class BoletinDescripComponent implements OnInit {
   estudiantes: Estudiantes = new Estudiantes;
   modalActions = new EventEmitter<string|MaterializeAction>();
   periodo: any = {};
+  @ViewChild('f') form: any;
   constructor(
   	private route: ActivatedRoute, 
   	private router: Router,
@@ -36,23 +37,35 @@ export class BoletinDescripComponent implements OnInit {
   }
 
 	pdf(){
-
 		this.router.navigate(['/app-pdf']);
 	}
 	goBack(){
 		this._location.back();
 	}
   openModal() {
-    this.modalActions.emit({action:"modal",params:['open']});
+    if (this.form.valid) {
+    this.modalActions.emit(
+      {
+        action:"modal",
+        params:['open']
+      });
+    }
+    else
+      alert('Los datos son erroneos, verifique e intente de nuevo');
   }
   closeModal() {
-    this.notas.id_estudiantes = this.estudiantesDetalles.estudiantes.id_estudiantes; 
-    this.notas.id_grado = this.estudiantesDetalles.estudiantes.id_grados; 
-    this.notas.id_seccion = this.estudiantesDetalles.estudiantes.id_seccion;
-    this.route.params
-    .switchMap((params: Params) => this.notasService.agregarNotas(this.notas, params['id']))
-      .subscribe(data => this.router.navigate(['/app-pdf/', data.id_notas_descrip]));
-    this.modalActions.emit({action:"modal",params:['close']});
+      if(this.notas.nota_cuali === undefined)
+        alert('Debes seleccionar una opcion')
+      else{
+            this.notas.id_estudiantes = this.estudiantesDetalles.estudiantes.id_estudiantes; 
+            this.notas.id_grado = this.estudiantesDetalles.estudiantes.id_grados; 
+            this.notas.id_seccion = this.estudiantesDetalles.estudiantes.id_seccion;
+            this.notas.id_periodo = this.estudiantesDetalles.estudiantes.id_periodo;
+            this.route.params
+            .switchMap((params: Params) => this.notasService.agregarNotas(this.notas, params['id']))
+              .subscribe(data => this.router.navigate(['/app-pdf/', data.id_notas_descrip]));
+            this.modalActions.emit({action:"modal",params:['close']});
+          }  
   }
   doSubmit() {
   }

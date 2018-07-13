@@ -33,8 +33,6 @@
 									<p class="center" *ngIf="email.errors.pattern">Correo inválido</p>
 								</div>
 							</div>
-
-				    
 				        </div>
 			      	</div>
 				    <div class="row">
@@ -61,17 +59,18 @@
 						¿Tienes una cuenta? <a routerLink="/login"> Iniciar Sesión </a>
 					</p>
 					<div class="card-action">
-			          <a *ngIf="route.snapshot.url[0].path == 'login'" class="left" (click)="auth()">Enviar</a>
-			          <a *ngIf="route.snapshot.url[0].path == 'signup'" class="left" (click)="doSignup()" >Enviar</a>
+			          <a href="#" class="left">Regresar</a>
 
-			          <a href="#" class="right">Regresar</a>
+			          <a *ngIf="route.snapshot.url[0].path == 'login'" class="right" (click)="auth()">Enviar</a>
+			          <a *ngIf="route.snapshot.url[0].path == 'signup'" class="right" (click)="doSignup()" >Enviar</a>
+
 			        </div>
 				</div>
 			</div>
 	    </form>
 	</div>	
 </div>
-<a class="btn tooltipped" materialize="tooltip" data-position="bottom" data-tooltip="I am a tooltip">Hover me!</a>
+<!--- <a class="btn tooltipped" materialize="tooltip" data-position="bottom" data-tooltip="I am a tooltip">Hover me!</a>
 <a materialize="tooltip" data-position="top" data-delay="10" data-tooltip="I am tooltip">Hover me1!</a>
 
-<a (click)="toast('I am a toast')" class="btn">Toast!</a>
+<a (click)="toast('I am a toast')" class="btn">Toast!</a> !---> 

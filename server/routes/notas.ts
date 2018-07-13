@@ -23,7 +23,6 @@ router.post('/app-notas',  (req, res) => {
 	});
 });
 router.post('/app-notas/app-boletin-descrip/:id',  (req, res) => {
-	
 	db.getConnection((err, connection) => {
 		if (err) {
 			res.status(500).send({message: err});
@@ -48,7 +47,7 @@ router.get('/app-notas/app-boletin-descrip/:id',(req, res )=>{
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('SELECT * FROM estudiantes WHERE id_estudiantes = ?', [req.params.id], (err, result) => {
+			connection.query('SELECT * FROM estudiantes INNER JOIN grados ON estudiantes.id_grados= grados.id_grados INNER JOIN seccion ON estudiantes.id_seccion=seccion.id_seccion INNER JOIN periodo ON estudiantes.id_periodo=periodo.id_periodo WHERE id_estudiantes = ?', [req.params.id], (err, result) => {
 				if (err) {
 					res.status(500).send({message: err});
 				} else {
@@ -73,7 +72,7 @@ router.get('/app-pdf/:id',(req, res )=>{
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('SELECT * FROM notas_descrip WHERE id_notas_descrip = ?', [req.params.id], (err, result) => {
+			connection.query('SELECT * FROM notas_descrip INNER JOIN grados ON notas_descrip.id_grado= grados.id_grados INNER JOIN seccion ON notas_descrip.id_seccion=seccion.id_seccion INNER JOIN periodo ON notas_descrip.id_periodo=periodo.id_periodo INNER JOIN lapso ON notas_descrip.id_lapso=lapso.id_lapso INNER JOIN estudiantes ON notas_descrip.id_estudiantes=estudiantes.id_estudiantes WHERE id_notas_descrip = ?', [req.params.id], (err, result) => {
 				connection.release();
 
 				if (err) {

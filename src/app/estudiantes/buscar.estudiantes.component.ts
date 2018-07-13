@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormsModule, FormGroup, FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Estudiantes } from '../models/estudiantes';
 import { UserService } from '../services/user.service';
 import { EstudiantesService } from '../services/estudiantes.service';
@@ -32,15 +32,17 @@ export class BuscarEstudiantesComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    this.EstudiantesService.obtenerEstudiantes()
-    .subscribe(data =>{
-      this.estudiantes = data;
-      if(this.estudiantes == null)
-        alert('No hay estudiantes para mostrar')},
-      error =>{
-        alert('No se pudo cargar los estudiantes');
-        this.router.navigate(['/']);
-      }) 
+    if (this.route.snapshot.url[0].path == 'app-buscar-estudiantes'){
+          this.EstudiantesService.obtenerEstudiantes()
+          .subscribe(data =>{
+            this.estudiantes = data;
+            if(this.estudiantes == null)
+              alert('No hay estudiantes para mostrar')},
+            error =>{
+              alert('No se pudo cargar los estudiantes');
+              this.router.navigate(['/']);
+            }) 
+      }
   }
   
   goBack(){

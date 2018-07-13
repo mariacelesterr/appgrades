@@ -3,7 +3,7 @@
   		<div class="card">
     		<div class="card-content ">
 				<h5 class="center">Estadísticas</h5>
-				<form class="col s12" (ngSubmit)="doSubmit()">
+				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()">
 					<div class="divider"></div>
 					<div class="row">
 						<p class="center"> Debes seleccionar <strong>el grado, la sección y el periodo</strong> a consultar </p>
@@ -11,16 +11,25 @@
 					<div class="row">
 				    	<div class="col s6 m6 l6">
 				            <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estadisticas.id_grado" required>
-							      <option value="" disabled selected> Grados</option>
-							      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grado">{{grados.descrip_gra}}</option> 
+							    <select materialize="material_select" 
+							    name="id_grado" 
+							    [(ngModel)]="estadisticas.id_grado" 
+							    required
+							    #id_grados="ngModel">
+							      <option value="" disabled selected>Grados</option>
+							      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
 							    </select>
 							    <label>Seleccionar Grado</label>
 							</div>
 				        </div>
 				        <div class="col s6 m6 l6">
 				           <div class="input-field" >
-							    <select materialize="material_select" [disabled]="isDisabled?true:null" name="id_seccion" [(ngModel)]="estadisticas.id_seccion" required>
+							    <select 
+							     materialize="material_select"
+							     name="id_seccion" 
+							     [(ngModel)]="estadisticas.id_seccion" 
+							     required
+							     #id_seccion="ngModel">
 							      <option value="" disabled selected>Sección</option>
 							      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
 							    </select>
@@ -31,7 +40,12 @@
 					<div class="row">
 						<div class="col s6 m9 l9 offset-s3 offset-m4 offset-l4">
 				           <div class="input-field inline">
-					          	<select materialize="material_select" [materializeSelectOptions]="" name="periodos" required [(ngModel)]="estadisticas.id_periodo">
+					          	<select materialize="material_select" 
+					          	[materializeSelectOptions]="" 
+					          	name="periodos" 
+					          	required 
+					          	[(ngModel)]="estadisticas.id_periodo"
+					          	#peridos="ngModel">
 					          		<option value="" disabled selected>Periodos</option>
 							      	<option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
 							    </select>
@@ -60,20 +74,20 @@
 	  		<div class="card">
 	    		<div class="card-content ">
 					<h5 class="center">¡NOTA IMPORTANTE!</h5>
-						<div class="divider"></div>
-							<div class="row">
-								<p class="center"> Los resultados se mostrarán por lapso <br><br> Para saber el valor númerico del promedio en general de cada lapso tiene que colocar el ratón sobre cada reglon y abajo aparecerá la leyenda del mismo </p>
-							</div>
-							<div class="row" style="padding-top: 40px">
-							    <div class="col s6 m6 l10 right">
-									<button class="btn waves-effect waves-light right" type="submit" name="action" (click)="grafica()">
-										Aceptar
-									</button>
-									<button class="btn waves-effect waves-light left" type="submit" name="action" (click)="goBack()">
-										Regresar
-									</button>	
-								</div>		
-						</div>
+					<div class="divider"></div>
+					<div class="row">
+						<p class="center"> Los resultados se mostrarán por lapso <br><br> Para saber el valor númerico del promedio en general de cada lapso tiene que colocar el ratón sobre cada reglon y abajo aparecerá la leyenda del mismo </p>
+					</div>
+					<div class="row">
+					    <div class="col s6 m6 l10 right">
+							<button class="btn waves-effect waves-light right" type="submit" name="action" (click)="grafica()">
+								Aceptar
+							</button>
+							<button class="btn waves-effect waves-light left" type="submit" name="action" (click)="goBack()">
+								Regresar
+							</button>	
+						</div>		
+					</div>
 				</div>
 			</div>
 		</div>

@@ -10,3 +10,12 @@
 .fixed-action-btn {
   bottom: 70px;  
 }
+input[type=text]:not(.browser-default){
+	padding-top: 20px;
+}
+input[type=number]:not(.browser-default){
+	padding-top: 20px;
+}
+input[type=email]:not(.browser-default){
+	padding-top: 20px;
+}

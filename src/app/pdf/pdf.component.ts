@@ -24,7 +24,6 @@ export class PdfComponent implements OnInit {
     this.route.params
       .switchMap((params: Params) => this.notasService.obtenerNotas(params['id']))
       .subscribe(data => this.notas = data);
-      console.log(this.notas);
   }
   goBack(){
 		this._location.back();
@@ -57,22 +56,25 @@ export class PdfComponent implements OnInit {
           width: '*'
         },
         {
-          text: 'Estudiante: '+ this.notas[0].id_estudiantes,
-          alignment: 'left'
+          columns: [
+            {
+              text: 'Estudiante: '+ this.notas[0].nombres + ' ' + this.notas[0].apellidos,
+              alignment: 'left'
+            },
+            {
+              text: 'Período: '+ this.notas[0].descrip_peri,
+              alignment: 'right',
+            }
+          ]
         },
         {
           columns:[
             {
-              text: 'Grado: '+ 'Primer Grado',
+              text: '\n Grado: ' + this.notas[0].descrip_gra,
               alignment: 'left'
             },
             {
-              text: 'Periodo: '+ '2017/2018',
-              alignment: 'center',
-              width: 'auto'
-            },
-            {
-              text: 'Sección: '+ '"A"',
+              text: '\n Sección: '+ this.notas[0].descrp_sec,
               alignment: 'right'
             }
           ]
@@ -80,11 +82,11 @@ export class PdfComponent implements OnInit {
         {
           columns:[
             {
-              text: 'Docente: '+ 'Maria Quiroz',
+              text: '\n Docente: '+ 'Maria Quiroz',
               alignment: 'left'
             },
             {
-              text: 'Representante: '+ 'Maria Ordoñez',
+              text: '\n Representante: '+ 'Maria Ordoñez',
               alignment: 'right'
             }
           ]
@@ -138,7 +140,7 @@ export class PdfComponent implements OnInit {
               text: ['_____________________','\nFirma del Docente'],              
             }
           ],
-          margin: [0, 370, 0, 0]
+          margin: [0, 100, 0, 0]
         }
       ]
     }

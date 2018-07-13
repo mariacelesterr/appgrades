@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { Location } from '@angular/common';
 import {MaterializeAction} from 'angular2-materialize';
@@ -27,6 +27,7 @@ export class EstadisticasComponent implements OnInit {
     id_seccion: 0,
     id_periodo:0
   };
+  @ViewChild('f') form : any; 
 
   constructor( 
               private route: ActivatedRoute,
@@ -39,11 +40,40 @@ export class EstadisticasComponent implements OnInit {
   ngOnInit() {
     if (this.route.snapshot.url[0].path === 'app-estadisticas') {
       this.estadisticasService.obtenerPeriodo()
-      .subscribe(data => this.periodo = data)
-       this.gradosService.obtenerGrados()
-        .subscribe(data => this.grado = data)
+        .subscribe(
+        data =>{ 
+          this.periodo = data;
+          if (this.periodo.length === 0){
+              alert('No hay peridos para escoger. Dirijase hasta la sección de periodo');
+              this.router.navigate(['/'])}    
+        },
+        error => {
+          alert('Hubo en error al cargar los periodos');
+          console.log(error);
+        });
+      this.gradosService.obtenerGrados()
+        .subscribe(
+          data => {
+            this.grado = data;
+            if(this.grado.length === 0){
+              alert('No hay grados para escoger. Dirijase hasta la sección de grados');
+                this.router.navigate(['/'])}
+            },
+            error => {
+            alert('Hubo en error al cargar los grados');
+            console.log(error);
+          })
       this.seccionesService.obtenerSecciones()
-      .subscribe(data => this.secciones = data);
+        .subscribe(data => {
+          this.secciones = data;
+          if(this.secciones.length === 0){
+            alert('No hay secciones para escoger. Dirijase hasta la sección de secciones');
+            this.router.navigate(['/'])}
+        },
+        error=>{
+            alert('Hubo en error al cargar las secciones');
+            console.log(error);
+        });
     }
       this.chartBarOptions = {
         xkey: 'x',
@@ -55,10 +85,25 @@ export class EstadisticasComponent implements OnInit {
      
     }
   doSubmit() {
-    this.hideElement = false;
-    this.estadisticasService.obtenerPromedio(this.estadisticas)
-      .subscribe(data => {this.promedio = data })
+    if (this.form.valid) {
+      this.estadisticasService.obtenerPromedio(this.estadisticas)
+      .subscribe(
+        data => {
+          this.promedio = data;
+          if(this.promedio.length === 0)
+          alert("No hay notas en este periodo, grado y sección");
+          else
+          this.hideElement = false; 
+        },
+        error => {
+          alert('Ha ocurrido un error')
+          this.router.navigate(['/']);
+        })
+    }
+    else
+      alert('Los datos son erroneos, Verifica e intenta de nuevo');
   }
+
   goBack(){
     this._location.back();
   }

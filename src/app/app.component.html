@@ -2,6 +2,19 @@
   <nav>
     <div class="nav-wrapper">
       <a [routerLink]="['/']" class="brand-logo">AppGrades</a>
+      <ul class="hide-on-med-and-down">
+        <li>
+          <a [routerLink]="['login']" *ngIf="!userdata" class="right brand-logo" > 
+            <img src="assets/icons/icons8-menu-30 (1).png">
+          </a>
+          <a [routerLink]="['app-perfil']" *ngIf="userdata" > {{userdata.username}}
+            <i class="right">
+              <img src="assets/icons/icons8-male-user-26.png">
+            </i>
+          </a>
+        </li>
+        
+      </ul>
       <ul class="right hide-on-med-and-down">
         <li><a [routerLink]="['app-pdf']" >PDF</a></li>
         <li>

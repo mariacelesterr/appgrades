@@ -22,6 +22,7 @@ import { SeccionesService } from './services/secciones.service';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { EstudiantesComponent } from './estudiantes/estudiantes.component';
+import { DetallesEstudiantesComponent } from './estudiantes/detalles.estudiantes.component';
 import { BuscarEstudiantesComponent } from './estudiantes/buscar.estudiantes.component';
 import { DocentesComponent } from './docentes/docentes.component';
 import { PdfComponent } from './pdf/pdf.component';
@@ -40,6 +41,7 @@ import { SeccionesComponent } from './secciones/secciones.component'
     MenuComponent,
     EstudiantesComponent,
     BuscarEstudiantesComponent,
+    DetallesEstudiantesComponent,
     DocentesComponent,
     PdfComponent,
     NotasComponent,

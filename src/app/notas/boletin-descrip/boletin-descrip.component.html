@@ -1,14 +1,14 @@
-<div class="row" style="padding-top: 40px">
+<div class="row">
 	<div class="col s12 m7 l6 offset-l3">
 	    <div class="card">
 	    	<div class="card-content">
 		       <div class="row">
 		       		<h5 class="center-align">Notas Descriptivas</h5>
 		       		<div class="divider"></div>
-				    <form class="col s12"  (ngSubmit)="doSubmit()">
+				    <form #f="ngForm" class="col s12"  (ngSubmit)="doSubmit()">
 					    <div class="row">
 					        <div class="input-field col s6 m6 l6">
-					          <input id="first_name" type="text" class="validate" name="nombres" value="{{estudiantesDetalles?.estudiantes?.nombres}}" readonly="readonly">
+					          <input id="first_name" type="text" class="validate" name="descrip_1" value="{{estudiantesDetalles?.estudiantes?.nombres}}" readonly="readonly">
 					          
 					       </div>
 					        <div class="input-field col s6 m6 l6">
@@ -19,35 +19,50 @@
 				    	<div class="row">
 					        <div class="col s4 m4 l4">
 					          <div class="input-field inline">
-					            <input id="cedula" type="number" class="validate" name="grados" value="{{estudiantesDetalles?.estudiantes?.id_grados}}" readonly="readonly">
-					            <label for="cedula">Grado</label>
+					            <input id="cedula" type="text" class="validate" name="grados" value="{{estudiantesDetalles?.estudiantes?.descrip_gra}}" readonly="readonly">
 					          </div>
 					        </div>
 					        <div class="col s4 m4 l4 ">
 						         <div class="input-field inline">
-							        <input id="seccion" type="text" class="validate" name="seccion" value="{{estudiantesDetalles?.estudiantes?.id_seccion}}" readonly="readonly">
-							        <label for="telefono">Sección</label>
+							        <input id="seccion" type="text" class="validate" name="seccion" value="{{estudiantesDetalles?.estudiantes?.descrp_sec}}" readonly="readonly">
 						        </div>
 						     </div>
 					        <div class="col s4 m4 l4">
 					        	<div class="input-field inline">
-						          	<select materialize="material_select"[materializeSelectOptions]="estudiantesDetalles?.periodos" name="periodos" required [(ngModel)]="notas.id_periodo">
-								      	<option  *ngFor="let periodos of estudiantesDetalles?.periodos" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
-								    </select>
-								    <label>Seleccionar Periodo</label>
+						          	<input id="periodo" type="text" class="validate" name="periodo" value="{{estudiantesDetalles?.estudiantes?.descrip_peri}}" readonly="readonly">
 					        	</div>
 					        </div>
 				    	</div>
 					    <div class="row">
 					    	<div class="col s6 m6 l6">
 					          <div class="input-field">
-					            <textarea id="textarea" class="materialize-textarea" data-length="20" materialize="characterCounter" [attr.length]="maxLength" name="proyecto" [(ngModel)]="notas.proyecto"> </textarea>
+					            <textarea 
+					            id="textarea" 
+					            class="materialize-textarea" 
+					            data-length="100"
+					            maxlength="100"
+					            minlength="50" 
+					            materialize="characterCounter" 
+					            name="proyecto" 
+					            [(ngModel)]="notas.proyecto"
+					            #proyecto="ngModel"
+					            required> 
+					        	</textarea>
+					            <div class="form-control-feedback"
+								     *ngIf="proyecto.errors && (proyecto.dirty || proyecto.touched)">
+									<p class="center" *ngIf="proyecto.errors.required" >Este campo es obligatorio</p>
+									<p class="center" *ngIf="proyecto.errors.minlength">El campo no puede estar vacío</p>
+								</div>
 					            <label for="textarea2">Nombre del Proyecto</label>
 					          </div>	
 					    	</div>
 				          	<div class="col s6 m6 l6">
 					        	<div class="input-field">
-						          	<select materialize="material_select" [disabled]="isDisabled?true:null" name="grados" [(ngModel)]="notas.id_lapso" required>
+						          	<select materialize="material_select" 
+						          	name="lapso" 
+						          	[(ngModel)]="notas.id_lapso" 
+						          	required
+						          	#lapso="ngModel">
 								      <option value="" disabled selected>Lapso</option>
 								      <option value="1">Primer Lapso</option>
 								      <option value="2">Segundo Lapso</option>
@@ -59,27 +74,71 @@
 				        </div>
 					    <div class="row">
 				          <div class="input-field col s12">
-				            <textarea id="textarea1" class="materialize-textarea" data-length="1199" materialize="characterCounter" [attr.length]="maxLength" maxlength="1199" name="descrip_1" [(ngModel)]="notas.descrip_1"> </textarea>
+				            <textarea 
+				            id="textarea1" 
+				            class="materialize-textarea" 
+				            data-length="1000" 
+				            materialize="characterCounter"
+				            maxlength="1000"
+				            minlength="100" 
+				            name="descrip_1" 
+				            [(ngModel)]="notas.descrip_1"
+				            required 
+				            #descrip_1="ngModel"> </textarea>
+				            <div class="form-control-feedback"
+							     *ngIf="descrip_1.errors && (descrip_1.dirty || descrip_1.touched)">
+								<p class="center" *ngIf="descrip_1.errors.required" >Este campo es obligatorio</p>
+								<p class="center" *ngIf="descrip_1.errors.minlength">El campo no puede estar vacío</p>
+							</div>
 				            <label for="textarea2">FORMACIÓN PERSONAL, SOCIAL Y COMUNICACIÓN:</label>
 				          </div>
 				        </div>
 					    <div class="row">
 				          <div class="input-field col s12">
-				            <textarea id="textarea2" class="materialize-textarea" data-length="1199" maxlength="1199" materialize="characterCounter" [attr.length]="maxLength" name="descrip_2" [(ngModel)]="notas.descrip_2"> </textarea>
+				            <textarea id="textarea2" 
+				            class="materialize-textarea" 
+				            data-length="1000" 
+				            maxlength="1000"
+				            minlength="100" 
+				            materialize="characterCounter"
+				            name="descrip_2" 
+				            [(ngModel)]="notas.descrip_2"
+				            required
+				            #descrip_2="ngModel"> </textarea>
+				            <div class="form-control-feedback"
+							     *ngIf="descrip_2.errors && (descrip_2.dirty || descrip_2.touched)">
+								<p class="center" *ngIf="descrip_2.errors.required" >Este campo es obligatorio</p>
+								<p class="center" *ngIf="descrip_2.errors.minlength">El campo no puede estar vacío</p>
+							</div>
 				            <label for="textarea2">RELACIÓN ENTRE COMPONENTES DEL AMBIENTE:</label>
 				          </div>
 				        </div>
 					    <div class="row">
 				          <div class="input-field col s12">
-				            <textarea id="textarea3" class="materialize-textarea" data-length="1199" materialize="characterCounter" [attr.length]="maxLength" maxlength="1199" name="descrip_3" [(ngModel)]="notas.descrip_3"> </textarea>
+				            <textarea id="textarea3" 
+				            class="materialize-textarea" 
+				            data-length="500" 
+				            materialize="characterCounter" 
+				            [attr.length]="maxLength" 
+				            maxlength="500"
+				            minlength="5" 
+				            name="descrip_3" 
+				            [(ngModel)]="notas.descrip_3"
+				            required
+				            #descrip_3="ngModel"> </textarea>
+				            <div class="form-control-feedback"
+							     *ngIf="descrip_3.errors && (descrip_3.dirty || descrip_3.touched)">
+								<p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
+								<p class="center" *ngIf="descrip_3.errors.minlength">El campo no puede estar vacío</p>
+							</div>
 				            <label for="textarea2">RECOMENDACIONES AL REPRESENTANTE:</label>
 				          </div>
 				        </div>
 				    </form>
 				</div>
 			    <div class="card-action">
-			      <a class="waves-effect waves-teal btn-flat  modal-trigger" (click)="openModal()">Enviar</a>
-			      <a class="right" (click)="goBack()">Regresar</a>
+			      <a class="right waves-effect waves-teal btn-flat  modal-trigger" (click)="openModal()">Enviar</a>
+			      <a class="" (click)="goBack()">Regresar</a>
 			    </div>
 	  		</div>
 		</div>
@@ -96,7 +155,12 @@
 	    	</div>
 		    <div class="row center">
 		      <div class="col s6 m3 l3">
-		         <input type="image" value="10" name="nota_cuali" (click)="notas.nota_cuali = 10" src="assets/icons/icons8-puzzled-80.png">
+		         <input 
+		         type="image" 
+		         value="10" 
+		         name="nota_cuali" 
+		         (click)="notas.nota_cuali = 10" 
+		         src="assets/icons/icons8-puzzled-80.png">
 		        <br><span> Recuperación </span>
 		      </div>
 		      <div class="col s6 m3 l3">
@@ -104,11 +168,21 @@
 		        <br><span> Aprobado</span>
 		      </div>
 		      <div class="col s6 m3 l3">
-		         <input type="image" value="18" name="nota_cuali" (click)="notas.nota_cuali = 18" src="assets/icons/icons8-wink-80.png">
+		         <input 
+		         type="image" 
+		         value="18" 
+		         name="nota_cuali" 
+		         (click)="notas.nota_cuali = 18" 
+		         src="assets/icons/icons8-wink-80.png">
 		        <br><span > Destacado </span>
 		      </div>
 		      <div class="col s6 m3 l3">
-		    	 <input type="image" value="20" name="nota_cuali" (click)="notas.nota_cuali = 20"src="assets/icons/icons8-cool-80.png">
+		    	 <input 
+		    	 type="image" 
+		    	 value="20" 
+		    	 name="nota_cuali" 
+		    	 (click)="notas.nota_cuali = 20"
+		    	 src="assets/icons/icons8-cool-80.png">
 		        <br><span> Excelente</span>
 		      </div>
 		    </div> 

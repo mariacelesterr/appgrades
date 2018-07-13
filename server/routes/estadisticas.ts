@@ -3,9 +3,7 @@ const router = express.Router();
 
 const db = require('./database.ts');
 const authentication = require('../authentication.ts');
-var g = 2;
-var s = 3;
-var p = 1;
+
 //SELECT id_alumno, AVG(valor_nota) FROM tabla GROUP BY id_alumno;
 router.post('/app-estadisticas', (req, res) => {
 	db.getConnection((err, connection) => {

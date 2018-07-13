@@ -3,7 +3,7 @@
   		<div class="card col s12 m5 l6 offset-l3">
     		<div class="card-content ">
 				<h5 class="center">Notas Descriptivas </h5>
-				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()">
+				<form #f="ngForm" class="col s12">
 					<div class="divider"></div>
 					<div class="row">
 						<p class="center"> Debes seleccionar <strong>el grado y la sección </strong> de tu curso</p>
@@ -55,14 +55,19 @@
 					</div> 
 					<div class="row">
 					    <div class="card-action">
-					    	<div class="col s12 m12 l12">
-							    <button  type="submit" class="right ">
-						      		<a>Enviar</a>
-							    </button>
+					    	
 							    <a class="left" (click)="goBack()">Regresar</a>
-					    	</div>
+							    <a class="right " (click)= "doSubmit()">
+							    	Enviar
+							    </a>
+							    <!---<button  type="submit" class="right ">
+						      		<a>Enviar</a>
+							    </button>-->
+					    	
 					    </div>	
-				    </div>					
+						
+					</div>
+						
 				</form>
 			</div>
 		</div>
@@ -82,7 +87,7 @@
 		          </tr>
 		        </thead>
 		        <tbody>
-		          <tr *ngFor="let estudiantes of estudiantes">
+		          <tr *ngFor="let estudiantes of estudiantes1">
 		            <td>{{estudiantes.nombres}}</td>
 		            <td>{{estudiantes.apellidos}}</td>
 		            <td>{{estudiantes.id_grados}}</td>

@@ -8,7 +8,8 @@ import 'rxjs/Rx';
 export class EstudiantesService {
 
 	private estudiantesUrl = 'api/app-estudiantes';  // URL to web api
-	private buscarestudiantesUrl = 'api/app-buscar-estudiantes';  // URL to web api
+	private buscarestudiantesUrl = 'api/app-buscar-estudiantes/';  // URL to web api
+	private detallesEstudiantesUrl = 'api/app-detalles-estudiantes/';  // URL to web api
 
 	constructor(private apiService: ApiService) {
 	}
@@ -25,5 +26,28 @@ export class EstudiantesService {
 		const _bodyData: any = {};
 
 		return this.apiService.perform('get', this.buscarestudiantesUrl , _bodyData , _params, _formParams);
+	}
+	obtenerEstudi(id: number): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+		const url = this.detallesEstudiantesUrl + id;
+
+		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
+	}
+	editEstudi(estudiantes: Estudiantes): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		console.log(estudiantes);
+		const url = this.detallesEstudiantesUrl + estudiantes[0].id_estudiantes;
+
+		return this.apiService.perform('put', url, estudiantes[0], _params, _formParams);
+	}
+	borrarEstudiante(id: number): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+
+		return this.apiService.perform('delete', this.detallesEstudiantesUrl + id, _bodyData, _params, _formParams);
 	}
 }

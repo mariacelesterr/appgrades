@@ -4,6 +4,7 @@ import { AppComponent } from './app.component'
 import { MenuComponent } from './menu/menu.component'
 import { DocentesComponent } from './docentes/docentes.component'
 import { EstudiantesComponent } from './estudiantes/estudiantes.component'
+import { DetallesEstudiantesComponent} from './estudiantes/detalles.estudiantes.component'
 import { BuscarEstudiantesComponent } from './estudiantes/buscar.estudiantes.component'
 import { PdfComponent } from './pdf/pdf.component'
 import { NotasComponent } from './notas/notas.component'
@@ -42,6 +43,10 @@ const APP_ROUTES = [
     component: BuscarEstudiantesComponent 
   },
   { 
+    path: 'app-detalles-estudiantes/:id', 
+    component: DetallesEstudiantesComponent
+  },
+  { 
     path: 'app-periodo', 
     component: PeriodoComponent 
   },
@@ -54,7 +59,11 @@ const APP_ROUTES = [
   	component: EstudiantesComponent 
   },
   { 
-  	path: 'app-pdf/:id', 
+    path: 'app-pdf/:id', 
+    component: PdfComponent 
+  },
+  { 
+  	path: 'app-pdf', 
   	component: PdfComponent 
   },
   { 

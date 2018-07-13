@@ -14,6 +14,7 @@ import { SeccionesService } from '../services/secciones.service';
 export class NotasComponent implements OnInit {
   hideElement = true;
   estudiantes: Estudiantes = new Estudiantes();
+  estudiantes1: any;
   grado: any ;
   secciones: any;
   periodo: any;
@@ -28,11 +29,11 @@ export class NotasComponent implements OnInit {
     private seccionesService: SeccionesService) {}
 
   ngOnInit() {
-     this.estadisticasService.obtenerPeriodo()
+    this.estadisticasService.obtenerPeriodo()
       .subscribe(
         data =>{ 
           this.periodo = data;
-          if (this.periodo.length === null){
+          if (this.periodo.length === 0){
               alert('No hay peridos para escoger. Dirijase hasta la sección de periodo');
               this.router.navigate(['/'])}    
         },
@@ -44,7 +45,7 @@ export class NotasComponent implements OnInit {
       .subscribe(
         data => {
           this.grado = data;
-          if(this.grado.length === null){
+          if(this.grado.length === 0){
             alert('No hay grados para escoger. Dirijase hasta la sección de grados');
               this.router.navigate(['/'])}
           },
@@ -55,7 +56,7 @@ export class NotasComponent implements OnInit {
     this.seccionesService.obtenerSecciones()
       .subscribe(data => {
         this.secciones = data;
-        if(this.secciones === null){
+        if(this.secciones.length === 0){
           alert('No hay secciones para escoger. Dirijase hasta la sección de secciones');
           this.router.navigate(['/'])}
       },
@@ -66,10 +67,21 @@ export class NotasComponent implements OnInit {
   }
   doSubmit() {
     if (this.form.valid) {
-    	this.hideElement = false;
       this.notasService.buscarEstudiante(this.estudiantes)
-        .subscribe(data => this.estudiantes = data);
-        console.log(this.estudiantes);
+        .subscribe(data => 
+          {
+            this.estudiantes1 = data;
+            if(this.estudiantes1.length === 0){
+              alert('No hay estudiantes para mostrar. Dirijase hasta el modulo de agregar estudiantes');
+              this.router.navigate(['/'])
+            }
+            else{
+              this.hideElement = false;
+            }
+          },
+          error =>{
+            alert('Hubo un error en cargar los estudiantes');
+          });
     }
     else{
       alert('Verifique los datos e intentelo de nuevo');
