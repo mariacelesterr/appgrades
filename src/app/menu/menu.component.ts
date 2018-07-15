@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { EstudiantesService } from '../services/estudiantes.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,63 +10,65 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-	public periodos1: any ={
-    descrip_peri: 'Hola 1',
-    id_periodo: null
-  };
-   weekdaysLetter: any = [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ];
-  constructor() { 
+  private estudiantes: any;
+  constructor(private estudiantesService: EstudiantesService,
+  	private route: ActivatedRoute,
+    private router: Router) { 
   	pdfMake.vfs = pdfFonts.pdfMake.vfs; 
   }
 
   ngOnInit() {
+  	this.estudiantesService.obtenerEstudiantes()
+          .subscribe(data =>{
+            this.estudiantes = data;
+            if(this.estudiantes == null)
+              alert('No hay estudiantes para mostrar')},
+            error =>{
+              alert('No se pudo cargar los estudiantes');
+              this.router.navigate(['/']);
+            }) 
   }
+  externalDataRetrievedFromServer: any = [
+    { name: 'Bartek', age: 34 },
+    { name: 'John', age: 27 },
+    { name: 'Elizabeth', age: 30 },
+];
+ buildTableBody(data, columns) {
+    var body = [];
+
+    body.push(columns);
+
+    data.forEach(function(row) {
+        var dataRow = [];
+        columns.forEach(function(column) {
+            dataRow.push(row[column].toString());
+            console.log(dataRow);
+        })
+
+        body.push(dataRow);
+    });
+
+    return body;
+}
+
+table(data, columns) {
+    return {
+        table: {
+            headerRows: 1,
+            body: this.buildTableBody(data, columns)
+        }
+    };
+}
+
  grafica(){
 
+
+console.log(this.estudiantes);
  	var docDefinition = { 
-	    content:[
-	      {
-	      	text: 'Tables', 
-	      	style: 'header'
-	      },
-			'Official documentation is in progress, this document is just a glimpse of what is possible with pdfmake and its layout engine.',
-			{
-				text: 'A simple table (no headers, no width specified, no spans, no styling)', 
-				style: 'subheader'
-			},
-			'The following table has nothing more than a body array',
-			{
-				style: 'tableExample',
-				table: {
-					body: [
-						//this.weekdaysLetter.forEach(e => {console.log(e)})
-						['Alumnos', 'hola1 ','Column 3'],
-						['hola', 'Another one here', 'OK?']
-					]
-				}
-			}
-	        
-	      ],
-	    styles: {
-			header: {
-				fontSize: 18,
-				bold: true,
-				margin: [0, 0, 0, 10]
-			},
-			subheader: {
-				fontSize: 16,
-				bold: true,
-				margin: [0, 10, 0, 5]
-			},
-			tableExample: {
-				margin: [0, 5, 0, 15]
-			},
-			tableHeader: {
-				bold: true,
-				fontSize: 13,
-				color: 'black'
-			}
-		}
+	   content: [
+        { text: 'Dynamic parts', style: 'header' },
+        this.table(this.estudiantes, ['apellidos','cedula','celular','correo','dateofbirth','descrip_gra','descrp_sec','direccion','id_estudiantes','id_grados','id_periodo','id_seccion','nombres','telefono'])
+    ]
 	
     }
     pdfMake.createPdf(docDefinition).open();
