@@ -81,8 +81,8 @@
 		          <tr>
 		              <th>Nombres</th>
 		              <th>Apellidos</th>
-		              <th>Grado</th>
-		              <th>Sección</th>
+		              <th>Correo</th>
+		              <th>Celular</th>
 		              <th>Cargar Notas</th>
 		          </tr>
 		        </thead>
@@ -90,8 +90,8 @@
 		          <tr *ngFor="let estudiantes of estudiantes1">
 		            <td>{{estudiantes.nombres}}</td>
 		            <td>{{estudiantes.apellidos}}</td>
-		            <td>{{estudiantes.id_grados}}</td>
-		            <td>{{estudiantes.id_seccion}}</td>
+		            <td>{{estudiantes.correo}}</td>
+		            <td>{{estudiantes.celular}}</td>
 		            <td>
 		            	<a routerLink='/app-notas/boletin-descrip/{{estudiantes.id_estudiantes}}'>
 		            		<img src="assets/icons/icons8-add-64.png">

@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+nav {
+	background-color: #24292e;
+}
+footer {
+	background-color: #24292e;
+
+}
+.page-footer {
+   padding-top: 0px;
+}
 button {
   background: none;
   border: 0;

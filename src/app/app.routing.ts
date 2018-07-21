@@ -18,9 +18,9 @@ import { SeccionesComponent } from './secciones/secciones.component'
 
 const APP_ROUTES = [
   { 
-    path: '', 
-    component: MenuComponent, 
-    pathMatch: 'full' 
+    path: '',  
+    pathMatch: 'full',
+    redirectTo: 'login' 
   },
   { 
   	path: 'app-menu', 
@@ -108,6 +108,10 @@ const APP_ROUTES = [
   },
   { 
     path: 'signup', 
+    component: UsersComponent 
+  },
+  { 
+    path: 'logout',
     component: UsersComponent 
   },
   { 

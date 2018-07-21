@@ -32,12 +32,12 @@ export class GradosComponent implements OnInit {
           this.gradosService.agregarGrados(this.grados_obj)
             .subscribe(data => {
                 alert('Se ha añadido el grado con exito');
-                this.router.navigate(['/']);
+                this.router.navigate(['/app-menu']);
               },
               error=>{
                 alert('Ha ocurrido un error intentelo de nuevo');
                 console.log(error);
-                this.router.navigate(['/'])
+                this.router.navigate(['/app-menu'])
   
               });
         }
@@ -53,7 +53,7 @@ export class GradosComponent implements OnInit {
     if (this.route.snapshot.url[0].path === 'app-grados') {
       this.gradosService.borrarGrados(id).subscribe(
         data => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/app-menu']);
           alert('Se ha borrado con exito el grado')
       },
       error => {

@@ -14,12 +14,15 @@ import { Notas } from '../../models/notas'
 })
 export class BoletinDescripComponent implements OnInit {
   maxLength = 20;
+  hideElement = true;
+  hideElement1 = true;
   notas: Notas = new Notas; 
   estudiantesDetalles: EstudiantesDetalles = new EstudiantesDetalles();
   userdata: any; 
   estudiantes: Estudiantes = new Estudiantes;
   modalActions = new EventEmitter<string|MaterializeAction>();
   periodo: any = {};
+  vart: any;
   @ViewChild('f') form: any;
   constructor(
   	private route: ActivatedRoute, 
@@ -39,9 +42,16 @@ export class BoletinDescripComponent implements OnInit {
 	pdf(){
 		this.router.navigate(['/app-pdf']);
 	}
+  onChange(event){
+    this.vart = event;
+    console.log(this.vart);
+  }
 	goBack(){
 		this._location.back();
 	}
+  escuelaBasica(){
+    this.hideElement =false; 
+  }
   openModal() {
     if (this.form.valid) {
     this.modalActions.emit(

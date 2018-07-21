@@ -126,13 +126,13 @@ module.exports = (passport) => {
 							if (rows.length) {
 								// if the user is found but the password is wrong
 								if (!bcrypt.compareSync(password, rows[0].password)) {
-									return done(err, false, {message: 'User name or password is wrong'});
+									return done(err, false, {message: 'La contraseña es incorrecta'});
 								} else {
 									// all is well, return successful user
 									return done(null, rows[0]);
 								}
 							} else {
-								return done(err, false, {message: 'User name or password is wrong'});
+								return done(err, false, {message: 'El usuario no esta registrado'});
 							}
 						});
 					}

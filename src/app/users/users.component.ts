@@ -16,16 +16,16 @@ export class UsersComponent implements OnInit {
 	username: string = '';
 	email: string = '';
 	password: string = '';
-	remember: boolean = false;
+	remember: boolean = false
 	public obj: any = {
 		email:'',
 	    password:''
 	};
 
-	error: boolean = false;
+	error: any;
 	signupSuccessful: boolean = false;
 
-	message: string = '';
+	//message: string = '';
 	@ViewChild('f') form: any;
 
   	constructor(
@@ -49,13 +49,13 @@ export class UsersComponent implements OnInit {
   	doSomething() {
   		if (this.form.valid) {
   			if (this.route.snapshot.url[0].path === 'login') {
-			this.doLogin();
+				this.doLogin();
 			} else {
 				this.doSignup();
 			}
-	      console.log("Form Submitted!");
-	      this.form.reset();
+	      //this.form.reset();
     	}
+		
 	}
 	auth() {
 		if (this.form.valid) {
@@ -65,7 +65,7 @@ export class UsersComponent implements OnInit {
 				this.doSignup();
 			}
     		//toast("I am the best toast there is!");
-	      	console.log("Form Submitted!");
+	      	//alert("Rebice los datos e intente de nuevo");
 	      	this.form.reset();
     	}
 	}
@@ -75,6 +75,10 @@ export class UsersComponent implements OnInit {
 				this.userService.setUserData(data);
 				console.log(data);
 				this.router.navigate(['/app-menu']);
+			},
+			error=>{
+				this.error = error;
+				alert(this.error.message);
 			});
 	}
 
@@ -82,13 +86,13 @@ export class UsersComponent implements OnInit {
 		this.userService.doSignup(this.obj.email, this.obj.password)
 			.subscribe(data => {
 				this.signupSuccessful = true;
-				this.router.navigate(['/app-estudiantes']);
+				this.router.navigate(['/app-menu']);
 			});
 	}
 
 	doLogout() {
 		this.userService.doLogout();
-		this.router.navigate(['/menu']);
+		this.router.navigate(['/login']);
 	}
 
 }

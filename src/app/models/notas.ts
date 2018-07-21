@@ -8,6 +8,7 @@ export class Notas {
 		descrip_1: string;	
 		descrip_2: string;	
 		descrip_3: string;
+		nota_final: string;
 		nota_cuali: number;
 
 

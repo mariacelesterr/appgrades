@@ -1,3 +1,10 @@
 #textarea{
 	padding: 0;
 }
+.input-field {
+    position: relative;
+    margin-top: 0; 
+}
+.arriba{
+	margin-top: 1em;	
+}

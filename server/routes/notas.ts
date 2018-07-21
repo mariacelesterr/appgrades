@@ -10,7 +10,7 @@ router.post('/app-notas',  (req, res) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('SELECT * FROM estudiantes WHERE id_grados = ? AND id_seccion = ?', [req.body.id_grados, req.body.id_seccion], (err, result) => {
+			connection.query('SELECT * FROM estudiantes  WHERE id_grados = ? AND id_seccion = ?', [req.body.id_grados, req.body.id_seccion], (err, result) => {
 				connection.release();
 
 				if (err) {

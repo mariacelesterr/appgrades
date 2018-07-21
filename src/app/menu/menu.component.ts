@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.estudiantesService.obtenerEstudiantes()
+  	/*this.estudiantesService.obtenerEstudiantes()
           .subscribe(data =>{
             this.estudiantes = data;
             if(this.estudiantes == null)
@@ -26,7 +26,7 @@ export class MenuComponent implements OnInit {
             error =>{
               alert('No se pudo cargar los estudiantes');
               this.router.navigate(['/']);
-            }) 
+            }) */
   }
   externalDataRetrievedFromServer: any = [
     { name: 'Bartek', age: 34 },
