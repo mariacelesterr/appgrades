@@ -50,7 +50,12 @@ export class BoletinDescripComponent implements OnInit {
 		this._location.back();
 	}
   escuelaBasica(){
-    this.hideElement =false; 
+    this.hideElement =false;
+    this.notas.tipo_bole = 2; 
+  }
+  escuelaInicial(){
+    this.hideElement =false;
+    this.notas.tipo_bole = 1; 
   }
   openModal() {
     if (this.form.valid) {

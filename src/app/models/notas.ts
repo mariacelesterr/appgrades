@@ -4,6 +4,7 @@ export class Notas {
 		id_seccion: number;	
 		id_periodo: number;
 		id_lapso: number;	
+		tipo_bole: number;	
 		proyecto: string;	
 		descrip_1: string;	
 		descrip_2: string;	

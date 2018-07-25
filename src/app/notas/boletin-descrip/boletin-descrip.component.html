@@ -10,7 +10,7 @@
 						    <div class="nav-content">
 						      <ul class="tabs tabs-transparent">
 						        <li class="tab left">
-						        	<a (click)="hideElement1 = false">Etapa inicial</a>
+						        	<a (click)="escuelaInicial()">Etapa inicial</a>
 						        </li>
 						        <li class="tab right">
 						        	<a (click)="escuelaBasica()">Etapa Básica</a>
@@ -237,11 +237,12 @@
 								          	name="lapso" 
 								          	[(ngModel)]="notas.nota_final" 
 								          	required
-								          	#lapso="ngModel">
+								          	#nota_final="ngModel">
 										      <option value="" disabled selected>Nota final</option>
 										      <option [value]="1">Excelente</option>
 										      <option [value]="2">Aprobado</option>
 										    </select>
+										    <p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
 							        	</div>
 						          	</div>
 						        </div>
