@@ -28,7 +28,7 @@
 					        <div class="col s6 l4">
 						        <div class="input-field inline">
 							        <input id="telefono_local" 
-							        type="text" 
+							        type="number" 
 							        class="validate" 
 							        name="nombres" 
 							        [(ngModel)]="estudiantes.telefono" 
@@ -38,7 +38,12 @@
 						     </div>
 					        <div class="col s6 l4">
 					        	<div class="input-field inline">
-						            <input id="telefono_celu" type="text" class="validate" name="telefono" [(ngModel)]="estudiantes.celular" required>
+						            <input id="telefono_celu" 
+						            type="text" 
+						            class="validate" 
+						            name="telefono" 
+						            [(ngModel)]="estudiantes.celular" 
+						            required>
 						            <label for="telefono">Teléfono Celular</label>
 					          	</div>
 					        </div>
@@ -52,11 +57,13 @@
 						        [(ngModel)]="estudiantes.nombres" 
 						        required
 						        minlength="4"
+						        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{4,50}"
 				       			#nombres="ngModel">
 				       			<div class="form-control-feedback"
 								     *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
 									<p class="center" *ngIf="nombres.errors.required" >Este campo es obligatorio</p>
 									<p class="center" *ngIf="nombres.errors.minlength">El campo no puede estar vacío</p>
+									<p class="center" *ngIf="nombres.errors.pattern">Este campo no puede contener números</p>
 								</div>
 						        <label for="first_name">Nombres</label>
 					        </div>
@@ -67,12 +74,14 @@
 						        name="apellidos" 
 						        [(ngModel)]="estudiantes.apellidos" 
 						        required
+						        pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{4,50}"
 						        minlength="4"
 				       			#apellidos="ngModel">
 				       			<div class="form-control-feedback"
 								     *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
 									<p class="center" *ngIf="apellidos.errors.required" >Este campo es obligatorio</p>
 									<p class="center" *ngIf="apellidos.errors.minlength">El campo no puede estar vacío</p>
+									<p class="center" *ngIf="apellidos.errors.pattern">Este campo no puede contener números</p>
 								</div>
 						        <label for="last_name">Apellidos</label>
 					        </div>

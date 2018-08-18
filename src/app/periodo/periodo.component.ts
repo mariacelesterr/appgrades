@@ -70,7 +70,7 @@ export class PeriodoComponent implements OnInit {
             this.notasService.agregarPeriodo(this.periodos1)
               .subscribe( data => {
                   alert('Se ha añadido el periodo satisfactoriamente');
-                  this.router.navigate(['/'])
+                  this.router.navigate(['/app-periodo'])
                 },error =>{
                   console.log(error);
                 })

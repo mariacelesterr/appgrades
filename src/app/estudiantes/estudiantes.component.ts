@@ -94,18 +94,26 @@ export class EstudiantesComponent implements OnInit {
   doSubmit() {
     if (this.route.snapshot.url[0].path === 'app-estudiantes') {
       if(this.form.valid){
-        this.EstudiantesService.agregarEstudi(this.estudiantes)
-          .subscribe(
-            data => {
-              alert('Se ha añadido el estudiante con exito');
-              this.router.navigate(['/app-detalles-estudiantes', data.id_estudiantes]);
-            },
-            error=>{
-              alert('Ha ocurrido un error intentelo de nuevo');
-              console.log(error);
-              this.router.navigate(['/'])
+        if (this.form.value.nombres.trim() == "")
+          alert("Los nombres no pueden estar vacío");
+        else if (this.form.value.apellidos.trim() == "")
+          alert("Los apellidos no pueden estar vacío");
+        else if (this.form.value.direccion.trim() == "")
+          alert("La dirección no puede ser vacía");
+        else{
+          this.EstudiantesService.agregarEstudi(this.estudiantes)
+            .subscribe(
+              data => {
+                alert('Se ha añadido el estudiante con exito');
+                this.router.navigate(['/app-detalles-estudiantes', data.id_estudiantes]);
+              },
+              error=>{
+                alert('Ha ocurrido un error intentelo de nuevo');
+                console.log(error);
+                this.router.navigate(['/'])
 
-            });
+              }); 
+        }
       }
       else{
         alert('Los datos son erroneos, verifiquelos e intentelo de nuevo')

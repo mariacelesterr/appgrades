@@ -1,79 +1,73 @@
-<div class="container" *ngIf="hideElement == true">
-	<div class="notas ">
-  		<div class="card">
+<div class="container">
+	<div class="row">
+  		<div class="card col s12 m6 l6 offset-m3 offset-l3 ">
     		<div class="card-content ">
-				<h5 class="center">Estadísticas</h5>
-				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()">
-					<div class="divider"></div>
-					<div class="row">
-						<p class="center"> Debes seleccionar <strong>el grado, la sección y el periodo</strong> a consultar </p>
-					</div>
-					<div class="row">
-				    	<div class="col s6 m6 l6">
-				            <div class="input-field" >
-							    <select materialize="material_select" 
-							    name="id_grado" 
-							    [(ngModel)]="estadisticas.id_grado" 
-							    required
-							    #id_grados="ngModel">
-							      <option value="" disabled selected>Grados</option>
-							      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
-							    </select>
-							    <label>Seleccionar Grado</label>
-							</div>
-				        </div>
-				        <div class="col s6 m6 l6">
-				           <div class="input-field" >
-							    <select 
-							     materialize="material_select"
-							     name="id_seccion" 
-							     [(ngModel)]="estadisticas.id_seccion" 
-							     required
-							     #id_seccion="ngModel">
-							      <option value="" disabled selected>Sección</option>
-							      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
-							    </select>
-							    <label>Seleccionar Sección</label>
-							</div>  	
-				        </div>
-				    </div>
-					<div class="row">
-						<div class="col s6 m9 l9 offset-s3 offset-m4 offset-l4">
-				           <div class="input-field inline">
-					          	<select materialize="material_select" 
-					          	[materializeSelectOptions]="" 
-					          	name="periodos" 
-					          	required 
-					          	[(ngModel)]="estadisticas.id_periodo"
-					          	#peridos="ngModel">
-					          		<option value="" disabled selected>Periodos</option>
-							      	<option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
-							    </select>
-							    <label>Seleccionar Periodo</label>
-				        	</div> 	
-				    	</div>
-					</div> 			
-					<div class="row">
-					    <div class="card-action">
-					    	<div class="col s12 m12 l12">
-							    <button  type="submit" class="right ">
-						      		<a>Enviar</a>
-							    </button>
-							    <a class="left" (click)="goBack()">Regresar</a>
+    			<div class="incio" *ngIf="hideElement == true">
+					<h5 class="center">Estadísticas</h5>
+					<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()">
+						<div class="divider"></div>
+						<div class="row">
+							<p class="center"> Debes seleccionar <strong>el grado, la sección y el periodo</strong> a consultar </p>
+						</div>
+						<div class="row">
+					    	<div class="col s6 m6 l6">
+					            <div class="input-field" >
+								    <select materialize="material_select" 
+								    name="id_grado" 
+								    [(ngModel)]="estadisticas.id_grado" 
+								    required
+								    #id_grados="ngModel">
+								      <option value="" disabled selected>Grados</option>
+								      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
+								    </select>
+								    <label>Seleccionar Grado</label>
+								</div>
+					        </div>
+					        <div class="col s6 m6 l6">
+					           <div class="input-field" >
+								    <select 
+								     materialize="material_select"
+								     name="id_seccion" 
+								     [(ngModel)]="estadisticas.id_seccion" 
+								     required
+								     #id_seccion="ngModel">
+								      <option value="" disabled selected>Sección</option>
+								      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
+								    </select>
+								    <label>Seleccionar Sección</label>
+								</div>  	
+					        </div>
+					    </div>
+						<div class="row">
+							<div class="col s6 m9 l9 offset-s3 offset-m4 offset-l4">
+					           <div class="input-field inline">
+						          	<select materialize="material_select" 
+						          	[materializeSelectOptions]="" 
+						          	name="periodos" 
+						          	required 
+						          	[(ngModel)]="estadisticas.id_periodo"
+						          	#peridos="ngModel">
+						          		<option value="" disabled selected>Periodos</option>
+								      	<option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
+								    </select>
+								    <label>Seleccionar Periodo</label>
+					        	</div> 	
 					    	</div>
-					    </div>	
-				    </div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="container" *ngIf="hideElement == false">
-	<div  *ngIf="hideElement1 == true">
-		<div class="notas">
-	  		<div class="card">
-	    		<div class="card-content ">
-					<h5 class="center">¡NOTA IMPORTANTE!</h5>
+						</div> 			
+						<div class="row">
+						    <div class="card-action">
+						    	<div class="col s12 m12 l12">
+								    <button  type="submit" class="right ">
+							      		<a>Enviar</a>
+								    </button>
+								    <a class="left" (click)="goBack()">Regresar</a>
+						    	</div>
+						    </div>	
+					    </div>
+					</form>	
+    			</div>
+    			<div class="nota" *ngIf="hideElement == false && hideElement1 === true">
+    				<h5 class="center">¡NOTA IMPORTANTE!</h5>
 					<div class="divider"></div>
 					<div class="row">
 						<p class="center"> Los resultados se mostrarán por lapso <br><br> Para saber el valor númerico del promedio en general de cada lapso tiene que colocar el ratón sobre cada reglon y abajo aparecerá la leyenda del mismo </p>
@@ -88,24 +82,20 @@
 							</button>	
 						</div>		
 					</div>
-				</div>
+    			</div>
+    			<div class="verEstadistica" *ngIf="hideElement1 == false">
+    				<h5 class="center">Promedio de alumnos por lapso</h5>
+					<div class="divider"></div>		
+					<div class="row">
+					    <div class="">
+							<div mk-morris-js [options]="chartBarOptions" [data]="chartBarData" type="Bar"></div>	
+						</div>	
+					</div>
+    			</div>
 			</div>
 		</div>
-	</div>
-</div>	
-
-<div class="container" *ngIf="hideElement1 == false">
-	<div class="notas ">
-  		<div class="card">
-    		<div class="card-content ">
-				<h5 class="center">Promedio de alumnos por lapso</h5>
-				<div class="divider"></div>		
-				<div class="row">
-				    <div class="col s6 m6 l10 right">
-						<div mk-morris-js [options]="chartBarOptions" [data]="chartBarData" type="Bar"></div>	
-					</div>		
-				</div>
-			</div>
-		</div>
+		<div class="col l3" *ngIf="hideElement1 == false">
+			<h6 *ngFor="let promedios of promedio">Primer lapso <br> Promedio general de todos los alumnos: % {{promedios.promedio}} </h6>
+		</div>	
 	</div>
 </div>

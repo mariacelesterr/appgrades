@@ -110,7 +110,7 @@
 						            data-length="1000" 
 						            materialize="characterCounter"
 						            maxlength="1000"
-						            minlength="100" 
+						            minlength="10" 
 						            name="descrip_1" 
 						            [(ngModel)]="notas.descrip_1"
 						            required 
@@ -129,7 +129,7 @@
 						            class="materialize-textarea" 
 						            data-length="1000" 
 						            maxlength="1000"
-						            minlength="100" 
+						            minlength="10" 
 						            materialize="characterCounter"
 						            name="descrip_2" 
 						            [(ngModel)]="notas.descrip_2"
@@ -171,9 +171,9 @@
 							            <textarea 
 							            id="textarea1" 
 							            class="materialize-textarea" 
-							            data-length="2100" 
+							            data-length="1600" 
 							            materialize="characterCounter"
-							            maxlength="2100"
+							            maxlength="1600"
 							            minlength="10" 
 							            name="descrip_1" 
 							            [(ngModel)]="notas.descrip_1"
@@ -191,8 +191,8 @@
 						          <div class="input-field col s12">
 						            <textarea id="textarea2" 
 						            class="materialize-textarea" 
-						            data-length="300" 
-						            maxlength="300"
+						            data-length="170" 
+						            maxlength="170"
 						            minlength="10" 
 						            materialize="characterCounter"
 						            name="descrip_2" 
@@ -211,9 +211,9 @@
 							        <div class="input-field col s12">
 							            <textarea id="textarea3" 
 							            class="materialize-textarea" 
-							            data-length="300" 
+							            data-length="170" 
 							            materialize="characterCounter"
-							            maxlength="300"
+							            maxlength="170"
 							            minlength="5" 
 							            name="descrip_3" 
 							            [(ngModel)]="notas.descrip_3"
@@ -239,8 +239,8 @@
 								          	required
 								          	#nota_final="ngModel">
 										      <option value="" disabled selected>Nota final</option>
-										      <option [value]="1">Excelente</option>
-										      <option [value]="2">Aprobado</option>
+										      <option value="Excelente">Excelente</option>
+										      <option value="Aprobado">Aprobado</option>
 										    </select>
 										    <p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
 							        	</div>

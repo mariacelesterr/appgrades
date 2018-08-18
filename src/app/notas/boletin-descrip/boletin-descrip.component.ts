@@ -58,6 +58,7 @@ export class BoletinDescripComponent implements OnInit {
     this.notas.tipo_bole = 1; 
   }
   openModal() {
+    console.log(this.notas.nota_final);
     if (this.form.valid) {
     this.modalActions.emit(
       {
