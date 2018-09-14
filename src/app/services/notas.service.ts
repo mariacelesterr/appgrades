@@ -5,10 +5,6 @@ import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-export class EstudiantesDetalles {
-	estudiantes: Estudiantes;
-	periodos: any[];
-}
 
 @Injectable()
 export class NotasService {
@@ -33,7 +29,7 @@ export class NotasService {
 
 		return this.apiService.perform('post', this.boletin_descripUrl + id, notas, _params, _formParams);
 	}
-	obtenerEstudi(id: number): Observable<EstudiantesDetalles> {
+	obtenerEstudi(id: number): Observable<any> {
 		const _params: any = {};
 		const _formParams: any = {};
 		const _bodyData: any = {};
@@ -41,11 +37,27 @@ export class NotasService {
 
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
 	}
+	obtenerN2(id: number): Observable<any> {
+	const _params: any = {};
+	const _formParams: any = {};
+	const _bodyData: any = {};
+	const url = this.boletin_descripUrl + id;
+
+	return this.apiService.perform('get', url, _bodyData, _params, _formParams);
+	}
 	obtenerNotas(id: number): Observable<any> {
 		const _params: any = {};
 		const _formParams: any = {};
 		const _bodyData: any = {};
 		const url = this.pdfUrl + id;
+
+		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
+	}
+	obtenerNotas1(): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+		const url = this.estudiantesUrl;
 
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
 	}
@@ -69,6 +81,13 @@ export class NotasService {
 		const _bodyData: any = {};
 
 		return this.apiService.perform('delete', this.periodosUrl + '/' + id, _bodyData, _params, _formParams);
+	}
+	borrarBoletin(id: number): Observable<any> {
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+
+		return this.apiService.perform('delete', this.estudiantesUrl + '/' + id, _bodyData, _params, _formParams);
 	}
 	
 }

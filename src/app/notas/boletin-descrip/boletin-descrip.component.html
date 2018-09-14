@@ -35,28 +35,28 @@
 				       	<div class="divider"></div>
 						    <div class="row">
 						        <div class="input-field col s6 m6 l6">
-						          <input id="first_name" type="text" class="validate" name="descrip_1" value="{{estudiantesDetalles?.estudiantes?.nombres}}" readonly="readonly">
+						          <input id="first_name" type="text" class="validate" name="descrip_1" [(ngModel)]="notas.nombres" readonly="readonly">
 						          
 						       </div>
 						        <div class="input-field col s6 m6 l6">
-						          <input id="last_name" type="text" class="validate" name="apellidos" value="{{estudiantesDetalles?.estudiantes?.apellidos}}" readonly="readonly">
+						          <input id="last_name" type="text" class="validate" name="apellidos" [(ngModel)]="notas.apellidos" readonly="readonly">
 				
 						        </div>
 						    </div>
 					    	<div class="row">
 						        <div class="col s4 m4 l4">
 						          <div class="input-field inline">
-						            <input id="cedula" type="text" class="validate" name="grados" value="{{estudiantesDetalles?.estudiantes?.descrip_gra}}" readonly="readonly">
+						            <input id="cedula" type="text" class="validate" name="grados" value="{{notas.descrip_gra}}" readonly="readonly">
 						          </div>
 						        </div>
 						        <div class="col s4 m4 l4 ">
 							         <div class="input-field inline">
-								        <input id="seccion" type="text" class="validate" name="seccion" value="{{estudiantesDetalles?.estudiantes?.descrp_sec}}" readonly="readonly">
+								        <input id="seccion" type="text" class="validate" name="seccion" value="{{notas.descrp_sec}}" readonly="readonly">
 							        </div>
 							     </div>
 						        <div class="col s4 m4 l4">
 						        	<div class="input-field inline">
-							          	<input id="periodo" type="text" class="validate" name="periodo" value="{{estudiantesDetalles?.estudiantes?.descrip_peri}}" readonly="readonly">
+							          	<input id="periodo" type="text" class="validate" name="periodo" value="{{notas.descrip_peri}}" readonly="readonly">
 						        	</div>
 						        </div>
 					    	</div>

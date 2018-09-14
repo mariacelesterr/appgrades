@@ -71,6 +71,10 @@ const APP_ROUTES = [
     component: NotasComponent 
   },
   { 
+    path: 'app-notas/:id', 
+    component: NotasComponent 
+  },
+  { 
     path: 'app-grados', 
     component: GradosComponent 
   },

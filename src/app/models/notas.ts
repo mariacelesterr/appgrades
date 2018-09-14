@@ -11,6 +11,10 @@ export class Notas {
 		descrip_3: string;
 		nota_final: string;
 		nota_cuali: number;
-
+		nombres: string;
+		apellidos: string;
+		descrip_gra: string;
+		descrip_peri: string;
+		descrp_sec: string;
 
 }

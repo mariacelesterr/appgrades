@@ -12,7 +12,16 @@
 		 top: 30%;
 	}
 }*/
-
+@media only screen and (min-width: 1200px){
+	.leyenda {
+	     margin-top: 200px;
+	}
+	.leyenda2{
+		font-style: italic;
+		display: initial;
+		font-size: 20px;
+	}
+}
 .divider{
 	margin-bottom: 30px;
 }

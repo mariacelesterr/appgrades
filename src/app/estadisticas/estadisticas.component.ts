@@ -79,7 +79,8 @@ export class EstadisticasComponent implements OnInit {
         xkey: 'x',
         ykeys: ['y'],
         labels: ['Promedio por lapso'],
-        resize: true
+        resize: true,
+        hideHover: 'auto'
       };
       this.chartBarData =  [];
      
@@ -111,9 +112,9 @@ export class EstadisticasComponent implements OnInit {
     this.hideElement1 = false;
       if(this.promedio.length == 3){
             this.chartBarData = [
-            { x: 'Primer lapso', y: this.promedio[0].promedio},
-            { x: 'Segundo lapso', y: this.promedio[1].promedio},
-            { x: 'Tercer lapso', y: this.promedio[2].promedio}
+            { x: '1° lapso', y: this.promedio[0].promedio},
+            { x: '2° lapso', y: this.promedio[1].promedio},
+            { x: '3° lapso', y: this.promedio[2].promedio}
           ];
         }
        else if (this.promedio.length == 2){

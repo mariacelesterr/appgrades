@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="hideElement == true || hideElement == false && hideElement1 == true ">
 	<div class="row">
   		<div class="card col s12 m6 l6 offset-m3 offset-l3 ">
     		<div class="card-content ">
@@ -66,7 +66,7 @@
 					    </div>
 					</form>	
     			</div>
-    			<div class="nota" *ngIf="hideElement == false && hideElement1 === true">
+    			<div class="nota" *ngIf="hideElement == false && hideElement1 == true">
     				<h5 class="center">¡NOTA IMPORTANTE!</h5>
 					<div class="divider"></div>
 					<div class="row">
@@ -83,19 +83,48 @@
 						</div>		
 					</div>
     			</div>
-    			<div class="verEstadistica" *ngIf="hideElement1 == false">
-    				<h5 class="center">Promedio de alumnos por lapso</h5>
-					<div class="divider"></div>		
-					<div class="row">
-					    <div class="">
-							<div mk-morris-js [options]="chartBarOptions" [data]="chartBarData" type="Bar"></div>	
-						</div>	
-					</div>
-    			</div>
 			</div>
-		</div>
-		<div class="col l3" *ngIf="hideElement1 == false">
-			<h6 *ngFor="let promedios of promedio">Primer lapso <br> Promedio general de todos los alumnos: % {{promedios.promedio}} </h6>
 		</div>	
 	</div>
+</div>
+<div class="container" *ngIf="hideElement1 == false">
+	<div class="row">
+		<div class="card col s12 m4 l4 offset-m3 offset-l3 ">
+			<div class="verEstadistica">
+				<h5 class="center">Promedio de alumnos por lapso</h5>
+				<div class="divider"></div>		
+				<div class="row">
+				    <div class="">
+						<div mk-morris-js [options]="chartBarOptions" [data]="chartBarData" type="Bar"></div>	
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div class="col s12 m5 l5 leyenda" *ngIf="hideElement1 == false">
+			<h6> Promedio General de los alumnos</h6>
+			<div *ngFor="let promedios of promedio">
+				<div style="margin-left: 2rem;">
+					<p> 
+						<img class="material-icons" src="assets/icons/icons8-filled-circle-24.png">
+						{{promedios.descrip}} : <strong>{{promedios.promedio}} % </strong> 
+					</p>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container" *ngIf="hideElement1 == false">
+	<div class="row">
+		<div class="col s12 m6 l6 offset-l2 offset-m2">
+			<p style="font-size: 18px">
+				Cantidad de notas ingresadas:
+			</p>
+			<div class="leyenda2" *ngFor="let cantidad of promedio">
+				<img class="material-icons" src="assets/icons/icons8-filled-circle-24 (1).png">
+				 {{cantidad.descrip}} : {{cantidad.cantidad}}
+			</div>		
+		</div>
+	</div>	
 </div>
