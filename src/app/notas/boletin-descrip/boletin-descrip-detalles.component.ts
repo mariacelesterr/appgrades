@@ -9,12 +9,12 @@ import { Estudiantes } from '../../models/estudiantes'
 import { Notas } from '../../models/notas'
 
 @Component({
-  selector: 'app-boletin-descrip',
-  templateUrl: './boletin-descrip.component.html',
-  styleUrls: ['./boletin-descrip.component.css']
+  selector: 'boletin-descrip-detalles',
+  templateUrl: './boletin-descrip-detalles.component.html',
+  styleUrls: ['./boletin-descrip-detalles.component.css']
 })
-export class BoletinDescripComponent implements OnInit {
-  maxLength = 20;
+export class BoletinDescripDetallesComponent implements OnInit {
+	maxLength = 20;
   hideElement = true;
   hideElement1 = true;
   notas: Notas = new Notas;
@@ -36,17 +36,14 @@ export class BoletinDescripComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-
-    if (this.route.snapshot.url[1].path === 'boletin-descrip'){
-      this.route.params
+  	    if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){ 
+        this.route.params
           .switchMap((params: Params) => 
-            this.estudiantesService.obtenerEstudi(params['id']))
+            this.notasService.obtenerN2(params['id']))
               .subscribe(data => this.notas1 = data);
-    }
-    this.userdata = this.userService.getUserData();
+        }
   }
-
-  pdf(){
+    pdf(){
     this.router.navigate(['/app-pdf']);
   }
   onChange(event){
@@ -59,7 +56,7 @@ export class BoletinDescripComponent implements OnInit {
   escuelaBasica(){
     this.hideElement =false;
     this.notas.tipo_bole = 2; 
-      console.log(this.notas);
+      console.log(this.notas1);
   }
   escuelaInicial(){
     this.hideElement =false;
@@ -81,19 +78,21 @@ export class BoletinDescripComponent implements OnInit {
       if(this.notas.nota_cuali === undefined)
         alert('Debes seleccionar una opcion')
       else{
-          if (this.route.snapshot.url[1].path === 'boletin-descrip'){
+          if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){
+            this.notas.id_notas_descrip = this.notas1[0].id_notas_descrip;
             this.notas.id_estudiantes = this.notas1[0].id_estudiantes;
             this.notas.id_grado = this.notas1[0].id_grados; 
             this.notas.id_seccion = this.notas1[0].id_seccion;
             this.notas.id_periodo = this.notas1[0].id_periodo;
+			this.notas.proyecto= this.notas1[0].proyecto;
+			this.notas.descrip_1= this.notas1[0].descrip_1;	
+			this.notas.descrip_2= this.notas1[0].descrip_2; 	
+			this.notas.descrip_3= this.notas1[0].descrip_3;
             console.log(this.notas);
-                      this.route.params
-                      .switchMap((params: Params) => this.notasService.agregarNotas(this.notas, params['id']))
-                        .subscribe(data => this.router.navigate(['/app-pdf/', data.id_notas_descrip]));
-                      this.modalActions.emit({action:"modal",params:['close']});}
+            this.notasService.modificarNotas(this.notas)
+                .subscribe(data => this.router.navigate(['/app-pdf/', data.id_notas_descrip]));
+            this.modalActions.emit({action:"modal",params:['close']});}
           }  
-  }
-  doSubmit() {
   }
 
 }
