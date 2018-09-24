@@ -11,6 +11,7 @@ export class NotasService {
 
 	private estudiantesUrl = 'api/app-notas';
 	private boletin_descripUrl = '/api/app-notas/app-boletin-descrip/';
+	private boletin_descripUrl2 = '/api/app-notas/boletin-descrip-detalles/';
 	private pdfUrl = '/api/app-pdf/';
 	private periodosUrl= 'api/app-periodo'
 
@@ -41,9 +42,17 @@ export class NotasService {
 	const _params: any = {};
 	const _formParams: any = {};
 	const _bodyData: any = {};
-	const url = this.boletin_descripUrl + id;
+	const url = this.boletin_descripUrl2 + id;
 
 	return this.apiService.perform('get', url, _bodyData, _params, _formParams);
+	}
+	modificarNotas(notas: Notas): Observable<any> {
+	const _params: any = {};
+	const _formParams: any = {};
+	const _bodyData: any = {};
+	const url = this.boletin_descripUrl2 + notas.id_notas_descrip;
+
+	return this.apiService.perform('put', url, notas, _params, _formParams);
 	}
 	obtenerNotas(id: number): Observable<any> {
 		const _params: any = {};

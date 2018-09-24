@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-	    <form #f="ngForm" (ngSubmit)="doSomething()" class="col s12 m6 l6 offset-l3" novalidate>
+	    <form #f="ngForm" (ngSubmit)="doSomething()" class="col s12 m6 l6 offset-m3 offset-l3" novalidate>
 	    	<div class="card ">
 		        <div class="card-content center">
 		          <span *ngIf="route.snapshot.url[0].path == 'login'" class="card-title">Iniciar Sesión</span>
@@ -21,16 +21,16 @@
 								       required
 								       minlength="4"
 								       pattern="[^ @]*@[^ @]*"
-								       #email="ngModel"
-								       materialize="tooltip" 
-								       data-position="right" 
-								       data-delay="10" 
-								       data-tooltip="El correo debe contener @ "
-								       class="tooltipped">
+								       #email="ngModel">
 								<div class="form-control-feedback"
 								     *ngIf="email.errors && (email.dirty || email.touched)">
 									<p class="center" *ngIf="email.errors.required">Este campo es obligatorio</p>
-									<p class="center" *ngIf="email.errors.pattern">Correo inválido</p>
+									<p class="center tooltipped"
+									*ngIf="email.errors.pattern" 
+									data-tooltip="El correo debe contener @ "
+									materialize="tooltip" 
+							       	data-position="right" 
+							       	data-delay="10">Correo inválido</p>
 								</div>
 							</div>
 				        </div>
@@ -70,7 +70,10 @@
 	    </form>
 	</div>	
 </div>
-<!--- <a class="btn tooltipped" materialize="tooltip" data-position="bottom" data-tooltip="I am a tooltip">Hover me!</a>
+<!---<button [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
+  Do it!
+</button>
+ <a class="btn tooltipped" materialize="tooltip" data-position="bottom" data-tooltip="I am a tooltip">Hover me!</a>
 <a materialize="tooltip" data-position="top" data-delay="10" data-tooltip="I am tooltip">Hover me1!</a>
 
 <a (click)="toast('I am a toast')" class="btn">Toast!</a> !---> 

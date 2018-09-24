@@ -93,12 +93,12 @@ export class UserService {
 		return this.apiService.perform('post', this.signupUrl, _bodyData, _params, _formParams);
 	}
 
-	doLogout() {
+	doLogout(){
 		this.flush();
-
+		
 		const _params: any = {};
-		const _formParams: any = {};
 		const _bodyData: any = {};
+		const _formParams: any = {};
 
 		return this.apiService.perform('get', this.logoutUrl, _bodyData, _params, _formParams);
 	}

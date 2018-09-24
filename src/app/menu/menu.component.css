@@ -28,3 +28,6 @@ a{
 	text-decoration: none !important;
 	outline: none !important;
 }
+.divider{
+	height: 2px;
+}

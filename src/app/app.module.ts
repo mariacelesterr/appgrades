@@ -5,6 +5,7 @@ import { MaterializeModule } from 'angular2-materialize';
 import { FormsModule} from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MorrisJsModule } from 'angular-morris-js';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 // Routing
 import { Routing } from './app.routing';
@@ -30,10 +31,11 @@ import { NotasComponent } from './notas/notas.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { UsersComponent } from './users/users.component';
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component';
+import { BoletinDescripDetallesComponent } from './notas/boletin-descrip/boletin-descrip-detalles.component'
 import { PerfilComponent } from './users/perfil/perfil.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { GradosComponent } from './grados/grados.component';
-import { SeccionesComponent } from './secciones/secciones.component'
+import { SeccionesComponent } from './secciones/secciones.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { SeccionesComponent } from './secciones/secciones.component'
     PerfilComponent,
     PeriodoComponent,
     GradosComponent,
-    SeccionesComponent
+    SeccionesComponent,
+    BoletinDescripDetallesComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { SeccionesComponent } from './secciones/secciones.component'
     MaterializeModule,
     MorrisJsModule,
     Routing,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     ApiService,

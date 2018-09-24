@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert2';
 import { Estudiantes } from '../models/estudiantes';
 import { NotasService } from '../services/notas.service';
 import { EstadisticasService } from '../services/estadisticas.service';
@@ -68,13 +69,13 @@ export class NotasComponent implements OnInit {
           console.log(error);
     });
     this.notasService.obtenerNotas1()
-    .subscribe(data => {
-      this.notas = data;
-    },
-    error=>{
-        alert('Hubo en error al cargar las notas');
-        console.log(error);
-  });
+      .subscribe(data => {
+        this.notas = data;
+      },
+      error=>{
+          alert('Hubo en error al cargar las notas');
+          console.log(error);
+    });
 
   }
   doSubmit() {
@@ -134,13 +135,16 @@ export class NotasComponent implements OnInit {
   borrarBole(id: number) {
       this.notasService.borrarBoletin(id).subscribe(data => 
           {
-            alert('Se ha borrado con exito el Boletin');
-            //this.router.navigate(['/'])
+            swal({
+                  title: 'Aprobado',
+                  text: 'Se ha borrado con exito el Boletin',
+                  type: "success",
+                  confirmButtonText: 'Cerrar',
+                });
+            this.router.navigate(['/app-menu'])
           },
           error => {
             console.log(error);
             alert('Lo sentimos ha ocurrido un error ')} );
     }
-  
-
 }

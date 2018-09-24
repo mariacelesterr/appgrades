@@ -1,8 +1,8 @@
 <div class="container"  *ngIf="route.snapshot.url[0].path == 'app-periodo-agregar'">
-	<div class="notas ">
-  		<div class="card">
+	<div class="row">
+  		<div class="card col s12 m8 l6 offset-m2 offset-l3">
     		<div class="card-content ">
-				<h5 class="center">Agregar Periodos </h5>
+				<h5 class="center">Agregar Períodos </h5>
 				<div class="divider"></div>
 				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()" >
 					<div class="row ">
@@ -57,8 +57,8 @@
 	</div>
 </div>
 <div class="container"  *ngIf="route.snapshot.url[0].path == 'app-periodo'">
-	<div class="notas ">
-  		<div class="card">
+	<div class="row ">
+  		<div class="card col s12 m8 l6 offset-m2 offset-l3">
     		<div class="card-content ">
 				<h5 class="center">Periodos</h5>
 				<div class="divider"></div>
@@ -87,6 +87,12 @@
 			      </table>
 			</div>
 		</div>
-  	<a class="btn-floating btn-large waves-effect waves-light red right" routerLink='/app-periodo-agregar'><i class="material-icons">add</i></a>
+		<div class="row">
+			<div class="col col s12 m12 l6 offset-l3">
+  				<a class="btn-floating btn-large waves-effect waves-light red right" routerLink='/app-periodo-agregar'><i class="material-icons">add</i></a>
+
+			</div>
+			
+		</div>
 	</div>
 </div>

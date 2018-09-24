@@ -17,6 +17,23 @@ const db = (() => {
 	this.getConnection = (cb) => {
 		this.pool.getConnection(cb);
 	};
+	this.query = (sql, values) => new Promise((resolve, reject) => {
+		this.pool.getConnection((err, connection) => {
+			if (err) {
+				console.log(err);
+			} else {
+				connection.query(sql, values, (err, results) => {
+					connection.release();
+
+					if (err) {
+						console.log(err);
+					} else {
+						resolve(results);
+					}
+				});
+			}
+		});
+	});
 	return this;
 })();
 

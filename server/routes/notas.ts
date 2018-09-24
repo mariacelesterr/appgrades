@@ -40,26 +40,27 @@ router.post('/app-notas/app-boletin-descrip/:id',  (req, res) => {
 
 /*router.get('/app-notas/app-boletin-descrip/:id',(req, res )=>{
 	let estudiantes = [],
-		periodos = [];
+		notas = [];
 	db.getConnection((err, connection) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('SELECT * FROM estudiantes INNER JOIN grados ON estudiantes.id_grados= grados.id_grados INNER JOIN seccion ON estudiantes.id_seccion=seccion.id_seccion INNER JOIN periodo ON estudiantes.id_periodo=periodo.id_periodo WHERE id_estudiantes = ?', [req.params.id], (err, result) => {
+			connection.query('SELECT * FROM notas_descrip INNER JOIN grados ON notas_descrip.id_grado= grados.id_grados INNER JOIN seccion ON notas_descrip.id_seccion=seccion.id_seccion INNER JOIN periodo ON notas_descrip.id_periodo=periodo.id_periodo WHERE id_notas_descrip = ?', [req.params.id], (err, result) => {
 				if (err) {
 					res.status(500).send({message: err});
 				} else {
 					estudiantes = result[0];
 				}
 			});
-			connection.query('SELECT * FROM notas_descrip WHERE id_estudiantes = ?', [req.params.id] (err, result) => {
+			connection.query('SELECT * FROM estudiantes WHERE id_estudiantes = ?',[estudiantes.id_estudiantes], (err, result) => {
 				connection.release();
 
 				if (err) {
 					res.status(500).send({message: err});
 				} else {
-					periodos = result;
-					res.status(200).send({estudiantes: estudiantes, periodos: periodos});
+
+					notas = result;
+					res.status(200).send({estudiantes: estudiantes, notas: notas});
 				}
 			});
 		}
@@ -84,7 +85,7 @@ router.get('/app-pdf/:id',(req, res )=>{
 	});
 });
 
-router.get('/app-notas/app-boletin-descrip/:id',(req, res )=>{
+router.get('/app-notas/boletin-descrip-detalles/:id',(req, res )=>{
 	db.getConnection((err, connection) => {
 		if (err) {
 			res.status(500).send({message: err});
@@ -96,7 +97,25 @@ router.get('/app-notas/app-boletin-descrip/:id',(req, res )=>{
 					res.status(500).send({message: err});
 				} else {
 					
-					res.status(200).send(result[0]);
+					res.status(200).send(result);
+				}
+			});
+		}
+	});
+});
+router.put('/app-notas/boletin-descrip-detalles/:id',(req, res )=>{
+	db.getConnection((err, connection) => {
+		if (err) {
+			res.status(500).send({message: err});
+		} else {
+			connection.query('UPDATE notas_descrip SET ? WHERE id_notas_descrip = ?', [req.body,req.params.id], (err, result) => {
+				connection.release();
+
+				if (err) {
+					res.status(500).send({message: err});
+				} else {
+					
+					res.status(200).send({id_notas_descrip: req.params.id});
 				}
 			});
 		}

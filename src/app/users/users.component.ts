@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
 
 	error: any;
 	signupSuccessful: boolean = false;
+	user: any;
 
 	//message: string = '';
 	@ViewChild('f') form: any;
@@ -73,12 +74,16 @@ export class UsersComponent implements OnInit {
 		this.userService.doLogin(this.obj.email, this.obj.password, this.remember)
 			.subscribe(data => {
 				this.userService.setUserData(data);
-				console.log(data);
+				this.user = data;
 				this.router.navigate(['/app-menu']);
 			},
 			error=>{
 				this.error = error;
-				alert(this.error.message);
+				if(this.error.message === "connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock")
+				alert('Servidor de base de datos no conectado');
+				else{
+					alert('¡Lo sentimos hubo un problema!' + this.error.message);
+				}
 			});
 	}
 
@@ -87,13 +92,33 @@ export class UsersComponent implements OnInit {
 			.subscribe(data => {
 				this.signupSuccessful = true;
 				this.router.navigate(['/app-menu']);
+			},
+			error=>{
+				this.error = error;
+				if(this.error.message === "connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock")
+				alert('Servidor de base de datos no conectado');
+				else{
+					alert('¡Lo sentimos hubo un problema! ' + this.error.message);
+				}
+
+			});
+	}
+	doLogout() {
+		this.userService.doLogout()
+			.subscribe(data=>{
+				this.router.navigate(['/login'])
+			},
+			error=>{
+				this.error = error;
+				if(this.error.message === "connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock")
+				alert('Servidor de base de datos no conectado');
+				else{
+					alert('¡Lo sentimos hubo un problema! ' + this.error.message);
+				}
+
 			});
 	}
 
-	doLogout() {
-		this.userService.doLogout();
-		this.router.navigate(['/login']);
-	}
 
 }
 

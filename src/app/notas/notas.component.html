@@ -1,6 +1,6 @@
 <div class="container" *ngIf="hideElement==true" >
 	<div class="row">
-  		<div class="card col s12 m5 l6 offset-l3">
+  		<div class="card col s12 m6 l6 offset-m3 offset-l3 ">
     		<div class="card-content ">
 				<h5 class="center">Notas Descriptivas </h5>
 				<form #f="ngForm" class="col s12">
@@ -38,7 +38,7 @@
 				        </div>
 				    </div>
 				    <div class="row">
-						<div class="col s6 m9 l9 offset-s3 offset-m4 offset-l4">
+						<div class="col s6 m8 l9 offset-s3 offset-m2 offset-l4">
 				           <div class="input-field inline">
 					          	<select materialize="material_select" 
 					          	[materializeSelectOptions]="" 
@@ -55,19 +55,10 @@
 					</div> 
 					<div class="row">
 					    <div class="card-action">
-					    	
-							    <a class="left" (click)="goBack()">Regresar</a>
-							    <a class="right " (click)= "doSubmit()">
-							    	Enviar
-							    </a>
-							    <!---<button  type="submit" class="right ">
-						      		<a>Enviar</a>
-							    </button>-->
-					    	
-					    </div>	
-						
-					</div>
-						
+					    	<a class="left" (click)="goBack()">Regresar</a>
+						    <a class="right " (click)= "doSubmit()"> Enviar</a>
+					    </div>
+					</div>	
 				</form>
 			</div>
 		</div>
@@ -101,29 +92,36 @@
 			            </td>
 			           	<td *ngFor="let grupos of estudiantes.grupo">
 			           		<div *ngIf="grupos.id_lapso === 1">
-				            	<a routerLink='/app-notas/boletin-descrip/{{grupos.id_notas_descrip}}'>
+				            	<a routerLink='/app-notas/boletin-descrip-detalles/{{grupos.id_notas_descrip}}'>
 				            		<img src="assets/icons/icons8-open-view-64.png">
 				            	</a>
-				            	<a (click)="borrarBole(grupos.id_notas_descrip)">
+					            <swal
+								  #deleteSwal
+								  title="Eliminar boletin"
+								  text="¿Esta seguro que desea eliminar este boletin?"
+								  type="question"
+								  [showCancelButton]="true"
+								  (confirm)="borrarBole(grupos.id_notas_descrip)">
+								</swal>
+				            	<button [swal]="deleteSwal">
 				            		<img src="assets/icons/icons8-delete-view-80.png">
-				            	</a>
-			           			
+								</button>
 			           		</div>
 			           		<div *ngIf=" grupos.id_lapso === 2">
-				            	<a *ngIf=" grupos.id_lapso === 2" routerLink='/app-notas/boletin-descrip/{{grupos.id_notas_descrip}}'>
+				            	<a *ngIf=" grupos.id_lapso === 2" routerLink='/app-notas/boletin-descrip-detalles/{{grupos.id_notas_descrip}}'>
 				            		<img src="assets/icons/icons8-open-view-64.png">
 				            	</a>
-				            	<a (click)="borrarBole(grupos.id_notas_descrip)">
+				            	<button [swal]="deleteSwal">
 				            		<img src="assets/icons/icons8-delete-view-80.png">
-				            	</a>	
+								</button>	
 			           		</div>
 			           		<div *ngIf=" grupos.id_lapso === 3" >
-				            	<a routerLink='/app-notas/boletin-descrip/{{grupos.id_notas_descrip}}'>
+				            	<a routerLink='/app-notas/boletin-descrip-detalles/{{grupos.id_notas_descrip}}'>
 				            		<img src="assets/icons/icons8-open-view-64.png">
 				            	</a>
-				            	<a (click)="borrarBole(grupos.id_notas_descrip)">
+				            	<button [swal]="deleteSwal">
 				            		<img src="assets/icons/icons8-delete-view-80.png">
-				            	</a>
+								</button>
 			           		</div>
 			            </td>
 		          	</tr>

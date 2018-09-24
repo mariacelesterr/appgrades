@@ -53,11 +53,15 @@ router.get('/profile', authentication.isLoggedIn, (req, res) => {
 	res.json(req.user);
 });
 
-router.get('/logout', (req) => {
+router.get('/logout', (req, res) => {
+	console.log('Hola desde el servidor');
 	req.session.destroy((err) => {
 		console.error(err);
 	});
 	req.logout();
+	res.status(200).json({
+    status: 'Bye!'
+  });
 });
 
 module.exports = router;

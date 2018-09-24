@@ -12,6 +12,7 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component'
 import { UsersComponent } from './users/users.component'
 import { PerfilComponent } from './users/perfil/perfil.component'
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component'
+import { BoletinDescripDetallesComponent } from './notas/boletin-descrip/boletin-descrip-detalles.component'
 import { PeriodoComponent } from './periodo/periodo.component'
 import { GradosComponent } from './grados/grados.component'
 import { SeccionesComponent } from './secciones/secciones.component'
@@ -105,6 +106,10 @@ const APP_ROUTES = [
   { 
     path: 'app-notas/boletin-descrip', 
     component: BoletinDescripComponent 
+  },
+  { 
+    path: 'app-notas/boletin-descrip-detalles/:id', 
+    component: BoletinDescripDetallesComponent
   },
   { 
     path: 'login', 

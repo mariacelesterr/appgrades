@@ -11,7 +11,7 @@
         </ul>
         <ul class="right hide-on-med-and-down">
           <li>
-            <a [routerLink]="['login']" *ngIf="!userdata" >
+            <a [routerLink]="['login']" *ngIf="!userdata" routerLinkActive="active">
              Iniciar Sesión
             </a>
             <a [routerLink]="['app-perfil']" *ngIf="userdata" > 
@@ -22,12 +22,11 @@
             </a>
           </li>
           <li>
-            <a [routerLink]="['logout']" *ngIf="userdata" > Salir
+            <a [routerLink]="['/logout']" *ngIf="userdata" target="_self" routerLinkActive="active"> Salir
               <i class="right">
                 <img src="assets/icons/icons8-shutdown-26 (1).png">
               </i>
-            </a>
-            
+            </a>   
           </li>
         </ul>
       </div>
