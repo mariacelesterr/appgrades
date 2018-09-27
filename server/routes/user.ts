@@ -44,7 +44,7 @@ router.post('/signup', (req, res, next) => {
 				return res.status(403).send({'message': info.message});
 			}
 
-			return res.status(200).send({'message': 'OK'});
+			return res.status(200).send({message: 'Usuario registrado'});
 		})(req, res, next);
 	}
 );

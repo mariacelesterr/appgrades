@@ -5,9 +5,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Estudiantes } from '../models/estudiantes';
 import { UserService } from '../services/user.service';
 import { EstudiantesService } from '../services/estudiantes.service';
-import { EstadisticasService } from '../services/estadisticas.service';
-import { GradosService } from '../services/grados.service';
-import { SeccionesService } from '../services/secciones.service';
+import { EscuelaService  } from '../services/escuela.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalles-estudiantes',
@@ -15,7 +14,7 @@ import { SeccionesService } from '../services/secciones.service';
   styleUrls: ['./estudiantes.component.css']
 })
 export class DetallesEstudiantesComponent implements OnInit {
-  estudiantes: Estudiantes = new Estudiantes();
+  estudiantes: Estudiantes = new Estudiantes() ;
   grado: any ;
   secciones: any;
   periodo: any;
@@ -25,9 +24,7 @@ export class DetallesEstudiantesComponent implements OnInit {
   constructor(
     private _location: Location,
     private EstudiantesService: EstudiantesService,
-    private estadisticasService: EstadisticasService,
-    private gradosService: GradosService,
-    private seccionesService: SeccionesService,
+    private escuelaService: EscuelaService ,
     private route: ActivatedRoute,
     private router: Router) {}
 
@@ -37,48 +34,103 @@ export class DetallesEstudiantesComponent implements OnInit {
             .switchMap((params: Params) => this.EstudiantesService.obtenerEstudi(params['id']))
             .subscribe(data =>{
               this.estudiantes = data;
-              if(this.estudiantes == null)
-                alert('No hay estudiante para mostrar')},
+            },
               error =>{
-                alert('Hubo un error al buscar el estudiante');
+                  swal({
+                  title: '¡Error!',
+                  text: 'Hubo un error al buscar el estudiante',
+                  type: 'error',
+                  confirmButtonText: 'Aceptar'
+                })
                 this.router.navigate(['/']);
               })         
       }
-       this.estadisticasService.obtenerPeriodo()
+    this.escuelaService.obtenerPeriodo()
       .subscribe(
         data =>{ 
           this.periodo = data;
           if (this.periodo.length === null){
-              alert('No hay peridos para escoger. Dirijase hasta la sección de periodo');
-              this.router.navigate(['/'])}    
+            swal({
+                  title: '¡Advertencia!',
+                  text: 'No hay peridos para escoger. Dirijase hasta la sección de periodo',
+                  type: 'warning',
+                  confirmButtonText: 'Cerrar'
+                })
+              this.router.navigate(['/app-periodo'])
+          }    
         },
         error => {
-          alert('Hubo en error al cargar los periodos');
+          swal({
+                title: '¡Error!',
+                text: 'Hubo en error al cargar los periodos',
+                type: 'error',
+                confirmButtonText: 'Cerrar'
+              })
           console.log(error);
         });
-    this.gradosService.obtenerGrados()
+    this.escuelaService.obtenerGrados()
       .subscribe(
         data => {
           this.grado = data;
           if(this.grado.length === null){
-            alert('No hay grados para escoger. Dirijase hasta la sección de grados');
-              this.router.navigate(['/'])}
-          },
-          error => {
-          alert('Hubo en error al cargar los grados');
+            swal({
+                  title: '¡Advertencia!',
+                  text: 'No hay grados para escoger. Dirijase hasta la sección de grados',
+                  type: 'warning',
+                  confirmButtonText: 'Cerrar'
+                })
+              this.router.navigate(['/app-grados'])
+          }
+        },
+        error => {
+          swal({
+                title: '¡Error!',
+                text: 'Hubo en error al cargar los periodos',
+                type: 'error',
+                confirmButtonText: 'Cerrar'
+              })
           console.log(error);
-        })
-    this.seccionesService.obtenerSecciones()
-      .subscribe(data => {
-        this.secciones = data;
-        if(this.secciones === null){
-          alert('No hay secciones para escoger. Dirijase hasta la sección de secciones');
-          this.router.navigate(['/'])}
-      },
-      error=>{
-          alert('Hubo en error al cargar las secciones');
+        });
+    this.escuelaService.obtenerSecciones()
+      .subscribe(
+        data => {
+          this.secciones = data;
+          if(this.secciones === null){
+            swal({
+                title: '¡Advertencia!',
+                text: 'No hay secciones para escoger. Dirijase hasta la sección de secciones',
+                type: 'warning',
+                confirmButtonText: 'Cerrar'
+              })
+          this.router.navigate(['/app-secciones'])}
+        },
+        error=>{
+          swal({
+                title: '¡Error!',
+                text: 'Hubo en error al cargar las secciones',
+                type: 'error',
+                confirmButtonText: 'Cerrar'
+              })
           console.log(error);
-    });
+        });
+    this.datepickerset = {
+      format: 'dd/mm/yyyy',
+      selectMonths: true,
+      today: false,
+      selectYears: 50,
+      closeOnSelect: true,
+      //max: new Date(),
+      //disable: [true],
+      clear: 'Cerrar',
+      close: 'Guardar',
+      buttonImageOnly: false,
+      formatSubmit: "yyyy",
+      monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
+      monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+      weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+      weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+      weekdaysLetter: [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
+    }
   }
   
   goBack(){
@@ -86,38 +138,57 @@ export class DetallesEstudiantesComponent implements OnInit {
   }
   doSubmit() {
     if(this.form.valid){
-      console.log(this.estudiantes);
       this.EstudiantesService.editEstudi(this.estudiantes)
         .subscribe(
           data => {
-            alert('Se ha actualizado el estudiante con exito');
+            swal({
+                  title: 'Aprobado',
+                  text: 'El estudiante se ha actulizado correctamente',
+                  type: 'success',
+                  confirmButtonText: 'Aceptar'
+                })
             this.router.navigate(['/app-buscar-estudiantes']);
           },
           error=>{
-            alert('Ha ocurrido un error intentelo de nuevo');
+            swal({
+                  title: '¡Error!',
+                  text: 'Ha ocurrido un error al actualizar los estudiantes ',
+                  type: 'error',
+                  confirmButtonText: 'Cerrar'
+                })
             console.log(error);
-            this.router.navigate(['/'])
-
           });
     }
     else{
-      alert('Los datos son erroneos, verifiquelos e intentelo de nuevo')
+      swal({
+        title: '¡Error!',
+        text: 'Los datos son erroneos, verifiquelos e intentelo de nuevo',
+        type: 'error',
+        confirmButtonText: 'Cerrar'
+      })
     }
-  
   }
   borrarEstu(id: number) {
     this.route.params
       .switchMap((params: Params) => this.EstudiantesService.borrarEstudiante(params['id']))
-      .subscribe(data => 
-        {
-          alert('Se ha borrado con exito el estudiante');
-          this.router.navigate(['/'])
+      .subscribe(
+        data =>{
+          swal({
+            title: 'Aprobado',
+            text: 'El estudiante se ha eliminado correctamente',
+            type: 'success',
+            confirmButtonText: 'Aceptar'
+          })
+          this.router.navigate(['/app-buscar-estudiantes']);
         },
         error => {
           console.log(error);
-          alert('Lo sentimos ha ocurrido un error ')} );   
+          swal({
+            title: '¡Error!',
+            text: 'Lo sentimos no se ha podido borrar el estudiante ha ocurrido un error',
+            type: 'error',
+            confirmButtonText: 'Cerrar'
+          })
+        });   
       }
-
 }
-
- 

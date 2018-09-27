@@ -19,6 +19,7 @@ import { NotasService } from './services/notas.service';
 import { EstadisticasService } from './services/estadisticas.service';
 import { GradosService } from './services/grados.service';
 import { SeccionesService } from './services/secciones.service';
+import { EscuelaService  } from './services/escuela.service';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -74,6 +75,7 @@ import { SeccionesComponent } from './secciones/secciones.component';
     EstadisticasService,
     GradosService,
     SeccionesService,
+    EscuelaService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

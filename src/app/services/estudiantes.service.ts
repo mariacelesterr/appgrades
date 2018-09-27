@@ -38,10 +38,9 @@ export class EstudiantesService {
 	editEstudi(estudiantes: Estudiantes): Observable<any> {
 		const _params: any = {};
 		const _formParams: any = {};
-		console.log(estudiantes);
-		const url = this.detallesEstudiantesUrl + estudiantes[0].id_estudiantes;
+		const url = this.detallesEstudiantesUrl + estudiantes.id_estudiantes;
 
-		return this.apiService.perform('put', url, estudiantes[0], _params, _formParams);
+		return this.apiService.perform('put', url, estudiantes, _params, _formParams);
 	}
 	borrarEstudiante(id: number): Observable<any> {
 		const _params: any = {};

@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { toast } from 'angular2-materialize';
 import { UserService } from '../services/user.service'
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -80,9 +81,19 @@ export class UsersComponent implements OnInit {
 			error=>{
 				this.error = error;
 				if(this.error.message === "connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock")
-				alert('Servidor de base de datos no conectado');
-				else{
-					alert('¡Lo sentimos hubo un problema!' + this.error.message);
+				swal({
+					  title: '¡Error!',
+					  text: 'Servidor de base de datos no conectado',
+					  type: 'error',
+					  confirmButtonText: 'Cerrar'
+					})
+				else {
+					swal({
+					  title: 'Error',
+					  text: this.error.message,
+					  type: 'error',
+					  confirmButtonText: 'Cerrar'
+					})
 				}
 			});
 	}
@@ -90,33 +101,48 @@ export class UsersComponent implements OnInit {
 	doSignup() {
 		this.userService.doSignup(this.obj.email, this.obj.password)
 			.subscribe(data => {
-				this.signupSuccessful = true;
-				this.router.navigate(['/app-menu']);
+				swal({
+					  title: data.message,
+					  text: " Ahora debes inciar sesión ",
+					  type: 'success',
+					  confirmButtonText: 'Cerrar'
+					})
+				
 			},
 			error=>{
 				this.error = error;
-				if(this.error.message === "connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock")
-				alert('Servidor de base de datos no conectado');
-				else{
-					alert('¡Lo sentimos hubo un problema! ' + this.error.message);
+				if(this.error.message === "connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock"){
+					swal({
+					  title: '¡Error!',
+					  text: 'Servidor de base de datos no conectado',
+					  type: 'error',
+					  confirmButtonText: 'Cerrar'
+					})
 				}
-
+				else{
+					swal({
+					  title: '¡Error!',
+					  text: this.error.message,
+					  type: 'error',
+					  confirmButtonText: 'Cerrar'
+					})
+				}
 			});
 	}
 	doLogout() {
 		this.userService.doLogout()
 			.subscribe(data=>{
 				this.router.navigate(['/login'])
-			},
-			error=>{
-				this.error = error;
-				if(this.error.message === "connect ENOENT /Applications/MAMP/tmp/mysql/mysql.sock")
-				alert('Servidor de base de datos no conectado');
-				else{
-					alert('¡Lo sentimos hubo un problema! ' + this.error.message);
-				}
-
-			});
+				},
+				error=>{
+					this.error = error;
+					swal({
+					  title: '¡Error!',
+					  text: this.error.message,
+					  type: 'error',
+					  confirmButtonText: 'Cerrar'
+					})
+				});
 	}
 
 

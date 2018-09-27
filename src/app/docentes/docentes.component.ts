@@ -53,24 +53,34 @@ export class DocentesComponent implements OnInit {
   doSubmit() {
     if (this.form.valid) {
       if (this.route.snapshot.url[0].path === 'app-docentes') {
-          //this.Docentes.id_user= this.userdata.id;
-          this.DocentesService.crearDocente(this.Docentes)
-            .subscribe(
-              data => {
-                alert('Se ha añadido el docente con exito');
-                this.router.navigate(['/app-docentes', data.id_docentes])}, 
-              error => {
-                alert('Ha ocurrido un error');
-                this.router.navigate(['/'])
-                console.log(error)});
-        }
+        this.DocentesService.crearDocente(this.Docentes)
+          .subscribe(
+            data => {
+              swal({
+                  title: 'Aprobado',
+                  text: 'Se ha añadido el docente con exito',
+                  type: 'success',
+                  confirmButtonText: 'Aceptar'
+                })
+              this.router.navigate(['/app-docentes', data.id_docentes])}, 
+            error => {
+              swal({
+                title: '¡Error!',
+                text: 'Ha ocurrido un error intentelo de nuevo ',
+                type: 'error',
+                confirmButtonText: 'Cerrar'
+              })
+              console.log(error);
+          });
+      }
     }
     else{
-      alert('Verifique los datos e intente de nuevo');
+      swal({
+        title: '¡Error!',
+        text: 'Los datos son erroneos, verifiquelos e intentelo de nuevo',
+        type: 'error',
+        confirmButtonText: 'Cerrar'
+        })
     }
   }
-
 }
-
- 
-

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col s12 m6 l6 offset-l3 offset-m3">
     <div class="card">
-        <div class="card-content" *ngFor="let estudiantes of estudiantes">
+        <div class="card-content">
           <div class="row">
               <h5 class="center-align">{{estudiantes.nombres}} {{estudiantes.apellidos}}</h5>
               <div class="divider"></div>
@@ -19,9 +19,9 @@
                       #cedula="ngModel">
                       <div class="form-control-feedback"
                        *ngIf="cedula.errors && (cedula.dirty || cedula.touched)">
-                    <p class="center" *ngIf="cedula.errors.required" >Este campo es obligatorio</p>
-                    <p class="center" *ngIf="cedula.errors.minlength">La cédula debe tener como mínimo 4 dígitos</p>
-                  </div>
+                        <p class="center" *ngIf="cedula.errors.required" >Este campo es obligatorio</p>
+                        <p class="center" *ngIf="cedula.errors.minlength">La cédula debe tener como mínimo 4 dígitos</p>
+                      </div>
                         <label for="cedula">Cédula</label>
                     </div>
                   </div>
@@ -55,9 +55,9 @@
                     #nombres="ngModel">
                     <div class="form-control-feedback"
                      *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
-                  <p class="center" *ngIf="nombres.errors.required" >Este campo es obligatorio</p>
-                  <p class="center" *ngIf="nombres.errors.minlength">El campo no puede estar vacío</p>
-                </div>
+                      <p class="center" *ngIf="nombres.errors.required" >Este campo es obligatorio</p>
+                      <p class="center" *ngIf="nombres.errors.minlength">El campo no puede estar vacío</p>
+                    </div>
                     <label for="first_name">Nombres</label>
                   </div>
                   <div class="input-field col s6">
@@ -71,9 +71,9 @@
                     #apellidos="ngModel">
                     <div class="form-control-feedback"
                      *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
-                  <p class="center" *ngIf="apellidos.errors.required" >Este campo es obligatorio</p>
-                  <p class="center" *ngIf="apellidos.errors.minlength">El campo no puede estar vacío</p>
-                </div>
+                      <p class="center" *ngIf="apellidos.errors.required" >Este campo es obligatorio</p>
+                      <p class="center" *ngIf="apellidos.errors.minlength">El campo no puede estar vacío</p>
+                    </div>
                     <label for="last_name">Apellidos</label>
                   </div>
               </div>
@@ -89,9 +89,9 @@
                     #direccion="ngModel">
                     <div class="form-control-feedback"
                      *ngIf="direccion.errors && (direccion.dirty || direccion.touched)">
-                  <p class="center" *ngIf="direccion.errors.required" >Este campo es obligatorio</p>
-                  <p class="center" *ngIf="direccion.errors.minlength">El campo no puede estar vacío</p>
-                </div>
+                      <p class="center" *ngIf="direccion.errors.required" >Este campo es obligatorio</p>
+                      <p class="center" *ngIf="direccion.errors.minlength">El campo no puede estar vacío</p>
+                    </div>
                     <label for="disabled">Dirección</label>
                   </div>
                 </div>
@@ -109,9 +109,9 @@
                     #dateofbirth="ngModel">
                     <div class="form-control-feedback"
                      *ngIf="dateofbirth.errors && (dateofbirth.dirty || dateofbirth.touched)">
-                  <p class="center" *ngIf="dateofbirth.errors.required" >Este campo es obligatorio</p>
-                  <p class="center" *ngIf="dateofbirth.errors.minlength">El campo no puede estar vacío</p>
-                </div>
+                      <p class="center" *ngIf="dateofbirth.errors.required" >Este campo es obligatorio</p>
+                      <p class="center" *ngIf="dateofbirth.errors.minlength">El campo no puede estar vacío</p>
+                    </div>
                     <label for="date">Fecha de Nacimiento</label>
                   </div>
                   <div class="input-field col s6 m6 l6">
@@ -124,11 +124,11 @@
                     minlength="4"
                     pattern="[^ @]*@[^ @]*"
                     #email="ngModel">
-                <div class="form-control-feedback"
-                     *ngIf="email.errors && (email.dirty || email.touched)">
-                  <p class="center" *ngIf="email.errors.required">Este campo es obligatorio</p>
-                  <p class="center" *ngIf="email.errors.pattern">Correo inválido</p>
-                </div>
+                    <div class="form-control-feedback"
+                         *ngIf="email.errors && (email.dirty || email.touched)">
+                      <p class="center" *ngIf="email.errors.required">Este campo es obligatorio</p>
+                      <p class="center" *ngIf="email.errors.pattern">Correo inválido</p>
+                    </div>
                     <label for="email">Email</label>
                   </div>
                 </div>
@@ -146,8 +146,8 @@
                     </select>
                     <div class="form-control-feedback"
                        *ngIf="grados.errors && (grados.dirty || grados.touched)">
-                    <p class="center" *ngIf="grados.errors.required" >Este campo en obligatorio</p>
-                  </div>
+                      <p class="center" *ngIf="grados.errors.required" >Este campo en obligatorio</p>
+                    </div>
                     <label>Seleccionar Grado</label>
                 </div>
                   </div> 
@@ -161,7 +161,6 @@
                       <option value="" disabled selected>Sección</option>
                       <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
                     </select>
-
                     <label>Seleccionar Sección</label>
                 </div>
                   </div>
@@ -185,7 +184,15 @@
           <div class="card-action">
             <div class="col s12 m12 l12">
               <a (click)="doSubmit()" class="right ">Actualizar</a>
-              <a class="right red-text text-darken-2" (click)="borrarEstu()">Eliminar</a>
+              <swal
+                  #deleteSwal
+                  title="Eliminar estudiante"
+                  text="¿Esta seguro que desea eliminar este estudiante?"
+                  type="question"
+                  [showCancelButton]="true"
+                  (confirm)="borrarEstu()">
+                </swal>
+              <a class="right red-text text-darken-2" [swal]="deleteSwal">Eliminar</a>
               <a class="left" (click)="goBack()">Regresar</a>
               
             </div>

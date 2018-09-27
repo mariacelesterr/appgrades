@@ -25,7 +25,6 @@ export class AppComponent {
 						data => {
 							if (data) {
 								this.userdata = this.userService.getUserData();
-								console.log(data);
 							} else {
 								this.userService.flush();
 								this.userdata = null;
@@ -34,12 +33,11 @@ export class AppComponent {
 						error=>{
 							this.error = error;
 							swal({
-								  title: 'Advertencia!',
-								  text: this.error.message,
-								  type: 'warning',
-								  confirmButtonText: 'Aceptar'
-								})
-							this.router.navigate(['/login'])
+								title: '¡Error!',
+								text: this.error.message,
+								type: 'error',
+								confirmButtonText: 'Aceptar'
+							})
 						});
 				}
 			);

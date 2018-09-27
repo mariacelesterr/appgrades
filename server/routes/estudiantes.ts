@@ -44,13 +44,13 @@ router.get('/app-detalles-estudiantes/:id', (req, res) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('SELECT * FROM estudiantes INNER JOIN grados ON estudiantes.id_grados= grados.id_grados INNER JOIN seccion ON estudiantes.id_seccion=seccion.id_seccion INNER JOIN periodo ON estudiantes.id_periodo=periodo.id_periodo WHERE id_estudiantes = ?', [req.params.id], (err, result) => {
+			connection.query('SELECT * FROM estudiantes WHERE id_estudiantes = ?', [req.params.id], (err, result) => {
 				connection.release();
 
 				if (err) {
 					res.status(500).send({message: err});
 				} else {
-					res.status(200).send(result);
+					res.status(200).send(result[0]);
 				}
 			});
 		}

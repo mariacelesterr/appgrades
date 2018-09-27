@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { FormsModule, FormGroup, FormControl } from '@angular/forms';
-import { NotasService } from '../services/notas.service';
+import { EscuelaService } from '../services/escuela.service';
 
 @Component({
   selector: 'app-periodo',
@@ -19,7 +19,7 @@ export class PeriodoComponent implements OnInit {
   inicio: any;
   @ViewChild('f') form: any;
 
-  constructor(private notasService: NotasService,
+  constructor(private escuelaService: EscuelaService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -42,7 +42,7 @@ export class PeriodoComponent implements OnInit {
       weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
       weekdaysLetter: [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
     }
-  this.notasService.obtenerPeriodo()
+  this.escuelaService.obtenerPeriodo()
     .subscribe(data => this.periodo = data);
   }
 
@@ -67,7 +67,7 @@ export class PeriodoComponent implements OnInit {
           if(existe === true )
             alert('Este periodo ya existe');
           else{
-            this.notasService.agregarPeriodo(this.periodos1)
+            this.escuelaService.agregarPeriodo(this.periodos1)
               .subscribe( data => {
                   alert('Se ha añadido el periodo satisfactoriamente');
                   this.router.navigate(['/app-periodo'])
@@ -82,7 +82,7 @@ export class PeriodoComponent implements OnInit {
 
   borrarPer(id: number) {
     if (this.route.snapshot.url[0].path === 'app-periodo') {
-      this.notasService.borrarPeriodo(id).subscribe(data => 
+      this.escuelaService.borrarPeriodo(id).subscribe(data => 
           {
             alert('Se ha borrado con exito el periodo');
             this.router.navigate(['/'])

@@ -5,7 +5,7 @@ import { Estudiantes } from '../models/estudiantes';
 import { NotasService } from '../services/notas.service';
 import { EstadisticasService } from '../services/estadisticas.service';
 import { GradosService } from '../services/grados.service';
-import { SeccionesService } from '../services/secciones.service';
+import { EscuelaService } from '../services/escuela.service';
 
 @Component({
   selector: 'app-notas',
@@ -30,10 +30,10 @@ export class NotasComponent implements OnInit {
     private notasService: NotasService,
     private estadisticasService : EstadisticasService,
     private gradosService: GradosService,
-    private seccionesService: SeccionesService) {}
+    private escuelaService: EscuelaService) {}
 
   ngOnInit() {
-    this.estadisticasService.obtenerPeriodo()
+    this.escuelaService.obtenerPeriodo()
       .subscribe(
         data =>{ 
           this.periodo = data;
@@ -57,7 +57,7 @@ export class NotasComponent implements OnInit {
           alert('Hubo en error al cargar los grados');
           console.log(error);
         })
-    this.seccionesService.obtenerSecciones()
+    this.escuelaService.obtenerSecciones()
       .subscribe(data => {
         this.secciones = data;
         if(this.secciones.length === 0){

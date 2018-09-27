@@ -22,23 +22,5 @@ router.post('/app-estadisticas', (req, res) => {
 		}
 	});
 });
-router.get('/app-estadisticas',(req, res )=>{
-	db.getConnection((err, connection) => {
-		if (err) {
-			res.status(500).send({message: err});
-		} else {
-			connection.query('SELECT * FROM periodo', (err, result) => {
-				connection.release();
-
-				if (err) {
-					res.status(500).send({message: err});
-				} else {
-					res.status(200).send(result);
-				}
-			});
-		}
-	});
-});
-
 
 module.exports =  router;

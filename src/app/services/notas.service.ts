@@ -39,20 +39,20 @@ export class NotasService {
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
 	}
 	obtenerN2(id: number): Observable<any> {
-	const _params: any = {};
-	const _formParams: any = {};
-	const _bodyData: any = {};
-	const url = this.boletin_descripUrl2 + id;
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+		const url = this.boletin_descripUrl2 + id;
 
-	return this.apiService.perform('get', url, _bodyData, _params, _formParams);
+		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
 	}
 	modificarNotas(notas: Notas): Observable<any> {
-	const _params: any = {};
-	const _formParams: any = {};
-	const _bodyData: any = {};
-	const url = this.boletin_descripUrl2 + notas.id_notas_descrip;
+		const _params: any = {};
+		const _formParams: any = {};
+		const _bodyData: any = {};
+		const url = this.boletin_descripUrl2 + notas.id_notas_descrip;
 
-	return this.apiService.perform('put', url, notas, _params, _formParams);
+		return this.apiService.perform('put', url, notas, _params, _formParams);
 	}
 	obtenerNotas(id: number): Observable<any> {
 		const _params: any = {};
@@ -69,27 +69,6 @@ export class NotasService {
 		const url = this.estudiantesUrl;
 
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
-	}
-	agregarPeriodo(periodo: any): Observable<any> {
-		const _params: any = {};
-		const _formParams: any = {};
-		const url = this.periodosUrl +"-agregar";
-
-		return this.apiService.perform('post', url, periodo, _params, _formParams);
-	}
-	obtenerPeriodo(): Observable<any> {
-		const _params: any = {};
-		const _formParams: any = {};
-		const _bodyData: any = {};
-
-		return this.apiService.perform('get', this.periodosUrl, _bodyData, _params, _formParams);
-	}
-	borrarPeriodo(id: number): Observable<any> {
-		const _params: any = {};
-		const _formParams: any = {};
-		const _bodyData: any = {};
-
-		return this.apiService.perform('delete', this.periodosUrl + '/' + id, _bodyData, _params, _formParams);
 	}
 	borrarBoletin(id: number): Observable<any> {
 		const _params: any = {};

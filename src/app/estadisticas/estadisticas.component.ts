@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import {MaterializeAction} from 'angular2-materialize';
 import { Notas } from '../models/notas'
 import { EstadisticasService } from '../services/estadisticas.service';
+import { EscuelaService } from '../services/escuela.service';
 import { MorrisJsModule } from 'angular-morris-js';
 import { GradosService } from '../services/grados.service';
 import { SeccionesService } from '../services/secciones.service';
@@ -34,12 +35,13 @@ export class EstadisticasComponent implements OnInit {
               private router: Router,
               private _location: Location,
               private estadisticasService : EstadisticasService,
+              private escuelaService : EscuelaService,
               private gradosService: GradosService,
               private seccionesService: SeccionesService) { }
 
   ngOnInit() {
     if (this.route.snapshot.url[0].path === 'app-estadisticas') {
-      this.estadisticasService.obtenerPeriodo()
+      this.escuelaService.obtenerPeriodo()
         .subscribe(
         data =>{ 
           this.periodo = data;

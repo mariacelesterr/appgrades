@@ -62,7 +62,7 @@
 			          <a href="#" class="left">Regresar</a>
 
 			          <a *ngIf="route.snapshot.url[0].path == 'login'" class="right" (click)="auth()">Enviar</a>
-			          <a *ngIf="route.snapshot.url[0].path == 'signup'" class="right" (click)="doSignup()" >Enviar</a>
+			          <a *ngIf="route.snapshot.url[0].path == 'signup'" class="right" (click)="auth()" >Enviar</a>
 
 			        </div>
 				</div>
