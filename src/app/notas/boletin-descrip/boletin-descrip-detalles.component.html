@@ -29,7 +29,7 @@
 	<div class="row">
 		<div class="col s12 m6 l6 offset-m3 offset-l3">
 		    <div class="card">
-		    	<div class="card-content" *ngFor="let notas of notas1">
+		    	<div class="card-content">
 			       <div class="row">
 				       	<h5 class="center-align">Boletín Descriptivo</h5>
 				       	<div class="divider"></div>
@@ -39,7 +39,7 @@
 						          type="text" 
 						          class="validate" 
 						          name="descrip_1"
-						          value="{{notas.nombres}}"
+						          value="{{notasDetalles?.estudiantes?.nombres}}"
 						          readonly="readonly">
 						          
 						       </div>
@@ -48,7 +48,7 @@
 						          type="text" 
 						          class="validate" 
 						          name="apellidos" 
-						          value ="{{notas.apellidos}}" 
+						          value ="{{notasDetalles?.estudiantes?.apellidos}}" 
 						          readonly="readonly">
 				
 						        </div>
@@ -60,7 +60,7 @@
 						            type="text" 
 						            class="validate" 
 						            name="grados" 
-						            value ="{{notas.descrip_gra}}"
+						            value ="{{notasDetalles?.estudiantes?.descrip_gra}}"
 						            readonly="readonly">
 						          </div>
 						        </div>
@@ -70,7 +70,7 @@
 								        type="text" 
 								        class="validate" 
 								        name="seccion" 
-								        value ="{{notas.descrp_sec}}"  
+								        value ="{{notasDetalles?.estudiantes?.descrp_sec}}"  
 								        readonly="readonly">
 							        </div>
 							     </div>
@@ -80,7 +80,7 @@
 							          	type="text" 
 							          	class="validate" 
 							          	name="periodo" 
-							          	value ="{{notas.descrip_peri}}" 
+							          	value ="{{notasDetalles?.estudiantes?.descrip_peri}}" 
 							          	readonly="readonly">
 						        	</div>
 						        </div>
@@ -96,7 +96,7 @@
 						            minlength="10" 
 						            materialize="characterCounter" 
 						            name="proyecto" 
-						            [(ngModel)]="notas.proyecto"
+						            [(ngModel)]="notasDetalles.notas.proyecto"
 						            #proyecto="ngModel"
 						            required> 
 						        	</textarea>
@@ -112,7 +112,7 @@
 						        	<div class="input-field">
 							          	<select materialize="material_select" 
 							          	name="lapso" 
-							          	[(ngModel)]="notas.id_lapso"
+							          	[(ngModel)]="notasDetalles.notas.id_lapso"
 							          	required
 							          	#lapso="ngModel"
 							          	(ngModelChange)="onChange($event)">
@@ -137,7 +137,7 @@
 						            maxlength="1000"
 						            minlength="10" 
 						            name="descrip_1" 
-						            [(ngModel)]="notas.descrip_1"
+						            [(ngModel)]="notasDetalles.notas.descrip_1"
 						            required 
 						            #descrip_1="ngModel"> </textarea>
 						            <div class="form-control-feedback"
@@ -157,7 +157,7 @@
 						            minlength="10" 
 						            materialize="characterCounter"
 						            name="descrip_2" 
-						            [(ngModel)]="notas.descrip_2"
+						            [(ngModel)]="notasDetalles.notas.descrip_2"
 						            required
 						            #descrip_2="ngModel"> </textarea>
 						            <div class="form-control-feedback"
@@ -178,7 +178,7 @@
 						            maxlength="500"
 						            minlength="5" 
 						            name="descrip_3" 
-						            [(ngModel)]="notas.descrip_3"
+						            [(ngModel)]="notasDetalles.notas.descrip_3"
 						            required
 						            #descrip_3="ngModel"> </textarea>
 						            <div class="form-control-feedback"
@@ -201,7 +201,7 @@
 							            maxlength="1600"
 							            minlength="10" 
 							            name="descrip_1" 
-							            [(ngModel)]="notas.descrip_1"
+							            [(ngModel)]="notasDetalles.notas.descrip_1"
 							            required 
 							            #descrip_1="ngModel"> </textarea>
 							            <div class="form-control-feedback"
@@ -221,7 +221,7 @@
 						            minlength="10" 
 						            materialize="characterCounter"
 						            name="descrip_2" 
-						            [(ngModel)]="notas.descrip_2"
+						            [(ngModel)]="notasDetalles.notas.descrip_2"
 						            required
 						            #descrip_2="ngModel"> </textarea>
 						            <div class="form-control-feedback"
@@ -241,7 +241,7 @@
 							            maxlength="170"
 							            minlength="5" 
 							            name="descrip_3"
-							            [(ngModel)]="notas.descrip_3"
+							            [(ngModel)]="notasDetalles.notas.descrip_3"
 							            required
 							            #descrip_3="ngModel"> </textarea>
 							            <div class="form-control-feedback"
@@ -260,7 +260,7 @@
 						          		<div class="input-field col s4">
 								          	<select materialize="material_select" 
 								          	name="lapso" 
-								          	(ngModel)="notas.nota_final"
+								          	(ngModel)="notasDetalles.notas.nota_final"
 								          	required
 								          	#nota_final="ngModel">
 										      <option value="" disabled selected>Nota final</option>
@@ -276,7 +276,7 @@
 					    <div class="card-action">
 					      <a class="right waves-effect waves-teal modal-trigger" 
 					      (click)="openModal()">Actualizar</a>
-					      <a class="waves-effect waves-teal" (click)="goBack()">Regresar</a>
+					      <a class=" left waves-effect waves-teal" (click)="goBack()">Regresar</a>
 					    </div>
 					</div>
 		  		</div>
@@ -285,49 +285,52 @@
 	</div>
 </div>
 <!-- Modal Structure -->
-<div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+<div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeActions]="modalActions">
   <div class="modal-content">
-    <h4 class="center-align">Calificación Cualitativa del Alumno</h4>
-			        
-    <div class="divider"></div>
-    	<div class="row">
-    		<p>
-    			Antes de continuar... Debes escoger en la escala de calificación para determinar si el alumno supera los niveles de aprendizaje requeridos o no los alcanza.
-    		</p>
-    	</div>
-	    <div class="row center">
-	      <div class="col s6 m3 l3">
-	         <input 
-	         type="image" 
-	         value="10" 
-	         name="nota_cuali" 
-	         (click)="notas.nota_cuali = 10" 
-	         src="assets/icons/icons8-puzzled-80.png">
-	        <br><span> Recuperación </span>
-	      </div>
-	      <div class="col s6 m3 l3">
-	         <input type="image" value="16" name="nota_cuali" (click)="notas.nota_cuali = 16" src="assets/icons/icons8-happy-80.png">
-	        <br><span> Aprobado</span>
-	      </div>
-	      <div class="col s6 m3 l3">
-	         <input 
-	         type="image" 
-	         value="18" 
-	         name="nota_cuali" 
-	         (click)="notas.nota_cuali = 18" 
-	         src="assets/icons/icons8-wink-80.png">
-	        <br><span > Destacado </span>
-	      </div>
-	      <div class="col s6 m3 l3">
-	    	 <input 
-	    	 type="image" 
-	    	 value="20" 
-	    	 name="nota_cuali" 
-	    	 (click)="notas.nota_cuali = 20"
-	    	 src="assets/icons/icons8-cool-80.png">
-	        <br><span> Excelente</span>
-	      </div>
-	    </div> 
+	<h4 class="center-align">Calificación Cualitativa del Alumno</h4>	        
+	<div class="divider"></div>
+	<div class="row">
+		<p>
+			Antes de continuar... Debes escoger en la escala de calificación para determinar si el alumno supera los niveles de aprendizaje requeridos o no los alcanza.
+		</p>
+	</div>
+	<div class="row center">
+	  <div class="col s6 m3 l3">
+	     <input 
+	     type="image" 
+	     value="10" 
+	     name="nota_cuali" 
+	     (click)="notasDetalles.notas.nota_cuali = 10" 
+	     src="assets/icons/icons8-puzzled-80.png">
+	    <br><span> Recuperación </span>
+	  </div>
+	  <div class="col s6 m3 l3">
+	     <input type="image" 
+	     value="16" 
+	     name="nota_cuali" 
+	     (click)="notasDetalles.notas.nota_cuali = 16" 
+	     src="assets/icons/icons8-happy-80.png">
+	    <br><span> Aprobado</span>
+	  </div>
+	  <div class="col s6 m3 l3">
+	     <input 
+	     type="image" 
+	     value="18" 
+	     name="nota_cuali" 
+	     (click)="notasDetalles.notas.nota_cuali = 18" 
+	     src="assets/icons/icons8-wink-80.png">
+	    <br><span > Destacado </span>
+	  </div>
+	  <div class="col s6 m3 l3">
+		 <input 
+		 type="image" 
+		 value="20" 
+		 name="nota_cuali" 
+		 (click)="notasDetalles.notas.nota_cuali = 20"
+		 src="assets/icons/icons8-cool-80.png">
+	    <br><span> Excelente</span>
+	  </div>
+	</div> 
   </div>
   <div class="modal-footer">
     <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>

@@ -65,7 +65,15 @@
 				            	
 				            </td>
 				             <td>
-				             	<button (click)="borrarGra(grado.id_grados)">
+				             	<swal
+					                #deleteSwal
+					                title="Eliminar grado"
+					                text="¿Esta seguro que desea eliminar este grado?"
+					                type="question"
+					                [showCancelButton]="true"
+					                (confirm)="borrarGra(grado.id_grados)">
+					            </swal>
+				             	<button [swal]="deleteSwal">
 				             		<img src="assets/icons/icons8-cancel-80.png">
 				             	</button>
 				             </td>
@@ -80,7 +88,7 @@
 		</div>
 		<div class="row">
 			<div class="col col s12 m12 l6 offset-l3">
-				<a class="btn-floating btn-large waves-effect waves-light red right" routerLink='/app-grados-agregar'><i class="material-icons">add</i></a>
+				<a class="btn-floating btn-large waves-effect waves-light black right" routerLink='/app-grados-agregar'><i class="material-icons">add</i></a>
 			</div>
 		</div>
 	</div>

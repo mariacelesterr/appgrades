@@ -42,7 +42,7 @@ export class DetallesEstudiantesComponent implements OnInit {
                   type: 'error',
                   confirmButtonText: 'Aceptar'
                 })
-                this.router.navigate(['/']);
+                this.router.navigate(['/app-menu']);
               })         
       }
     this.escuelaService.obtenerPeriodo()

@@ -6,7 +6,8 @@ import { NotasService } from '../../services/notas.service';
 import { EstudiantesService } from '../../services/estudiantes.service';
 import { UserService } from '../../services/user.service';
 import { Estudiantes } from '../../models/estudiantes'
-import { Notas } from '../../models/notas'
+import { Notas } from '../../models/notas';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-boletin-descrip',
@@ -18,7 +19,7 @@ export class BoletinDescripComponent implements OnInit {
   hideElement = true;
   hideElement1 = true;
   notas: Notas = new Notas;
-  notas1: any;
+  notas2: any;
   userdata: any; 
   estudiantes: Estudiantes = new Estudiantes;
   modalActions = new EventEmitter<string|MaterializeAction>();
@@ -40,10 +41,20 @@ export class BoletinDescripComponent implements OnInit {
     if (this.route.snapshot.url[1].path === 'boletin-descrip'){
       this.route.params
           .switchMap((params: Params) => 
-            this.estudiantesService.obtenerEstudi(params['id']))
-              .subscribe(data => this.notas1 = data);
+            this.notasService.obtenerEstudi(params['id']))
+              .subscribe(data => {
+                  this.estudiantes = data
+                },
+                error=>{
+                  swal({
+                  title: '¡Error!',
+                  text: 'Hubo un error al cargar el estudiante',
+                  type: 'error',
+                  confirmButtonText: 'Aceptar'
+                })
+                this.router.navigate(['/app-menu']);
+                });
     }
-    this.userdata = this.userService.getUserData();
   }
 
   pdf(){
@@ -58,42 +69,62 @@ export class BoletinDescripComponent implements OnInit {
   }
   escuelaBasica(){
     this.hideElement =false;
-    this.notas.tipo_bole = 2; 
-      console.log(this.notas);
+    this.notas.tipo_bole = 2;
   }
   escuelaInicial(){
     this.hideElement =false;
     this.notas.tipo_bole = 1; 
   }
   openModal() {
-    console.log(this.notas.nota_final);
     if (this.form.valid) {
-    this.modalActions.emit(
-      {
-        action:"modal",
-        params:['open']
-      });
-    }
-    else
-      alert('Los datos son erroneos, verifique e intente de nuevo');
+      this.modalActions.emit(
+        {
+          action:"modal",
+          params:['open']
+        });
+      }
+      else{
+        swal({
+          title: '¡Error!',
+          text: 'Los datos son erroneos, verifiquelos e intentelo de nuevo',
+          type: 'error',
+          confirmButtonText: 'Cerrar'
+        })
+      }
   }
   closeModal() {
-      if(this.notas.nota_cuali === undefined)
-        alert('Debes seleccionar una opcion')
-      else{
-          if (this.route.snapshot.url[1].path === 'boletin-descrip'){
-            this.notas.id_estudiantes = this.notas1[0].id_estudiantes;
-            this.notas.id_grado = this.notas1[0].id_grados; 
-            this.notas.id_seccion = this.notas1[0].id_seccion;
-            this.notas.id_periodo = this.notas1[0].id_periodo;
-            console.log(this.notas);
-                      this.route.params
-                      .switchMap((params: Params) => this.notasService.agregarNotas(this.notas, params['id']))
-                        .subscribe(data => this.router.navigate(['/app-pdf/', data.id_notas_descrip]));
-                      this.modalActions.emit({action:"modal",params:['close']});}
-          }  
+    if(this.notas.nota_cuali === undefined){
+      swal({
+        title: '¡Advertencia!',
+        text: 'Debes seleccionar una opcion',
+        type: 'warning',
+        confirmButtonText: 'Cerrar'
+      })
+    }
+    else{
+      if (this.route.snapshot.url[1].path === 'boletin-descrip'){
+        this.notas.id_estudiantes = this.estudiantes.id_estudiantes;
+        this.notasService.agregarNotas(this.notas, this.estudiantes.id_estudiantes)
+          .subscribe(data => {
+            swal({
+                  title: 'Aprobado',
+                  text: 'Se ha agregado el boletin correctamente',
+                  type: 'success',
+                  confirmButtonText: 'Aceptar'
+                })
+            this.router.navigate(['/app-pdf/', data.id_notas_descrip])
+          },
+          error=>{
+            swal({
+              title: '¡Error!',
+              text: 'Ha ocurrido un error al agregar el boletin',
+              type: 'error',
+              confirmButtonText: 'Cerrar'
+            })
+            console.log(error);
+          });
+        this.modalActions.emit({action:"modal",params:['close']});
+      }
+    }  
   }
-  doSubmit() {
-  }
-
 }

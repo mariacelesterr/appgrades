@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class EscuelaService {
 
-	private periodoUrl = '/api/app-periodo/';
+	private periodoUrl = '/api/app-periodo';
 	private gradosUrl = 'api/app-grados';
 	private seccionesUrl = 'api/app-secciones'; 
 
@@ -22,7 +22,7 @@ export class EscuelaService {
 	agregarPeriodo(periodo: any): Observable<any> {
 		const _params: any = {};
 		const _formParams: any = {};
-		const url = this.periodoUrl  +"-agregar";
+		const url = this.periodoUrl +"-agregar";
 
 		return this.apiService.perform('post', url, periodo, _params, _formParams);
 	}

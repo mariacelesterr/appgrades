@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Estudiantes } from '../models/estudiantes';
 import { UserService } from '../services/user.service';
 import { EstudiantesService } from '../services/estudiantes.service';
-import { EscuelaService} from '../services/escuela.service';
+import { EscuelaService } from '../services/escuela.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -46,7 +46,7 @@ export class EstudiantesComponent implements OnInit {
         error => {
           swal({
                 title: '¡Error!',
-                text: 'Hubo en error al cargar los periodos',
+                text: 'Hubo un error al cargar los periodos',
                 type: 'error',
                 confirmButtonText: 'Cerrar'
               })
@@ -69,7 +69,7 @@ export class EstudiantesComponent implements OnInit {
         error => {
           swal({
                 title: '¡Error!',
-                text: 'Hubo en error al cargar los periodos',
+                text: 'Hubo un error al cargar los grados',
                 type: 'error',
                 confirmButtonText: 'Cerrar'
               })
@@ -91,7 +91,7 @@ export class EstudiantesComponent implements OnInit {
         error=>{
           swal({
                 title: '¡Error!',
-                text: 'Hubo en error al cargar las secciones',
+                text: 'Hubo un error al cargar las secciones',
                 type: 'error',
                 confirmButtonText: 'Cerrar'
               })

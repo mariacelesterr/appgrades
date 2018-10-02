@@ -27,6 +27,7 @@ import { EstudiantesComponent } from './estudiantes/estudiantes.component';
 import { DetallesEstudiantesComponent } from './estudiantes/detalles.estudiantes.component';
 import { BuscarEstudiantesComponent } from './estudiantes/buscar.estudiantes.component';
 import { DocentesComponent } from './docentes/docentes.component';
+import { DetallesDocentesComponent } from './docentes/detalles.docentes.component';
 import { PdfComponent } from './pdf/pdf.component';
 import { NotasComponent } from './notas/notas.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
@@ -46,6 +47,7 @@ import { SeccionesComponent } from './secciones/secciones.component';
     BuscarEstudiantesComponent,
     DetallesEstudiantesComponent,
     DocentesComponent,
+    DetallesDocentesComponent,
     PdfComponent,
     NotasComponent,
     EstadisticasComponent,

@@ -5,7 +5,10 @@ import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-
+export class NotasDetalles {
+	notas: Notas;
+	estudiantes: any[];
+}
 @Injectable()
 export class NotasService {
 
@@ -38,7 +41,7 @@ export class NotasService {
 
 		return this.apiService.perform('get', url, _bodyData, _params, _formParams);
 	}
-	obtenerN2(id: number): Observable<any> {
+	obtenerN2(id: number): Observable<NotasDetalles> {
 		const _params: any = {};
 		const _formParams: any = {};
 		const _bodyData: any = {};

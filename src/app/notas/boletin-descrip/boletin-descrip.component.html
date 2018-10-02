@@ -29,7 +29,7 @@
 	<div class="row">
 		<div class="col s12 m6 l6 offset-m3 offset-l3">
 		    <div class="card">
-		    	<div class="card-content" *ngFor="let notas2 of notas1">
+		    	<div class="card-content">
 			       <div class="row">
 				       	<h5 class="center-align">Boletín Descriptivo</h5>
 				       	<div class="divider"></div>
@@ -39,7 +39,7 @@
 						          type="text" 
 						          class="validate" 
 						          name="descrip_1"
-						          value="{{notas2.nombres}}"
+						          value="{{estudiantes.nombres}}"
 						          readonly="readonly">
 						          
 						       </div>
@@ -48,7 +48,7 @@
 						          type="text" 
 						          class="validate" 
 						          name="apellidos" 
-						          value ="{{notas2.apellidos}}" 
+						          value ="{{estudiantes.apellidos}}" 
 						          readonly="readonly">
 				
 						        </div>
@@ -60,7 +60,7 @@
 						            type="text" 
 						            class="validate" 
 						            name="grados" 
-						            value ="{{notas2.descrip_gra}}"
+						            value ="{{estudiantes.descrip_gra}}"
 						            readonly="readonly">
 						          </div>
 						        </div>
@@ -70,7 +70,7 @@
 								        type="text" 
 								        class="validate" 
 								        name="seccion" 
-								        value ="{{notas2.descrp_sec}}"  
+								        value ="{{estudiantes.descrp_sec}}"  
 								        readonly="readonly">
 							        </div>
 							     </div>
@@ -80,7 +80,7 @@
 							          	type="text" 
 							          	class="validate" 
 							          	name="periodo" 
-							          	value ="{{notas2.descrip_peri}}" 
+							          	value ="{{estudiantes.descrip_peri}}" 
 							          	readonly="readonly">
 						        	</div>
 						        </div>
@@ -261,7 +261,7 @@
 								          	<select materialize="material_select" 
 								          	name="lapso" 
 								          	(ngModel)="notas.nota_final" 
-								          	value="{{notas2.nota_final}}" 
+								          	value="{{notas.nota_final}}" 
 								          	required
 								          	#nota_final="ngModel">
 										      <option value="" disabled selected>Nota final</option>

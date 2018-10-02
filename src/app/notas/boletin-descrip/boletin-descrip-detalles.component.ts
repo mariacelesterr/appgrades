@@ -2,11 +2,12 @@ import { Component, OnInit, EventEmitter, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { MaterializeAction } from 'angular2-materialize';
-import { NotasService } from '../../services/notas.service';
+import { NotasService, NotasDetalles } from '../../services/notas.service';
 import { EstudiantesService } from '../../services/estudiantes.service';
 import { UserService } from '../../services/user.service';
-import { Estudiantes } from '../../models/estudiantes'
-import { Notas } from '../../models/notas'
+import { Estudiantes } from '../../models/estudiantes';
+import { Notas } from '../../models/notas';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'boletin-descrip-detalles',
@@ -18,13 +19,11 @@ export class BoletinDescripDetallesComponent implements OnInit {
   hideElement = true;
   hideElement1 = true;
   notas: Notas = new Notas;
-  notas1: any;
+  notasDetalles: NotasDetalles = new NotasDetalles;
   userdata: any; 
   estudiantes: Estudiantes = new Estudiantes;
   modalActions = new EventEmitter<string|MaterializeAction>();
-  periodo: any = {};
   vart: any;
-  data : any;
   @ViewChild('f') form: any;
   constructor(
   	private route: ActivatedRoute, 
@@ -37,10 +36,21 @@ export class BoletinDescripDetallesComponent implements OnInit {
 
   ngOnInit() {
   	    if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){ 
-        this.route.params
-          .switchMap((params: Params) => 
-            this.notasService.obtenerN2(params['id']))
-              .subscribe(data => this.notas1 = data);
+          this.route.params
+            .switchMap((params: Params) => 
+              this.notasService.obtenerN2(params['id']))
+                .subscribe(data => {
+                  this.notasDetalles = data;
+                },
+                error=>{
+                  swal({
+                    title: '¡Error!',
+                    text: 'Hubo un error',
+                    type: 'error',
+                    confirmButtonText: 'Aceptar'
+                  })
+                this.router.navigate(['/app-menu']);
+                });
         }
   }
     pdf(){
@@ -55,43 +65,62 @@ export class BoletinDescripDetallesComponent implements OnInit {
   }
   escuelaBasica(){
     this.hideElement =false;
-    this.notas.tipo_bole = 2; 
-      console.log(this.notas1);
+    this.notasDetalles.notas.tipo_bole = 2;
   }
   escuelaInicial(){
     this.hideElement =false;
-    this.notas.tipo_bole = 1; 
+    this.notasDetalles.notas.tipo_bole = 1; 
   }
   openModal() {
     if (this.form.valid) {
-    this.modalActions.emit(
-      {
-        action:"modal",
-        params:['open']
-      });
+      this.modalActions.emit(
+        {
+          action:"modal",
+          params:['open']
+        });
     }
-    else
-      alert('Los datos son erroneos, verifique e intente de nuevo');
+    else{
+      swal({
+        title: '¡Error!',
+        text: 'Los datos son erroneos, verifiquelos e intentelo de nuevo',
+        type: 'error',
+        confirmButtonText: 'Cerrar'
+      })
+    }
   }
   closeModal() {
-      if(this.notas.nota_cuali === undefined)
-        alert('Debes seleccionar una opcion')
-      else{
-          if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){
-            this.notas.id_notas_descrip = this.notas1[0].id_notas_descrip;
-            this.notas.id_estudiantes = this.notas1[0].id_estudiantes;
-            this.notas.id_grado = this.notas1[0].id_grados; 
-            this.notas.id_seccion = this.notas1[0].id_seccion;
-            this.notas.id_periodo = this.notas1[0].id_periodo;
-			this.notas.proyecto= this.notas1[0].proyecto;
-			this.notas.descrip_1= this.notas1[0].descrip_1;	
-			this.notas.descrip_2= this.notas1[0].descrip_2; 	
-			this.notas.descrip_3= this.notas1[0].descrip_3;
-            console.log(this.notas);
-            this.notasService.modificarNotas(this.notas)
-                .subscribe(data => this.router.navigate(['/app-pdf/', data.id_notas_descrip]));
-            this.modalActions.emit({action:"modal",params:['close']});}
-          }  
+    if(this.notasDetalles.notas.nota_cuali === undefined){
+      swal({
+        title: '¡Advertencia!',
+        text: 'Debes seleccionar una opcion',
+        type: 'warning',
+        confirmButtonText: 'Cerrar'
+      })
+    }
+    else{
+      if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){
+        this.notasService.modificarNotas(this.notasDetalles.notas)
+            .subscribe(data =>{
+              swal({
+                  title: 'Aprobado',
+                  text: 'Se ha actualizado el boletin correctamente',
+                  type: 'success',
+                  confirmButtonText: 'Aceptar'
+                })
+              this.router.navigate(['/app-pdf/', data.id_notas_descrip])
+              }, 
+              error=>{
+                swal({
+                  title: '¡Error!',
+                  text: 'Ha ocurrido un error al actualizar el boletin',
+                  type: 'error',
+                  confirmButtonText: 'Cerrar'
+                })
+                console.log(error);
+           });
+        this.modalActions.emit({action:"modal",params:['close']});
+      }
+    }  
   }
 
 }
