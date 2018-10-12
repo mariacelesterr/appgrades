@@ -91,18 +91,18 @@
 			            	</a>
 			            </td>
 			           	<td *ngFor="let grupos of estudiantes.grupo">
+			           		<swal
+							  #deleteSwal
+							  title="Eliminar boletin"
+							  text="¿Esta seguro que desea eliminar este boletin?"
+							  type="question"
+							  [showCancelButton]="true"
+							  (confirm)="borrarBole(grupos.id_notas_descrip)">
+							</swal>
 			           		<div *ngIf="grupos.id_lapso === 1">
 				            	<a routerLink='/app-notas/boletin-descrip-detalles/{{grupos.id_notas_descrip}}'>
 				            		<img src="assets/icons/icons8-open-view-64.png">
 				            	</a>
-					            <swal
-								  #deleteSwal
-								  title="Eliminar boletin"
-								  text="¿Esta seguro que desea eliminar este boletin?"
-								  type="question"
-								  [showCancelButton]="true"
-								  (confirm)="borrarBole(grupos.id_notas_descrip)">
-								</swal>
 				            	<button [swal]="deleteSwal">
 				            		<img src="assets/icons/icons8-delete-view-80.png">
 								</button>

@@ -111,7 +111,8 @@
 					          	<div class="col s6 m6 l6">
 						        	<div class="input-field">
 							          	<select materialize="material_select" 
-							          	name="lapso" 
+							          	name="lapso"
+							          	[materializeSelectOptions]=""
 							          	[(ngModel)]="notas.id_lapso"
 							          	required
 							          	#lapso="ngModel"
@@ -122,6 +123,10 @@
 									      <option [value]="3">Tercer Lapso</option>
 									    </select>
 								    	<label>Seleccionar lapso</label>
+								    	<div class="form-control-feedback"
+									     *ngIf="lapso.errors && (lapso.dirty || lapso.touched)">
+										<p class="center" *ngIf="lapso.required" >Este campo es obligatorio</p>
+									</div>
 						        	</div>
 						        </div>
 					        </div>
@@ -259,26 +264,25 @@
 						        		</div>
 						          		<div class="input-field col s4">
 								          	<select materialize="material_select" 
-								          	name="lapso" 
-								          	(ngModel)="notas.nota_final" 
-								          	value="{{notas.nota_final}}" 
+								          	name="nota_final" 
+								          	[(ngModel)]="notas.nota_final" 
 								          	required
 								          	#nota_final="ngModel">
 										      <option value="" disabled selected>Nota final</option>
 										      <option value="Excelente">Excelente</option>
 										      <option value="Aprobado">Aprobado</option>
 										    </select>
-										    <p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
+										    <div class="form-control-feedback"
+										     *ngIf="nota_final.errors && (nota_final.dirty || nota_final.touched)">
+										    	<p class="center" *ngIf="nota_final.errors.required" >Este campo es obligatorio</p>
+										 	</div>
 							        	</div>
 						          	</div>
 						        </div>
 					        </div>
 					    </form>
 					    <div class="card-action">
-					      <a *ngIf="route.snapshot.url[1].path == 'boletin-descrip'" class="right waves-effect waves-teal modal-trigger" 
-					      (click)="openModal()">Enviar</a>
-					      <a *ngIf="route.snapshot.url[1].path == 'boletin-descrip-actualizar'" class="right waves-effect waves-teal modal-trigger" 
-					      (click)="openModal()">Actualizar</a>
+					      <a class="right waves-effect waves-teal" (click)="openModal()">Enviar</a>
 					      <a class="waves-effect waves-teal" (click)="goBack()">Regresar</a>
 					    </div>
 					</div>

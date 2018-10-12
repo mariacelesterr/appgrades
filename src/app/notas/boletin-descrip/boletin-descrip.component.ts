@@ -56,13 +56,8 @@ export class BoletinDescripComponent implements OnInit {
                 });
     }
   }
-
-  pdf(){
-    this.router.navigate(['/app-pdf']);
-  }
   onChange(event){
     this.vart = event;
-    console.log(this.vart);
   }
   goBack(){
     this._location.back();
@@ -76,21 +71,21 @@ export class BoletinDescripComponent implements OnInit {
     this.notas.tipo_bole = 1; 
   }
   openModal() {
-    if (this.form.valid) {
+    if (this.form.valid && this.notas.id_lapso != undefined) {
       this.modalActions.emit(
         {
           action:"modal",
           params:['open']
         });
-      }
-      else{
-        swal({
-          title: '¡Error!',
-          text: 'Los datos son erroneos, verifiquelos e intentelo de nuevo',
-          type: 'error',
-          confirmButtonText: 'Cerrar'
-        })
-      }
+    }
+    else{
+      swal({
+        title: '¡Error!',
+        text: 'Los datos son erroneos, verifiquelos e intentelo de nuevo',
+        type: 'error',
+        confirmButtonText: 'Cerrar'
+      })
+    }
   }
   closeModal() {
     if(this.notas.nota_cuali === undefined){

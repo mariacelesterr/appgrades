@@ -35,23 +35,23 @@ export class BoletinDescripDetallesComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-  	    if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){ 
-          this.route.params
-            .switchMap((params: Params) => 
-              this.notasService.obtenerN2(params['id']))
-                .subscribe(data => {
-                  this.notasDetalles = data;
-                },
-                error=>{
-                  swal({
-                    title: '¡Error!',
-                    text: 'Hubo un error',
-                    type: 'error',
-                    confirmButtonText: 'Aceptar'
-                  })
-                this.router.navigate(['/app-menu']);
-                });
-        }
+    if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){ 
+      this.route.params
+        .switchMap((params: Params) => 
+          this.notasService.obtenerN2(params['id']))
+            .subscribe(data => {
+              this.notasDetalles = data;
+            },
+            error=>{
+              swal({
+                title: '¡Error!',
+                text: 'Hubo un error',
+                type: 'error',
+                confirmButtonText: 'Aceptar'
+              })
+              this.router.navigate(['/app-menu']);
+            });
+    }
   }
     pdf(){
     this.router.navigate(['/app-pdf']);
@@ -100,24 +100,24 @@ export class BoletinDescripDetallesComponent implements OnInit {
     else{
       if (this.route.snapshot.url[1].path === 'boletin-descrip-detalles'){
         this.notasService.modificarNotas(this.notasDetalles.notas)
-            .subscribe(data =>{
+          .subscribe(data =>{
+            swal({
+                title: 'Aprobado',
+                text: 'Se ha actualizado el boletin correctamente',
+                type: 'success',
+                confirmButtonText: 'Aceptar'
+              })
+            this.router.navigate(['/app-pdf/', data.id_notas_descrip])
+            }, 
+            error=>{
               swal({
-                  title: 'Aprobado',
-                  text: 'Se ha actualizado el boletin correctamente',
-                  type: 'success',
-                  confirmButtonText: 'Aceptar'
-                })
-              this.router.navigate(['/app-pdf/', data.id_notas_descrip])
-              }, 
-              error=>{
-                swal({
-                  title: '¡Error!',
-                  text: 'Ha ocurrido un error al actualizar el boletin',
-                  type: 'error',
-                  confirmButtonText: 'Cerrar'
-                })
-                console.log(error);
-           });
+                title: '¡Error!',
+                text: 'Ha ocurrido un error al actualizar el boletin',
+                type: 'error',
+                confirmButtonText: 'Cerrar'
+              })
+              console.log(error);
+          });
         this.modalActions.emit({action:"modal",params:['close']});
       }
     }  
