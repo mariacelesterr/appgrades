@@ -10,7 +10,7 @@ router.post('/app-estadisticas', (req, res) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('SELECT * , count(id_estudiantes) AS cantidad, AVG(nota_cuali) AS promedio FROM notas_descrip INNER JOIN lapso ON notas_descrip.id_lapso = lapso.id_lapso WHERE id_grado = ? AND id_seccion = ? AND id_periodo = ? GROUP BY notas_descrip.id_lapso', [req.body.id_grado, req.body.id_seccion, req.body.id_periodo], (err, results) => {
+			connection.query('SELECT *, count(notas_descrip.id_estudiantes) AS cantidad, AVG(nota_cuali) AS promedio FROM notas_descrip INNER JOIN estudiantes ON  notas_descrip.id_estudiantes = estudiantes.id_estudiantes INNER JOIN lapso ON notas_descrip.id_lapso = lapso.id_lapso WHERE estudiantes.id_grados = ? AND estudiantes.id_seccion = ? AND estudiantes.id_periodo = ? GROUP BY notas_descrip.id_lapso', [req.body.id_grado, req.body.id_seccion, req.body.id_periodo], (err, results) => {
 				connection.release();
 
 				if (err) {

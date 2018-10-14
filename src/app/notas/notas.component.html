@@ -76,7 +76,7 @@
 		              <th>Celular</th>
 		              <th>Agregar Notas</th>
 		              <th>Boletines</th>
-		              <th>    </th>
+		              <th>         </th>
 		          </tr>
 		        </thead>
 		        <tbody>
@@ -86,9 +86,10 @@
 			            <td >{{estudiantes.correo}}</td>
 			            <td >{{estudiantes.celular}}</td>
 			            <td>
-			            	<a routerLink='/app-notas/boletin-descrip/{{estudiantes.id_estudiantes}}'>
+			            	<a *ngIf="estudiantes.grupo.length == 0 || estudiantes.grupo.length == 1 || estudiantes.grupo.length == 2" routerLink='/app-notas/boletin-descrip/{{estudiantes.id_estudiantes}}'>
 			            		<img src="assets/icons/icons8-add-64.png">
 			            	</a>
+			            	<p *ngIf="estudiantes.grupo.length > 2">--</p>
 			            </td>
 			           	<td *ngFor="let grupos of estudiantes.grupo">
 			           		<swal
@@ -108,12 +109,12 @@
 								</button>
 			           		</div>
 			           		<div *ngIf=" grupos.id_lapso === 2">
-				            	<a *ngIf=" grupos.id_lapso === 2" routerLink='/app-notas/boletin-descrip-detalles/{{grupos.id_notas_descrip}}'>
+				            	<a routerLink='/app-notas/boletin-descrip-detalles/{{grupos.id_notas_descrip}}'>
 				            		<img src="assets/icons/icons8-open-view-64.png">
 				            	</a>
 				            	<button [swal]="deleteSwal">
 				            		<img src="assets/icons/icons8-delete-view-80.png">
-								</button>	
+								</button>
 			           		</div>
 			           		<div *ngIf=" grupos.id_lapso === 3" >
 				            	<a routerLink='/app-notas/boletin-descrip-detalles/{{grupos.id_notas_descrip}}'>

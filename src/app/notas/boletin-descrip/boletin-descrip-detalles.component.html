@@ -169,25 +169,26 @@
 						          </div>
 						        </div>
 							    <div class="row">
-						          <div class="input-field col s12">
-						            <textarea id="textarea3" 
-						            class="materialize-textarea" 
-						            data-length="500" 
-						            materialize="characterCounter" 
-						            [attr.length]="maxLength" 
-						            maxlength="500"
-						            minlength="5" 
-						            name="descrip_3" 
-						            [(ngModel)]="notasDetalles.notas.descrip_3"
-						            required
-						            #descrip_3="ngModel"> </textarea>
-						            <div class="form-control-feedback"
-									     *ngIf="descrip_3.errors && (descrip_3.dirty || descrip_3.touched)">
-										<p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
-										<p class="center" *ngIf="descrip_3.errors.minlength">El campo no puede estar vacío</p>
-									</div>
-						            <label for="textarea2">RECOMENDACIONES AL REPRESENTANTE:</label>
-						          </div>
+						        	<div class="input-field col s12">
+							            <textarea id="textarea3" 
+							            class="materialize-textarea" 
+							            data-length="500" 
+							            materialize="characterCounter" 
+							            [attr.length]="maxLength" 
+							            maxlength="500"
+							            minlength="5" 
+							            name="descrip_3" 
+							            [(ngModel)]="notasDetalles.notas.descrip_3"
+							            required
+							            #descrip_3="ngModel"> 
+							        	</textarea>
+							            <div class="form-control-feedback"
+										     *ngIf="descrip_3.errors && (descrip_3.dirty || descrip_3.touched)">
+											<p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
+											<p class="center" *ngIf="descrip_3.errors.minlength">El campo no puede estar vacío</p>
+										</div>
+							            <label for="textarea2">RECOMENDACIONES AL REPRESENTANTE:</label>
+						            </div>
 						        </div>				        	
 					        </div>
 					        <div class="Basica" *ngIf="hideElement==false">

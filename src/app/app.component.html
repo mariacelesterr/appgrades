@@ -4,7 +4,10 @@
         <a [routerLink]="['/app-menu']" class="brand-logo">AppGrades</a>
         <ul class="hide-on-large-only">
           <li>
-            <a [routerLink]="['app-perfil']" *ngIf="userdata" class="right brand-logo" > 
+            <a materialize="dropdown" class='dropdown-button right brand-logo' href='#' data-activates='dropdown1' *ngIf="userdata"> 
+              <img src="assets/icons/icons8-menu-30 (1).png">
+            </a>
+            <a [routerLink]="['login']" *ngIf="!userdata" class="right brand-logo" > 
               <img src="assets/icons/icons8-menu-30 (1).png">
             </a>
           </li>  
@@ -31,6 +34,25 @@
         </ul>
       </div>
   </nav>
+     <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+      <li>
+        <a [routerLink]="['app-perfil']" *ngIf="userdata" >
+          Perfil
+        </a>
+      </li>
+       <li>
+          <a [routerLink]="['app-menu']" *ngIf="userdata" >Menú</a>
+        </li>
+       <li class="divider"> </li>
+       <li>
+        <a [routerLink]="['/logout']">Salir
+          <i class="right">
+            <img src="assets/icons/icons8-shutdown-26 (1).png">
+          </i>
+        </a>
+      </li>
+    </ul>
 </header>
 <body>
   <main>

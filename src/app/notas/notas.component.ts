@@ -12,8 +12,8 @@ import { EscuelaService } from '../services/escuela.service';
 })
 export class NotasComponent implements OnInit {
   hideElement = true;
-  //estudiantes: Estudiantes = new Estudiantes();
-  estudiantes: any;
+  estudiantes: Estudiantes = new Estudiantes();
+  estudiantes1: any;
   e: any;
   grado: any ;
   secciones: any;
@@ -113,9 +113,9 @@ export class NotasComponent implements OnInit {
               this.router.navigate(['/app-menu'])
             }
             else{
-              this.estudiantes = data;
+              this.estudiantes1 = data;
               // Utilizo el método reduce para ir creando el array resultante
-              let result = this.estudiantes.reduce((prev, current, index, arr) => {
+              let result = this.estudiantes1.reduce((prev, current, index, arr) => {
                 // Compruebo si ya existe el elemento
                 let exists = prev.find(x => x.id_estudiantes === current.id_estudiantes);
                 // Si no existe lo creo con un array vacío en VALOR

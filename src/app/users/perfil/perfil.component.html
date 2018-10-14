@@ -1,3 +1,31 @@
-<p>
-  perfil works!
-</p>
+<div class="row">
+	<div class="col s12 m8  offset-m2 l6 offset-l3">
+		<div class=" card card-panel grey lighten-5 z-depth-1">
+		  <div class="row valign-wra
+		  pper">
+		    	<h5 class="center">Perfil del usuario</h5>
+		    	<div class="divider" style="margin-bottom: 20px"></div>
+		    <div class="col s2 m3 l3">
+		      <img src="assets/icons/female.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+		    </div>
+		    <div class="col s10 m8 l8">
+		    	<div class="row">
+			    	<span class="black-text">
+			      		<strong>ID del usuario</strong>:
+						{{id}}
+						<br>
+						<strong>Correo</strong>:
+						{{username}}
+						<br>
+						<strong>Contraseña</strong>: XxxXxxXXxX
+			    	</span>
+		    	</div>
+		    	<div class="card-action">
+		      		<a class="left waves-effect waves-teal"> Cambiar Contraseña</a>
+		      		<a [routerLink]="['/logout']" class="right waves-effect waves-teal hide-on-small-only"> Cerrar Sesión</a>
+		    	</div>
+		    </div>
+		  </div>
+		</div>
+	</div>	
+</div>

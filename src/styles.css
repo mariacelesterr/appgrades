@@ -18,6 +18,9 @@ button {
 .card {
   margin-top: 50px;
 }
+.card-panel {
+  margin-top: 50px;
+}
 @media only screen and (max-width: 992px){
 nav .brand-logo {
     left: 30%;
