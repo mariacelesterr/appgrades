@@ -30,33 +30,33 @@ export class DetallesEstudiantesComponent implements OnInit {
 
   ngOnInit() {
     if (this.route.snapshot.url[0].path == 'app-detalles-estudiantes'){
-          this.route.params
-            .switchMap((params: Params) => this.EstudiantesService.obtenerEstudi(params['id']))
-            .subscribe(data =>{
-              this.estudiantes = data;
-            },
-              error =>{
-                  swal({
-                  title: '¡Error!',
-                  text: 'Hubo un error al buscar el estudiante',
-                  type: 'error',
-                  confirmButtonText: 'Aceptar'
-                })
-                this.router.navigate(['/app-menu']);
-              })         
-      }
+      this.route.params
+        .switchMap((params: Params) => this.EstudiantesService.obtenerEstudi(params['id']))
+        .subscribe(data =>{
+          this.estudiantes = data;
+          },
+          error =>{
+            swal({
+              title: '¡Error!',
+              text: 'Hubo un error al buscar el estudiante',
+              type: 'error',
+              confirmButtonText: 'Aceptar'
+            })
+            this.router.navigate(['/app-menu']);
+          })         
+    }
     this.escuelaService.obtenerPeriodo()
       .subscribe(
         data =>{ 
           this.periodo = data;
           if (this.periodo.length === null){
             swal({
-                  title: '¡Advertencia!',
-                  text: 'No hay peridos para escoger. Dirijase hasta la sección de periodo',
-                  type: 'warning',
-                  confirmButtonText: 'Cerrar'
-                })
-              this.router.navigate(['/app-periodo'])
+              title: '¡Advertencia!',
+              text: 'No hay peridos para escoger. Dirijase hasta la sección de periodo',
+              type: 'warning',
+              confirmButtonText: 'Cerrar'
+            })
+            this.router.navigate(['/app-periodo'])
           }    
         },
         error => {
@@ -119,7 +119,7 @@ export class DetallesEstudiantesComponent implements OnInit {
       today: false,
       selectYears: 50,
       closeOnSelect: true,
-      //max: new Date(),
+      max: new Date(),
       //disable: [true],
       clear: 'Cerrar',
       close: 'Guardar',

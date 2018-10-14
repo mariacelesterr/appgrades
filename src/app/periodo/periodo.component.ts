@@ -32,7 +32,7 @@ export class PeriodoComponent implements OnInit {
         selectMonths: true,
         today: false,
         selectYears: 10,
-        //closeOnSelect: true,
+        closeOnSelect: true,
         //max: new Date(),
         //disable: [true],
         clear: 'Cerrar',

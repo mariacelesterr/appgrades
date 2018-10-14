@@ -85,28 +85,28 @@ export class EstadisticasComponent implements OnInit {
             console.log(error);
           });
       this.escuelaService.obtenerSecciones()
-      .subscribe(
-        data => {
-          this.secciones = data;
-          if(this.secciones === null){
+        .subscribe(
+          data => {
+            this.secciones = data;
+            if(this.secciones === null){
+              swal({
+                  title: '¡Advertencia!',
+                  text: 'No hay secciones para escoger. Dirijase hasta la sección de secciones',
+                  type: 'warning',
+                  confirmButtonText: 'Cerrar'
+                })
+            this.router.navigate(['/app-secciones'])}
+          },
+          error=>{
             swal({
-                title: '¡Advertencia!',
-                text: 'No hay secciones para escoger. Dirijase hasta la sección de secciones',
-                type: 'warning',
-                confirmButtonText: 'Cerrar'
-              })
-          this.router.navigate(['/app-secciones'])}
-        },
-        error=>{
-          swal({
-                title: '¡Error!',
-                text: 'Hubo un error al cargar las secciones',
-                type: 'error',
-                confirmButtonText: 'Cerrar'
-              })
-          console.log(error);
-        });
-    }
+                  title: '¡Error!',
+                  text: 'Hubo un error al cargar las secciones',
+                  type: 'error',
+                  confirmButtonText: 'Cerrar'
+                })
+            console.log(error);
+          });
+      }
     this.chartBarOptions = {
       xkey: 'x',
       ykeys: ['y'],
@@ -130,7 +130,6 @@ export class EstadisticasComponent implements OnInit {
                 type: 'warning',
                 confirmButtonText: 'Cerrar'
               })
-              this.router.navigate(['/app-menu'])
             }
             else{
               this.hideElement = false;

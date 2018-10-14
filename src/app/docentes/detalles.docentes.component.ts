@@ -53,7 +53,7 @@ export class DetallesDocentesComponent implements OnInit {
       today: false,
       selectYears: 50,
       closeOnSelect: true,
-      //max: new Date(),
+      max: new Date(),
       //disable: [true],
       clear: 'Cerrar',
       close: 'Guardar',
