@@ -5,18 +5,29 @@ const db = require('./database.ts');
 const authentication = require('../authentication.ts');
 
 router.post('/app-estudiantes', (req, res) => {
-
+console.log(req.body);
 	db.getConnection((err, connection) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('INSERT INTO estudiantes SET ?', req.body, (err, result) => {
-				connection.release();
-
+			connection.query('SELECT * FROM estudiantes WHERE cedula = ?', [req.body.cedula], (err, rows) => {
 				if (err) {
 					res.status(500).send({message: err});
-				} else {
-					res.status(200).send({id_estudiantes: result.insertId});
+				} 
+				console.log(rows);
+				if (rows.length){
+					res.status(500).send({message: "Estudiante ya existe"});
+				}
+				else{
+					connection.query('INSERT INTO estudiantes SET ?', req.body, (err, result) => {
+						connection.release();
+
+						if (err) {
+							res.status(500).send({message: err});
+						} else {
+							res.status(200).send({id_estudiantes: result.insertId});
+						}
+					});
 				}
 			});
 		}

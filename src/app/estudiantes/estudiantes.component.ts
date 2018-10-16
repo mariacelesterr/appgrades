@@ -157,12 +157,22 @@ export class EstudiantesComponent implements OnInit {
                 this.router.navigate(['/app-detalles-estudiantes', data.id_estudiantes]);
               },
               error=>{
-                swal({
-                  title: '¡Error!',
-                  text: 'Ha ocurrido un error intentelo de nuevo ',
-                  type: 'error',
-                  confirmButtonText: 'Cerrar'
-                })
+                if(error.message === 'Estudiante ya existe'){
+                  swal({
+                    title: '¡Error!',
+                    text: error.message,
+                    type: 'error',
+                    confirmButtonText: 'Cerrar'
+                  })
+                }else{
+                  swal({
+                    title: '¡Error!',
+                    text: 'Ha ocurrido un error intentelo de nuevo ',
+                    type: 'error',
+                    confirmButtonText: 'Cerrar'
+                  })
+                  
+                }
                 console.log(error);
               }); 
         }
