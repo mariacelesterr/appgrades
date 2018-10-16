@@ -16,6 +16,7 @@
                         required 
                         name="cedula"
                         minlength="4"
+                        readonly="readonly"
                       #cedula="ngModel">
                       <div class="form-control-feedback"
                        *ngIf="cedula.errors && (cedula.dirty || cedula.touched)">

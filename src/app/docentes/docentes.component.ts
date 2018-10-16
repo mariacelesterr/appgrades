@@ -86,12 +86,21 @@ export class DocentesComponent implements OnInit {
                 })
               this.router.navigate(['/app-detalles-docentes', data.id_docentes])}, 
             error => {
-              swal({
-                title: '¡Error!',
-                text: 'Ha ocurrido un error intentelo de nuevo ',
-                type: 'error',
-                confirmButtonText: 'Cerrar'
-              })
+              if(error.message === 'Docente ya existe'){
+                swal({
+                  title: '¡Error!',
+                  text: error.message,
+                  type: 'error',
+                  confirmButtonText: 'Cerrar'
+                })
+              }else{
+                swal({
+                  title: '¡Error!',
+                  text: 'Ha ocurrido un error intentelo de nuevo ',
+                  type: 'error',
+                  confirmButtonText: 'Cerrar'
+                })
+              }
               console.log(error);
           });
       }

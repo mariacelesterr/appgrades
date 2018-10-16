@@ -5,7 +5,6 @@ const db = require('./database.ts');
 const authentication = require('../authentication.ts');
 
 router.post('/app-estudiantes', (req, res) => {
-console.log(req.body);
 	db.getConnection((err, connection) => {
 		if (err) {
 			res.status(500).send({message: err});
