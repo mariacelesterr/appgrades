@@ -25,13 +25,23 @@ router.post('/app-notas/app-boletin-descrip/:id',  (req, res) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('INSERT INTO notas_descrip SET ?', req.body, (err, result) => {
-				connection.release();
-
+			connection.query('SELECT * FROM notas_descrip WHERE id_estudiantes = ? AND id_lapso = ?', [req.body.id_estudiantes, req.body.id_lapso], (err, rows) => {
 				if (err) {
 					res.status(500).send({message: err});
-				} else {
-					res.status(200).send({id_notas_descrip: result.insertId});
+				}
+				if (rows.length){
+					res.status(500).send({message: "El estudiante ya tiene nota en ese lapso"});
+				}
+				else{
+					connection.query('INSERT INTO notas_descrip SET ?', req.body, (err, result) => {
+						connection.release();
+
+						if (err) {
+							res.status(500).send({message: err});
+						} else {
+							res.status(200).send({id_notas_descrip: result.insertId});
+						}
+					});
 				}
 			});
 		}
@@ -59,7 +69,7 @@ router.get('/app-pdf/:id',(req, res )=>{
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('SELECT * FROM notas_descrip INNER JOIN estudiantes ON notas_descrip.id_estudiantes=estudiantes.id_estudiantes WHERE id_notas_descrip = ?', [req.params.id], (err, result) => {
+			connection.query('SELECT * FROM notas_descrip INNER JOIN estudiantes ON notas_descrip.id_estudiantes=estudiantes.id_estudiantes INNER JOIN grados ON estudiantes.id_grados=grados.id_grados INNER JOIN seccion ON estudiantes.id_seccion = seccion.id_seccion INNER JOIN periodo ON estudiantes.id_periodo=periodo.id_periodo WHERE id_notas_descrip = ?', [req.params.id], (err, result) => {
 				connection.release();
 
 				if (err) {

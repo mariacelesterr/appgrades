@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import swal from 'sweetalert2';
 import { Estudiantes } from '../models/estudiantes';
 import { NotasService } from '../services/notas.service';
@@ -26,7 +27,8 @@ export class NotasComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private notasService: NotasService,
-    private escuelaService: EscuelaService) {}
+    private escuelaService: EscuelaService,
+    private _location: Location) {}
 
   ngOnInit() {
     this.escuelaService.obtenerPeriodo()
@@ -190,5 +192,8 @@ export class NotasComponent implements OnInit {
           })
           console.log(error);
         });
+  }
+  goBack(){
+    this._location.back();
   }
 }

@@ -359,7 +359,7 @@ export class PdfComponent implements OnInit {
           },
           {
             text:[
-                    '\nBOLETIN DESCRIPTIVO DELRENDIMIENTO ESTUDIANTIL',
+                    '\nBOLETIN DESCRIPTIVO DEL RENDIMIENTO ESTUDIANTIL',
                     ],
             alignment: 'center'
           },

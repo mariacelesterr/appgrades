@@ -110,18 +110,27 @@
 						    	</div>
 					          	<div class="col s6 m6 l6">
 						        	<div class="input-field">
-							          	<select materialize="material_select" 
-							          	name="lapso" 
-							          	[(ngModel)]="notasDetalles.notas.id_lapso"
-							          	required
-							          	#lapso="ngModel"
-							          	(ngModelChange)="onChange($event)">
-									      <option value="" disabled selected>Lapso</option>
-									      <option [value]="1">Primer Lapso</option>
-									      <option [value]="2">Segundo Lapso</option>
-									      <option [value]="3">Tercer Lapso</option>
-									    </select>
-								    	<label>Seleccionar lapso</label>
+						        		<input id="periodo" 
+							          	type="text" 
+							          	class="validate" 
+							          	name="periodo" 
+							          	value ="Primer grado" 
+							          	readonly="readonly" 
+							          	*ngIf="notasDetalles.notas.id_lapso === 1">
+							          	<input id="periodo" 
+							          	type="text" 
+							          	class="validate" 
+							          	name="periodo" 
+							          	value ="Segundo Lapso" 
+							          	readonly="readonly" 
+							          	*ngIf="notasDetalles.notas.id_lapso === 2">
+							          	<input id="periodo" 
+							          	type="text" 
+							          	class="validate" 
+							          	name="periodo" 
+							          	value ="Tercer Lapso" 
+							          	readonly="readonly" 
+							          	*ngIf="notasDetalles.notas.id_lapso === 3">
 						        	</div>
 						        </div>
 					        </div>
@@ -254,21 +263,24 @@
 							        </div>
 						        </div>
 						        <div class="row">
-						        	<div *ngIf="vart == 3">
+						        	<div *ngIf="notasDetalles.notas.nota_final != null">
 						        		<div class="col s8">
 						        			<p style="margin-top: 1em;"> Felicidades su niño ha alcanzado el nivel superior de forma:</p>
 						        		</div>
 						          		<div class="input-field col s4">
 								          	<select materialize="material_select" 
-								          	name="lapso" 
-								          	(ngModel)="notasDetalles.notas.nota_final"
+								          	name="nota_final" 
+								          	[(ngModel)]="notasDetalles.notas.nota_final" 
 								          	required
 								          	#nota_final="ngModel">
 										      <option value="" disabled selected>Nota final</option>
 										      <option value="Excelente">Excelente</option>
 										      <option value="Aprobado">Aprobado</option>
 										    </select>
-										    <p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
+										    <div class="form-control-feedback"
+										     *ngIf="nota_final.errors && (nota_final.dirty || nota_final.touched)">
+										    	<p class="center" *ngIf="nota_final.errors.required" >Este campo es obligatorio</p>
+										 	</div>
 							        	</div>
 						          	</div>
 						        </div>

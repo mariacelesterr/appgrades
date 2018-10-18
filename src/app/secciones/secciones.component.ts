@@ -15,6 +15,7 @@ export class SeccionesComponent implements OnInit {
   secciones_obj: any ={
     descrp_sec:""
   };
+  secciones1: any = ["A", "B", "C", "D", "E", "F"];
   @ViewChild('f') form: any;
   constructor(private escuelaService: EscuelaService,
               private route: ActivatedRoute,
@@ -22,7 +23,6 @@ export class SeccionesComponent implements OnInit {
               private _location: Location) { }
 
   ngOnInit() {
-    this.secciones_obj.descrp_sec = 'Sección ';
   	this.escuelaService.obtenerSecciones()
       .subscribe(data => {
         this.secciones = data

@@ -6,32 +6,22 @@
 				<div class="divider"></div>
 				<form #f="ngForm" class="col s12" (ngSubmit)="doSubmit()" >
 					<div class="row ">
-				        <p class="center">
-				        	Debes introducir la letra de la sección
-				        </p>
 				      <div class="col s12 m7 l7 offset-l3">
-				        <div class="input-field" [ngClass]="{
-						        'has-danger': secciones.invalid && (secciones.dirty || secciones.touched),
-						        'has-success': secciones.valid && (secciones.dirty || secciones.touched)}">
-				          <input placeholder="Ej. Sección A" 
-				          id="first_name" 
-				          type="text" 
-				          class="validate"
-				          name="secciones" 
-				          [(ngModel)]="secciones_obj.descrp_sec"
-				          required
-				          maxlength="9" 
-				          #secciones="ngModel"
-				          onkeydown="if ((event.keyCode >= 65 && event.keyCode <= 90)||(event.keyCode >= 97 && event.keyCode <=122) || event.key == 'Ñ' || event.key == 'ñ') return true 
-				          	else return false "
-				         onkeyup="this.value=this.value.toUpperCase()"
-				         >
+				        <div class="input-field">
+				            <select materialize="material_select" 
+						    name="secciones" 
+						    [(ngModel)]="secciones_obj.descrp_sec" 
+						    required
+						    #secciones="ngModel">
+						      <option value="" disabled selected>Secciones</option>
+						      <option  *ngFor="let grados of secciones1">Sección {{grados}}</option> 
+						    </select>
+							<label>Ingresa la sección</label>
 				          <div class="form-control-feedback"
 							     *ngIf="secciones.errors && (secciones.dirty || secciones.touched)">
 								<p  color="red" class="center" *ngIf="secciones.errors.required" >Este campo en obligatorio</p>
 								<p class="center" *ngIf="secciones.errors.pattern">Solo puedes ingresar letras</p>
 							</div>
-				          <label for="first_name">Ingresa la sección</label>
 				        </div>
 				      </div>
 				    </div>

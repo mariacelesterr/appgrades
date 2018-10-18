@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 export class NotasDetalles {
 	notas: Notas;
-	estudiantes: any[];
+	estudiantes: Estudiantes;
 }
 @Injectable()
 export class NotasService {
@@ -27,11 +27,11 @@ export class NotasService {
 
 		return this.apiService.perform('post', this.estudiantesUrl, estudiantes, _params, _formParams);
 	}
-	agregarNotas( notas: Notas, id: number): Observable<any> {
+	agregarNotas( notas: Notas): Observable<any> {
 		const _params: any = {};
 		const _formParams: any = {};
 
-		return this.apiService.perform('post', this.boletin_descripUrl + id, notas, _params, _formParams);
+		return this.apiService.perform('post', this.boletin_descripUrl + notas.id_estudiantes, notas, _params, _formParams);
 	}
 	obtenerEstudi(id: number): Observable<any> {
 		const _params: any = {};

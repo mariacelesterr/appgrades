@@ -99,7 +99,7 @@ export class BoletinDescripComponent implements OnInit {
     else{
       if (this.route.snapshot.url[1].path === 'boletin-descrip'){
         this.notas.id_estudiantes = this.estudiantes.id_estudiantes;
-        this.notasService.agregarNotas(this.notas, this.estudiantes.id_estudiantes)
+        this.notasService.agregarNotas(this.notas)
           .subscribe(data => {
             swal({
                   title: 'Aprobado',
@@ -110,12 +110,22 @@ export class BoletinDescripComponent implements OnInit {
             this.router.navigate(['/app-pdf/', data.id_notas_descrip])
           },
           error=>{
-            swal({
-              title: '¡Error!',
-              text: 'Ha ocurrido un error al agregar el boletin',
-              type: 'error',
-              confirmButtonText: 'Cerrar'
-            })
+            if(error.message === 'El estudiante ya tiene nota en ese lapso'){
+              swal({
+                title: '¡Error!',
+                text: error.message,
+                type: 'error',
+                confirmButtonText: 'Cerrar'
+              })
+            }
+            else{
+              swal({
+                title: '¡Error!',
+                text: 'Ha ocurrido un error al agregar el boletin',
+                type: 'error',
+                confirmButtonText: 'Cerrar'
+              }) 
+            }
             console.log(error);
           });
         this.modalActions.emit({action:"modal",params:['close']});

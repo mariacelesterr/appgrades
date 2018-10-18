@@ -24,6 +24,7 @@ export class BoletinDescripDetallesComponent implements OnInit {
   estudiantes: Estudiantes = new Estudiantes;
   modalActions = new EventEmitter<string|MaterializeAction>();
   vart: any;
+  lapsos: any;
   @ViewChild('f') form: any;
   constructor(
   	private route: ActivatedRoute, 
@@ -55,10 +56,6 @@ export class BoletinDescripDetallesComponent implements OnInit {
   }
     pdf(){
     this.router.navigate(['/app-pdf']);
-  }
-  onChange(event){
-    this.vart = event;
-    console.log(this.vart);
   }
   goBack(){
     this._location.back();
@@ -110,12 +107,22 @@ export class BoletinDescripDetallesComponent implements OnInit {
             this.router.navigate(['/app-pdf/', data.id_notas_descrip])
             }, 
             error=>{
-              swal({
-                title: '¡Error!',
-                text: 'Ha ocurrido un error al actualizar el boletin',
-                type: 'error',
-                confirmButtonText: 'Cerrar'
-              })
+              if(error.message === 'El estudiante ya tiene nota en ese lapso'){
+                swal({
+                  title: '¡Error!',
+                  text: error.message,
+                  type: 'error',
+                  confirmButtonText: 'Cerrar'
+                })
+              }
+              else{
+                swal({
+                  title: '¡Error!',
+                  text: 'Ha ocurrido un error al agregar el boletin',
+                  type: 'error',
+                  confirmButtonText: 'Cerrar'
+                }) 
+              }
               console.log(error);
           });
         this.modalActions.emit({action:"modal",params:['close']});
