@@ -9,6 +9,8 @@ const expressSanitizer = require('express-sanitizer');
 
 // Routes
 const database = require('./server/routes/database.ts');
+require('./server/routes/db.schema.ts')(database);
+
 require('./server/passport.ts')(passport);
 const userRoutes = require('./server/routes/user.ts');
 const estudiantesRoutes = require('./server/routes/estudiantes.ts');
