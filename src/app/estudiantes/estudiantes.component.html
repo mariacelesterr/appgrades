@@ -19,8 +19,8 @@
 					       			#cedula="ngModel">
 					       			<div class="form-control-feedback"
 									     *ngIf="cedula.errors && (cedula.dirty || cedula.touched)">
-										<p class="center" *ngIf="cedula.errors.required" >Este campo es obligatorio</p>
-										<p class="center" *ngIf="cedula.errors.minlength">La cédula debe tener como mínimo 4 dígitos</p>
+										<p class="center red-text" *ngIf="cedula.errors.required" >*Este campo es obligatorio</p>
+										<p class="center red-text" *ngIf="cedula.errors.minlength">*La cédula debe tener como mínimo 4 dígitos</p>
 									</div>
 						            <label for="cedula">Cédula</label>
 					         	</div>
@@ -30,21 +30,27 @@
 							        <input id="telefono_local" 
 							        type="number" 
 							        class="validate" 
-							        name="nombres" 
-							        [(ngModel)]="estudiantes.telefono" 
-							        required>
+							        name="telefono_local" 
+							        [(ngModel)]="estudiantes.telefono">
 							        <label for="telefono">Teléfono local</label>
 						        </div>
 						     </div>
 					        <div class="col s6 l4">
 					        	<div class="input-field inline">
-						            <input id="telefono_celu" 
+						            <input id="celular" 
 						            type="text" 
 						            class="validate" 
-						            name="telefono" 
+						            name="celular" 
 						            [(ngModel)]="estudiantes.celular" 
-						            required>
-						            <label for="telefono">Teléfono Celular</label>
+						            required
+						            minlength="4"
+						            #celular="ngModel">
+						            <div class="form-control-feedback"
+								     *ngIf="celular.errors && (celular.dirty || celular.touched)">
+										<p class="center red-text" *ngIf="celular.errors.required" >*Este campo es obligatorio</p>
+										<p class="center red-text" *ngIf="celular.errors.minlength">*El campo no puede estar vacío</p>
+									</div>
+						            <label for="Celular">Teléfono Celular</label>
 					          	</div>
 					        </div>
 				    	</div>
@@ -61,9 +67,9 @@
 				       			#nombres="ngModel">
 				       			<div class="form-control-feedback"
 								     *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
-									<p class="center" *ngIf="nombres.errors.required" >Este campo es obligatorio</p>
-									<p class="center" *ngIf="nombres.errors.minlength">El campo no puede estar vacío</p>
-									<p class="center" *ngIf="nombres.errors.pattern">Este campo no puede contener números</p>
+									<p class="center red-text" *ngIf="nombres.errors.required" >*Este campo es obligatorio</p>
+									<p class="center red-text" *ngIf="nombres.errors.minlength">*El campo no puede estar vacío</p>
+									<p class="center red-text" *ngIf="nombres.errors.pattern">*Este campo no puede contener números</p>
 								</div>
 						        <label for="first_name">Nombres</label>
 					        </div>
@@ -79,9 +85,9 @@
 				       			#apellidos="ngModel">
 				       			<div class="form-control-feedback"
 								     *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
-									<p class="center" *ngIf="apellidos.errors.required" >Este campo es obligatorio</p>
-									<p class="center" *ngIf="apellidos.errors.minlength">El campo no puede estar vacío</p>
-									<p class="center" *ngIf="apellidos.errors.pattern">Este campo no puede contener números</p>
+									<p class="center red-text" *ngIf="apellidos.errors.required" >*Este campo es obligatorio</p>
+									<p class="center red-text" *ngIf="apellidos.errors.minlength">*El campo no puede estar vacío</p>
+									<p class="center red-text" *ngIf="apellidos.errors.pattern">*Este campo no puede contener números</p>
 								</div>
 						        <label for="last_name">Apellidos</label>
 					        </div>
@@ -98,8 +104,8 @@
 				       			#direccion="ngModel">
 				       			<div class="form-control-feedback"
 								     *ngIf="direccion.errors && (direccion.dirty || direccion.touched)">
-									<p class="center" *ngIf="direccion.errors.required" >Este campo es obligatorio</p>
-									<p class="center" *ngIf="direccion.errors.minlength">El campo no puede estar vacío</p>
+									<p class="center red-text" *ngIf="direccion.errors.required" >*Este campo es obligatorio</p>
+									<p class="center red-text" *ngIf="direccion.errors.minlength">*El campo no puede estar vacío</p>
 								</div>
 						        <label for="disabled">Dirección</label>
 					        </div>
@@ -118,8 +124,8 @@
 				       			#dateofbirth="ngModel">
 				       			<div class="form-control-feedback"
 								     *ngIf="dateofbirth.errors && (dateofbirth.dirty || dateofbirth.touched)">
-									<p class="center" *ngIf="dateofbirth.errors.required" >Este campo es obligatorio</p>
-									<p class="center" *ngIf="dateofbirth.errors.minlength">El campo no puede estar vacío</p>
+									<p class="center red-text" *ngIf="dateofbirth.errors.required" >*Este campo es obligatorio</p>
+									<p class="center red-text" *ngIf="dateofbirth.errors.minlength">*El campo no puede estar vacío</p>
 								</div>
 						        <label for="date">Fecha de Nacimiento</label>
 					        </div>
@@ -135,8 +141,8 @@
 						       	#email="ngModel">
 								<div class="form-control-feedback"
 								     *ngIf="email.errors && (email.dirty || email.touched)">
-									<p class="center" *ngIf="email.errors.required">Este campo es obligatorio</p>
-									<p class="center" *ngIf="email.errors.pattern">Correo inválido</p>
+									<p class="center red-text" *ngIf="email.errors.required">*Este campo es obligatorio</p>
+									<p class="center red-text" *ngIf="email.errors.pattern">*Correo inválido</p>
 								</div>
 						        <label for="email">Email</label>
 					        </div>

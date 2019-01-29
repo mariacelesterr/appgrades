@@ -6,9 +6,12 @@ import { FormsModule} from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MorrisJsModule } from 'angular-morris-js';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ChartsModule } from 'ng2-charts';
+
 
 // Routing
-import { Routing } from './app.routing';
+import { Routing} from './app.routing';
 
 //Service
 import { UserService } from './services/user.service'
@@ -30,7 +33,7 @@ import { DocentesComponent } from './docentes/docentes.component';
 import { DetallesDocentesComponent } from './docentes/detalles.docentes.component';
 import { PdfComponent } from './pdf/pdf.component';
 import { NotasComponent } from './notas/notas.component';
-import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstadisticasComponent, periodosEstadisticas, gradosEstadisticas, grados_seccionEstadisticas } from './estadisticas/estadisticas.component';
 import { UsersComponent } from './users/users.component';
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component';
 import { BoletinDescripDetallesComponent } from './notas/boletin-descrip/boletin-descrip-detalles.component'
@@ -51,6 +54,9 @@ import { SeccionesComponent } from './secciones/secciones.component';
     PdfComponent,
     NotasComponent,
     EstadisticasComponent,
+    periodosEstadisticas,
+    gradosEstadisticas, 
+    grados_seccionEstadisticas,
     UsersComponent,
     BoletinDescripComponent,
     PerfilComponent,
@@ -66,7 +72,9 @@ import { SeccionesComponent } from './secciones/secciones.component';
     MaterializeModule,
     MorrisJsModule,
     Routing,
+    NgxPaginationModule,
     SweetAlert2Module.forRoot(),
+    ChartsModule
   ],
   providers: [
     ApiService,

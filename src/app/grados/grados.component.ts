@@ -16,6 +16,8 @@ export class GradosComponent implements OnInit {
     descrip_gra:""
   };
   @ViewChild('f') form: any;
+  p: number = 1;
+
   constructor(private route: ActivatedRoute,
               private _location: Location,
               private router: Router,

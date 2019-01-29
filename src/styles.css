@@ -10,6 +10,33 @@ footer {
 .page-footer {
    padding-top: 0px;
 }
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #24292e;
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+  }
+.my-pagination /deep/  .ngx-pagination .pagination-previous.disabled::before {
+    content: '';
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+.my-pagination /deep/  .ngx-pagination .pagination-next.disabled::after {
+    content: '';
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+.my-pagination /deep/  .ngx-pagination .pagination-previous a::before{
+    content: '';
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+.my-pagination /deep/  .ngx-pagination .pagination-next a::after{
+    content: '';
+    display: inline-block;
+    margin-left: 0.5rem;
+}
 button {
   background: none;
   border: 0;

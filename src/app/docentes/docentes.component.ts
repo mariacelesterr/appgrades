@@ -20,6 +20,7 @@ export class DocentesComponent implements OnInit {
   hideElement = true;
   datepickerset : any;
   @ViewChild('f') form: any;
+  p: number =1;
   constructor(
     private _location: Location,
     private DocentesService: DocentesService,

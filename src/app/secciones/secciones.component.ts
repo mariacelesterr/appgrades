@@ -17,6 +17,7 @@ export class SeccionesComponent implements OnInit {
   };
   secciones1: any = ["A", "B", "C", "D", "E", "F"];
   @ViewChild('f') form: any;
+  p: number = 1;
   constructor(private escuelaService: EscuelaService,
               private route: ActivatedRoute,
               private router: Router,

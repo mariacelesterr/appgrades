@@ -20,6 +20,7 @@ export class PeriodoComponent implements OnInit {
   final: any;
   inicio: any;
   @ViewChild('f') form: any;
+  p: number = 1;
 
   constructor(private escuelaService: EscuelaService,
               private _location: Location,
@@ -68,7 +69,7 @@ export class PeriodoComponent implements OnInit {
       if(per1[2]===per2[2])
         swal({
           title: '¡Advertencia!',
-          text: "No pueden cuincidir los años",
+          text: "No pueden coincidir los años",
           type: 'warning',
           confirmButtonText: 'Cerrar'
         })

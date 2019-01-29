@@ -5,8 +5,9 @@
     			<div class="row"> 
     				<h5 class="center-align">Estudiantes</h5>
 		       		<div class="divider"></div>
-					<ul class="collection">
-					    <li class="collection-item avatar" *ngFor="let estudiantes of estudiantes">
+		       		<p *ngIf="estudiantes.length === 0" class="red-text center"> No hay estudiantes agregados</p>
+					<ul *ngIf="estudiantes.length > 0" class="collection">
+					    <li class="collection-item avatar" *ngFor="let estudiantes of estudiantes | paginate: { itemsPerPage: 5, currentPage: p }">
 					    	<i class="material-icons circle">
 					      		<img src="assets/icons/icons8-user-avatar-filled-50.png">
 					    	</i>
@@ -26,6 +27,20 @@
 					      </a>
 					    </li>
 					</ul>
+					<div class="col l12">
+						<pagination-controls
+					 		(pageChange)="p = $event"
+		                    responsive="true"
+		                    previousLabel="Anterior"
+		                    nextLabel="Siguiente" 
+		                    class="pagination my-pagination">       	
+			            </pagination-controls>
+					</div>
+    
+					<div class="card-action">
+					    <a routerLink='/app-menu' class="right">Ir al menú</a>
+					    <a class="left" (click)="goBack()">Regresar</a>
+				    </div>
 				</div>
 			</div>
 		</div>

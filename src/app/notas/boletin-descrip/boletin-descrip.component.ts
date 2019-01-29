@@ -71,7 +71,7 @@ export class BoletinDescripComponent implements OnInit {
     this.notas.tipo_bole = 1; 
   }
   openModal() {
-    if (this.form.valid && this.notas.id_lapso != undefined) {
+    if (this.form.valid) {
       this.modalActions.emit(
         {
           action:"modal",

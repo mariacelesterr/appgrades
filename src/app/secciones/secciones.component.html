@@ -42,11 +42,11 @@
 	<div class="row grados">
   		<div class="card col s12 m6 l6 offset-m3 offset-l3">
     		<div class="card-content">
-				<h5 class="center">Secciones</h5>
-				<div class="divider"></div>
-				<div>
-					<div class="">
-						<table class="centered">
+    			<div class="row">
+					<h5 class="center">Secciones</h5>
+					<div class="divider"></div>
+					<p *ngIf="secciones.length === 0" class="red-text center"> No hay secciones agregadas</p>
+					<table *ngIf="secciones.length > 0" class="centered">
 				        <thead>
 				          <tr>
 				              <th>Sección</th>
@@ -55,7 +55,7 @@
 				          </tr>
 				        </thead>
 				        <tbody>
-				          <tr *ngFor="let seccion of secciones">
+				          <tr *ngFor="let seccion of secciones | paginate: { itemsPerPage: 5, currentPage: p }">
 				            <td>{{seccion.descrp_sec}}</td>
 				            <td>
 				            	
@@ -74,17 +74,35 @@
 				             	</button>
 				             </td>
 				          </tr>
-				          
 				        </tbody>
-				      </table>
-						
+				    </table>
+				    <div class="col s12 m10 l10 offset-s2 offset-m2 offset-l2">
+						<pagination-controls
+					 		(pageChange)="p = $event"
+			                responsive="true"
+			                previousLabel="Anterior"
+			                nextLabel="Siguiente" 
+			                class="pagination my-pagination">       	
+			            </pagination-controls>
 					</div>
-				</div>
+			        <div class="card-action">
+				      <a routerLink='/app-menu' class="right">Ir al menú</a>
+				      <a class="left" (click)="goBack()">Regresar</a>
+				    </div>
+    				
+    			</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col col s12 m12 l6 offset-l3">
-				<a class="btn-floating btn-large waves-effect waves-light black right" routerLink='/app-secciones-agregar'><i class="material-icons">add</i></a>
+				<a class="btn-floating btn-large waves-effect waves-light black right tooltipped" 
+				routerLink='/app-secciones-agregar'
+				materialize="tooltip" 
+		        data-position="right" 
+		        data-delay="10" 
+		        data-tooltip="Agregar Secciones">
+					<i class="material-icons">add</i>
+				</a>
 			</div>
 		</div>
 	</div>

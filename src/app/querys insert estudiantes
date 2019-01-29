@@ -1,0 +1,72 @@
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Elvis David', 'Luzardo Castellano', 'San francisco', '04146643776', '04146643776', 'LuzardoCastellano@gmail.com', 1995-04-12, '3', '4', '4', '1');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Alexander David', 'Paz Cano', 'San francisco', '04146643776', '04146643776', 'PazCano@gmail.com', 1995-04-12, '3', '4', '4', '2');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Eduar Andres', 'Cordero Manrique', 'San francisco', '04146643776', '04146643776', 'CorderoManrique@gmail.com', 1995-04-12, '3', '4', '4', '3');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Luis Alfonso', 'Landaeta Sanchez', 'San francisco', '04146643776', '04146643776', 'LandaetaSanchez@gmail.com', 1995-04-12, '3', '4', '4', '4');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Dianyely Gisela', 'Albarran Bohorquez', 'San francisco', '04146643776', '04146643776', 'AlbarranBohorquez@gmail.com', 1995-04-12, '3', '4', '4', '5');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Dannybel Rosa del Carmen', 'Labarca Bravo', 'San francisco', '04146643776', '04146643776', 'CarmenLabarcaBravo@gmail.com', 1995-04-12, '3', '4', '4', '6');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Miguel Alejandro', 'Iturriago Fuenmayor', 'San francisco', '04146643776', '04146643776', 'IturriagoFuenmayor@gmail.com', 1995-04-12, '3', '4', '4', '7');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Miguel Alejandro', 'Iturriago Fuenmayor', 'San francisco', '04146643776', '04146643776', 'IturriagoFuenmayor@gmail.com', 1995-04-12, '3', '4', '4', '8');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Fiorella Valentina', 'Atencio Peña', 'San francisco', '04146643776', '04146643776', 'AtencioPeña@gmail.com', 1995-04-12, '3', '4', '4', '9');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Ana Laura', 'Palencia Pirela', 'San francisco', '04146643776', '04146643776', 'AtencioPeña@gmail.com', 1995-04-12, '3', '4', '4', '10');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Francheska Virginia', 'Briñez Paez', 'San francisco', '04146643776', '04146643776', 'AtencioPeña@gmail.com', 1995-04-12, '3', '4', '4', '10');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Amanda Victoria ', 'Corredor González', 'San francisco', '04146643776', '04146643776', 'CorredorGonzález@gmail.com', 1995-04-12, '3', '4', '4', '11');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Adrianny Carolina ', 'Amesty Camargo', 'San francisco', '04146643776', '04146643776', 'AmestyCamargo@gmail.com', 1995-04-12, '3', '4', '4', '12');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Ariadna Isabel ', 'Morillo López', 'San francisco', '04146643776', '04146643776', 'MorilloLópez@gmail.com', 1995-04-12, '3', '4', '4', '13');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Carlos Eduardo', 'González Barroso', 'San francisco', '04146643776', '04146643776', 'CarlosEduardo@gmail.com', 1995-04-12, '3', '4', '4', '14');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Darianna de los Ángeles', 'Prieto Rodríguez', 'San francisco', '04146643776', '04146643776', 'PrietoRodríguez@gmail.com', 1995-04-12, '3', '4', '4', '15');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Belén de los Ángeles', 'González Olivera', 'San francisco', '04146643776', '04146643776', 'GonzálezOlivera@gmail.com', 1995-04-12, '3', '4', '4', '16');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Cristian David', 'Pineda Hernández', 'San francisco', '04146643776', '04146643776', 'PinedaHernández@gmail.com', 1995-04-12, '3', '4', '4', '17');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Mariana Chiquinquira', 'Guerrero Velilla', 'San francisco', '04146643776', '04146643776', 'GuerreroVelilla@gmail.com', 1995-04-12, '3', '4', '4', '18');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Wilmer Xavier', 'Bracho Paz', 'San francisco', '04146643776', '04146643776', 'BrachoPaz@gmail.com', 1995-04-12, '3', '4', '4', '19');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Yisell Alezandra', 'Salas Rosales', 'San francisco', '04146643776', '04146643776', 'SalasRosales@gmail.com', 1995-04-12, '3', '4', '4', '20');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Diego Andrés', 'Perozo Núñez', 'San francisco', '04146643776', '04146643776', 'PerozoNúñez@gmail.com', 1995-04-12, '3', '4', '4', '21');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Daniela Alejandra', 'Morales Paz', 'San francisco', '04146643776', '04146643776', 'MoralesPaz@gmail.com', 1995-04-12, '3', '4', '4', '22');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Dorian José', 'Vergel Alarcón', 'San francisco', '04146643776', '04146643776', 'VergelAlarcón@gmail.com', 1995-04-12, '3', '4', '4', '23');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Jesús David', 'Badillo Orozco', 'San francisco', '04146643776', '04146643776', 'BadilloOrozco@gmail.com', 1995-04-12, '3', '4', '4', '24');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Roger Jesus', 'Machado Abello', 'San francisco', '04146643776', '04146643776', 'MachadoAbello@gmail.com', 1995-04-12, '3', '4', '4', '25');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Christiany Angiolly', 'Chaudruc Melandri', 'San francisco', '04146643776', '04146643776', 'ChaudrucMelandri@gmail.com', 1995-04-12, '3', '4', '4', '26');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Jesus David', 'Sosa Rivera', 'San francisco', '04146643776', '04146643776', 'SosaRivera@gmail.com', 1995-04-12, '3', '4', '4', '27');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Oriana Victoria', 'González Villasmil', 'San francisco', '04146643776', '04146643776', 'GonzálezVillasmil@gmail.com', 1995-04-12, '3', '4', '4', '28');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Angel David', 'Guerrero Morales', 'San francisco', '04146643776', '04146643776', 'GuerreroMorales@gmail.com', 1995-04-12, '3', '4', '4', '31');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Christian David ', 'Tello Dall´Orso', 'San francisco', '04146643776', '04146643776', 'TelloDallOrso@gmail.com', 1995-04-12, '3', '4', '4', '32');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Jorlianis Karolay ', 'Ancianis Steer', 'San francisco', '04146643776', '04146643776', 'AncianisSteer@gmail.com', 1995-04-12, '3', '4', '4', '34');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Jesus Alí', 'Espina Paredes', 'San francisco', '04146643776', '04146643776', 'EspinaParedes@gmail.com', 1995-04-12, '3', '4', '4', '35');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Jhon David', 'Chacon Marmol', 'San francisco', '04146643776', '04146643776', 'ChaconMarmol@gmail.com', 1995-04-12, '3', '4', '4', '36');
+
+INSERT INTO `estudiantes` (`id_estudiantes`, `nombres`, `apellidos`, `direccion`, `telefono`, `celular`, `correo`, `dateofbirth`, `id_grados`, `id_seccion`, `id_periodo`, `cedula`) VALUES (NULL, 'Nixon David', 'Sanchez Niebles', 'San francisco', '04146643776', '04146643776', 'SanchezNiebles@gmail.com', 1995-04-12, '3', '4', '4', '37');
+
+
+

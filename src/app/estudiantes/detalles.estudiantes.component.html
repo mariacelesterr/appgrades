@@ -1,203 +1,219 @@
 <div class="row">
   <div class="col s12 m6 l6 offset-l3 offset-m3">
     <div class="card">
-        <div class="card-content">
-          <div class="row">
-              <h5 class="center-align">{{estudiantes.nombres}} {{estudiantes.apellidos}}</h5>
-              <div class="divider"></div>
-            <form  #f="ngForm" class="col s12">
-              <div class="row">
-                  <div class="col l4">
-                    <div class="input-field inline">
-                        <input id="cedula" 
-                        type="number" 
-                        class="validate" 
-                        [(ngModel)]="estudiantes.cedula" 
-                        required 
-                        name="cedula"
-                        minlength="4"
-                        readonly="readonly"
-                      #cedula="ngModel">
-                      <div class="form-control-feedback"
-                       *ngIf="cedula.errors && (cedula.dirty || cedula.touched)">
-                        <p class="center" *ngIf="cedula.errors.required" >Este campo es obligatorio</p>
-                        <p class="center" *ngIf="cedula.errors.minlength">La cédula debe tener como mínimo 4 dígitos</p>
-                      </div>
-                        <label for="cedula">Cédula</label>
-                    </div>
+      <div class="card-content">
+        <div class="row">
+          <h5 class="center-align">{{estudiantes.nombres}} {{estudiantes.apellidos}}</h5>
+          <div class="divider"></div>
+          <form  #f="ngForm" class="col s12">
+            <div class="row">
+                <div class="col l4">
+                  <div class="input-field inline">
+                      <input id="cedula" 
+                      type="number" 
+                      class="validate" 
+                      [(ngModel)]="estudiantes.cedula" 
+                      required
+                      readonly="readonly" 
+                      name="cedula"
+                      minlength="4"
+                    #cedula="ngModel">
+                    <div class="form-control-feedback"
+                     *ngIf="cedula.errors && (cedula.dirty || cedula.touched)">
+                  <p class="center red-text" *ngIf="cedula.errors.required" >*Este campo es obligatorio</p>
+                  <p class="center red-text" *ngIf="cedula.errors.minlength">*La cédula debe tener como mínimo 4 dígitos</p>
+                </div>
+                      <label for="cedula">Cédula</label>
                   </div>
-                  <div class="col s6 l4">
-                    <div class="input-field inline">
-                      <input id="telefono_local" 
+                </div>
+                <div class="col s6 l4">
+                  <div class="input-field inline">
+                    <input id="telefono_local" 
+                    type="number" 
+                    class="validate" 
+                    name="telefono_local" 
+                    [(ngModel)]="estudiantes.telefono">
+                    <label for="telefono">Teléfono local</label>
+                  </div>
+               </div>
+                <div class="col s6 l4">
+                  <div class="input-field inline">
+                      <input id="celular" 
                       type="text" 
                       class="validate" 
-                      name="nombres" 
-                      [(ngModel)]="estudiantes.telefono" 
-                      required>
-                      <label for="telefono">Teléfono local</label>
-                    </div>
-                 </div>
-                  <div class="col s6 l4">
-                    <div class="input-field inline">
-                        <input id="telefono_celu" type="text" class="validate" name="telefono" [(ngModel)]="estudiantes.celular" required>
-                        <label for="telefono">Teléfono Celular</label>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="input-field col s6">
-                    <input id="first_name" 
-                    type="text" 
-                    class="validate" 
-                    name="nombres" 
-                    [(ngModel)]="estudiantes.nombres" 
-                    required
-                    minlength="4"
-                    #nombres="ngModel">
-                    <div class="form-control-feedback"
-                     *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
-                      <p class="center" *ngIf="nombres.errors.required" >Este campo es obligatorio</p>
-                      <p class="center" *ngIf="nombres.errors.minlength">El campo no puede estar vacío</p>
-                    </div>
-                    <label for="first_name">Nombres</label>
-                  </div>
-                  <div class="input-field col s6">
-                    <input id="last_name" 
-                    type="text" 
-                    class="validate" 
-                    name="apellidos" 
-                    [(ngModel)]="estudiantes.apellidos" 
-                    required
-                    minlength="4"
-                    #apellidos="ngModel">
-                    <div class="form-control-feedback"
-                     *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
-                      <p class="center" *ngIf="apellidos.errors.required" >Este campo es obligatorio</p>
-                      <p class="center" *ngIf="apellidos.errors.minlength">El campo no puede estar vacío</p>
-                    </div>
-                    <label for="last_name">Apellidos</label>
-                  </div>
-              </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="direcion" 
-                    type="text" 
-                    class="validate" 
-                    name="direccion" 
-                    [(ngModel)]="estudiantes.direccion" 
-                    required
-                    minlength="4"
-                    #direccion="ngModel">
-                    <div class="form-control-feedback"
-                     *ngIf="direccion.errors && (direccion.dirty || direccion.touched)">
-                      <p class="center" *ngIf="direccion.errors.required" >Este campo es obligatorio</p>
-                      <p class="center" *ngIf="direccion.errors.minlength">El campo no puede estar vacío</p>
-                    </div>
-                    <label for="disabled">Dirección</label>
-                  </div>
+                      name="celular" 
+                      [(ngModel)]="estudiantes.celular" 
+                      required
+                      minlength="4"
+                      #celular="ngModel">
+                      <div class="form-control-feedback"
+                   *ngIf="celular.errors && (celular.dirty || celular.touched)">
+                  <p class="center red-text" *ngIf="celular.errors.required" >*Este campo es obligatorio</p>
+                  <p class="center red-text" *ngIf="celular.errors.minlength">*El campo no puede estar vacío</p>
                 </div>
-                <div class="row">
-                  <div class="input-field col s6 m6 l6">
-                    <input id="date" 
-                    type="date" 
-                    class="datepicker" 
-                    materialize="pickadate" 
-                    name="dateofbirth" 
-                    [(ngModel)]="estudiantes.dateofbirth" 
-                    required
-                    [materializeParams]="[datepickerset]"
-                    minlength="4"
-                    #dateofbirth="ngModel">
-                    <div class="form-control-feedback"
-                     *ngIf="dateofbirth.errors && (dateofbirth.dirty || dateofbirth.touched)">
-                      <p class="center" *ngIf="dateofbirth.errors.required" >Este campo es obligatorio</p>
-                      <p class="center" *ngIf="dateofbirth.errors.minlength">El campo no puede estar vacío</p>
+                      <label for="Celular">Teléfono Celular</label>
                     </div>
-                    <label for="date">Fecha de Nacimiento</label>
-                  </div>
-                  <div class="input-field col s6 m6 l6">
-                    <input id="email" 
-                    type="email" 
-                    class="validate" 
-                    name="correo" 
-                    [(ngModel)]="estudiantes.correo" 
-                    required
-                    minlength="4"
-                    pattern="[^ @]*@[^ @]*"
-                    #email="ngModel">
-                    <div class="form-control-feedback"
-                         *ngIf="email.errors && (email.dirty || email.touched)">
-                      <p class="center" *ngIf="email.errors.required">Este campo es obligatorio</p>
-                      <p class="center" *ngIf="email.errors.pattern">Correo inválido</p>
-                    </div>
-                    <label for="email">Email</label>
-                  </div>
                 </div>
-              <div class="row">
-                  <div class="col s4 m4 l4">
-                    <div class="input-field" >
-                    <select 
-                    materialize="material_select" 
-                    name="grados" 
-                    [(ngModel)]="estudiantes.id_grados" 
-                    required
-                    #grados="ngModel">
-                      <option value="" disabled selected>Grados</option>
-                      <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
-                    </select>
-                    <div class="form-control-feedback"
-                       *ngIf="grados.errors && (grados.dirty || grados.touched)">
-                      <p class="center" *ngIf="grados.errors.required" >Este campo en obligatorio</p>
-                    </div>
-                    <label>Seleccionar Grado</label>
-                </div>
-                  </div> 
-                  <div class="col s4 m4 l4">
-                    <div class="input-field" >
-                    <select materialize="material_select" 
-                    name="id_seccion" 
-                    [(ngModel)]="estudiantes.id_seccion" 
-                    required
-                    #id_seccion="ngModel">
-                      <option value="" disabled selected>Sección</option>
-                      <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
-                    </select>
-                    <label>Seleccionar Sección</label>
-                </div>
-                  </div>
-                  <div class="col s4 m4 l4 ">
-                    <div class="input-field inline">
-                        <select materialize="material_select" 
-                        [materializeSelectOptions]="" 
-                        name="periodos" 
-                        required 
-                        [(ngModel)]="estudiantes.id_periodo"
-                        #periodos="ngModel">
-                          <option value="" disabled selected>Periodos</option>
-                        <option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
-                    </select>
-                    <label>Seleccionar Periodo</label>
-                    </div> 
-                  </div>
-              </div>
-            </form>
-        </div>
-          <div class="card-action">
-            <div class="col s12 m12 l12">
-              <a (click)="doSubmit()" class="right ">Actualizar</a>
-              <swal
-                  #deleteSwal
-                  title="Eliminar estudiante"
-                  text="¿Esta seguro que desea eliminar este estudiante?"
-                  type="question"
-                  [showCancelButton]="true"
-                  (confirm)="borrarEstu()">
-              </swal>
-              <a class="right red-text text-darken-2" [swal]="deleteSwal">Eliminar</a>
-              <a class="left" (click)="goBack()">Regresar</a>
             </div>
+            <div class="row">
+                <div class="input-field col s6">
+                  <input id="first_name" 
+                  type="text" 
+                  class="validate" 
+                  name="nombres" 
+                  [(ngModel)]="estudiantes.nombres" 
+                  required
+                  minlength="4"
+                  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{4,50}"
+                  #nombres="ngModel">
+                  <div class="form-control-feedback"
+                   *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
+                <p class="center red-text" *ngIf="nombres.errors.required" >*Este campo es obligatorio</p>
+                <p class="center red-text" *ngIf="nombres.errors.minlength">*El campo no puede estar vacío</p>
+                <p class="center red-text" *ngIf="nombres.errors.pattern">*Este campo no puede contener números</p>
+              </div>
+                  <label for="first_name">Nombres</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="last_name" 
+                  type="text" 
+                  class="validate" 
+                  name="apellidos" 
+                  [(ngModel)]="estudiantes.apellidos" 
+                  required
+                  pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{4,50}"
+                  minlength="4"
+                  #apellidos="ngModel">
+                  <div class="form-control-feedback"
+                   *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
+                <p class="center red-text" *ngIf="apellidos.errors.required" >*Este campo es obligatorio</p>
+                <p class="center red-text" *ngIf="apellidos.errors.minlength">*El campo no puede estar vacío</p>
+                <p class="center red-text" *ngIf="apellidos.errors.pattern">*Este campo no puede contener números</p>
+              </div>
+                  <label for="last_name">Apellidos</label>
+                </div>
+            </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="direcion" 
+                  type="text" 
+                  class="validate" 
+                  name="direccion" 
+                  [(ngModel)]="estudiantes.direccion" 
+                  required
+                  minlength="4"
+                  #direccion="ngModel">
+                  <div class="form-control-feedback"
+                   *ngIf="direccion.errors && (direccion.dirty || direccion.touched)">
+                <p class="center red-text" *ngIf="direccion.errors.required" >*Este campo es obligatorio</p>
+                <p class="center red-text" *ngIf="direccion.errors.minlength">*El campo no puede estar vacío</p>
+              </div>
+                  <label for="disabled">Dirección</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6 m6 l6">
+                  <input id="date" 
+                  type="date" 
+                  class="datepicker" 
+                  materialize="pickadate" 
+                  name="dateofbirth" 
+                  [(ngModel)]="estudiantes.dateofbirth" 
+                  required
+                  [materializeParams]="[datepickerset]"
+                  minlength="4"
+                  #dateofbirth="ngModel">
+                  <div class="form-control-feedback"
+                   *ngIf="dateofbirth.errors && (dateofbirth.dirty || dateofbirth.touched)">
+                <p class="center red-text" *ngIf="dateofbirth.errors.required" >*Este campo es obligatorio</p>
+                <p class="center red-text" *ngIf="dateofbirth.errors.minlength">*El campo no puede estar vacío</p>
+              </div>
+                  <label for="date">Fecha de Nacimiento</label>
+                </div>
+                <div class="input-field col s6 m6 l6">
+                  <input id="email" 
+                  type="email" 
+                  class="validate" 
+                  name="correo" 
+                  [(ngModel)]="estudiantes.correo" 
+                  required
+                  minlength="4"
+                  pattern="[^ @]*@[^ @]*"
+                  #email="ngModel">
+              <div class="form-control-feedback"
+                   *ngIf="email.errors && (email.dirty || email.touched)">
+                <p class="center red-text" *ngIf="email.errors.required">*Este campo es obligatorio</p>
+                <p class="center red-text" *ngIf="email.errors.pattern">*Correo inválido</p>
+              </div>
+                  <label for="email">Email</label>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col s4 m4 l4">
+                  <div class="input-field" >
+                  <select 
+                  materialize="material_select" 
+                  name="grados" 
+                  [(ngModel)]="estudiantes.id_grados" 
+                  required
+                  #grados="ngModel">
+                    <option value="" disabled selected>Grados</option>
+                    <option  *ngFor="let grados of grado" [(ngValue)]="grados.id_grados">{{grados.descrip_gra}}</option> 
+                  </select>
+                  <div class="form-control-feedback"
+                     *ngIf="grados.errors && (grados.dirty || grados.touched)">
+                  <p class="center" *ngIf="grados.errors.required" >Este campo en obligatorio</p>
+                </div>
+                  <label>Seleccionar Grado</label>
+              </div>
+                </div> 
+                <div class="col s4 m4 l4">
+                  <div class="input-field" >
+                  <select materialize="material_select" 
+                  name="id_seccion" 
+                  [(ngModel)]="estudiantes.id_seccion" 
+                  required
+                  #id_seccion="ngModel">
+                    <option value="" disabled selected>Sección</option>
+                    <option  *ngFor="let seccion of secciones" [(ngValue)]="seccion.id_seccion">{{seccion.descrp_sec}}</option> 
+                  </select>
+
+                  <label>Seleccionar Sección</label>
+              </div>
+                </div>
+                <div class="col s4 m4 l4 ">
+                  <div class="input-field inline">
+                      <select materialize="material_select" 
+                      [materializeSelectOptions]="" 
+                      name="periodos" 
+                      required 
+                      [(ngModel)]="estudiantes.id_periodo"
+                      #periodos="ngModel">
+                        <option value="" disabled selected>Periodos</option>
+                      <option  *ngFor="let periodos of periodo" [(ngValue)]="periodos.id_periodo">{{periodos.descrip_peri}}</option> 
+                  </select>
+                  <label>Seleccionar Periodo</label>
+                  </div> 
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-action">
+          <div class="col s12 m12 l12">
+            <a (click)="doSubmit()" class="right ">Actualizar</a>
+            <swal
+                #deleteSwal
+                title="Eliminar estudiante"
+                text="¿Esta seguro que desea eliminar este estudiante?"
+                type="question"
+                [showCancelButton]="true"
+                (confirm)="borrarEstu()">
+            </swal>
+            <a class="right red-text text-darken-2" [swal]="deleteSwal">Eliminar</a>
+            <a class="left" (click)="goBack()">Regresar</a>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>

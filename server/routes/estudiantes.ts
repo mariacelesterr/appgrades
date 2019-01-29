@@ -89,7 +89,7 @@ router.delete('/app-detalles-estudiantes/:id', (req, res) => {
 		if (err) {
 			res.status(500).send({message: err});
 		} else {
-			connection.query('DELETE FROM estudiantes WHERE id_estudiantes = ?', [req.params.id], (err, result) => {
+			connection.query('DELETE estudiantes.* FROM estudiantes JOIN notas_descrip ON estudiantes.id_estudiantes = notas_descrip.id_estudiantes WHERE estudiantes.id_estudiantes = ?', [req.params.id], (err, result) => {
 				connection.release();
 
 				if (err) {

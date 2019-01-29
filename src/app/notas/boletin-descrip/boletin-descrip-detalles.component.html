@@ -33,80 +33,79 @@
 			       <div class="row">
 				       	<h5 class="center-align">Boletín Descriptivo</h5>
 				       	<div class="divider"></div>
-						    <div class="row">
-						        <div class="input-field col s6 m6 l6">
-						          <input id="first_name" 
+					    <div class="row">
+					        <div class="input-field col s6 m6 l6">
+					        	<input id="first_name" 
 						          type="text" 
 						          class="validate" 
 						          name="descrip_1"
 						          value="{{notasDetalles?.estudiantes?.nombres}}"
 						          readonly="readonly">
-						          
-						       </div>
-						        <div class="input-field col s6 m6 l6">
-						          <input id="last_name" 
+					       </div>
+					        <div class="input-field col s6 m6 l6">
+					        	<input id="last_name" 
 						          type="text" 
 						          class="validate" 
 						          name="apellidos" 
 						          value ="{{notasDetalles?.estudiantes?.apellidos}}" 
 						          readonly="readonly">
-				
-						        </div>
-						    </div>
-					    	<div class="row">
-						        <div class="col s4 m4 l4">
-						          <div class="input-field inline">
+					        </div>
+					    </div>
+				    	<div class="row">
+					        <div class="col s4 m4 l4">
+					        	<div class="input-field inline">
 						            <input id="grados" 
 						            type="text" 
 						            class="validate" 
 						            name="grados" 
 						            value ="{{notasDetalles?.estudiantes?.descrip_gra}}"
 						            readonly="readonly">
-						          </div>
-						        </div>
-						        <div class="col s4 m4 l4 ">
-							         <div class="input-field inline">
-								        <input id="seccion" 
-								        type="text" 
-								        class="validate" 
-								        name="seccion" 
-								        value ="{{notasDetalles?.estudiantes?.descrp_sec}}"  
-								        readonly="readonly">
-							        </div>
-							     </div>
-						        <div class="col s4 m4 l4">
-						        	<div class="input-field inline">
-							          	<input id="periodo" 
-							          	type="text" 
-							          	class="validate" 
-							          	name="periodo" 
-							          	value ="{{notasDetalles?.estudiantes?.descrip_peri}}" 
-							          	readonly="readonly">
-						        	</div>
-						        </div>
-					    	</div>
+					        	</div>
+					        </div>
+					        <div class="col s4 m4 l4 ">
+					         	<div class="input-field inline">
+							        <input id="seccion" 
+							        type="text" 
+							        class="validate" 
+							        name="seccion" 
+							        value ="{{notasDetalles?.estudiantes?.descrp_sec}}"  
+							        readonly="readonly">
+					        	</div>
+						     </div>
+					        <div class="col s4 m4 l4">
+					        	<div class="input-field inline">
+						          	<input id="periodo" 
+						          	type="text" 
+						          	class="validate" 
+						          	name="periodo" 
+						          	value ="{{notasDetalles?.estudiantes?.descrip_peri}}" 
+						          	readonly="readonly">
+					        	</div>
+					        </div>
+				    	</div>
+					    <form #f="ngForm">
 						    <div class="row">
 						    	<div class="col s6 m6 l6">
-						          <div class="input-field">
-						            <textarea 
-						            id="textarea" 
-						            class="materialize-textarea" 
-						            data-length="100"
-						            maxlength="100"
-						            minlength="10" 
-						            materialize="characterCounter" 
-						            name="proyecto" 
-						            [(ngModel)]="notasDetalles.notas.proyecto"
-						            #proyecto="ngModel"
-						            required> 
-						        	</textarea>
-						            <div class="form-control-feedback"
-									     *ngIf="proyecto.errors && (proyecto.dirty || proyecto.touched)">
-										<p class="center" *ngIf="proyecto.errors.required" >Este campo es obligatorio</p>
-										<p class="center" *ngIf="proyecto.errors.minlength">El campo no puede estar vacío</p>
-									</div>
-						            <label for="textarea2">Nombre del Proyecto</label>
-						          </div>	
+						        	<div class="input-field">
+							            <textarea 
+							            id="textarea" 
+							            class="materialize-textarea" 
+							            data-length="100"
+							            maxlength="100"
+							            minlength="10" 
+							            materialize="characterCounter" 
+							            name="proyecto" 
+							            [(ngModel)]="notasDetalles.notas.proyecto"
+							            #proyecto="ngModel"
+							            required> 
+							        	</textarea>
+							            <div class="form-control-feedback"
+										     *ngIf="proyecto.errors && (proyecto.dirty || proyecto.touched)">
+											<p class="center red-text" *ngIf="proyecto.errors.required">*Este campo es obligatorio</p>
+											<p class="center red-text" *ngIf="proyecto.errors.minlength">*El campo no puede estar vacío</p>
+										</div>
+						            	<label for="textarea2">Nombre del Proyecto</label>
+						          	</div>	
 						    	</div>
 					          	<div class="col s6 m6 l6">
 						        	<div class="input-field">
@@ -134,48 +133,47 @@
 						        	</div>
 						        </div>
 					        </div>
-					    <form #f="ngForm">
 					        <div class="inicial" *ngIf="hideElement1==false">
 							    <div class="row">
-						          <div class="input-field col s12">
-						            <textarea 
-						            id="textarea1" 
-						            class="materialize-textarea" 
-						            data-length="1000" 
-						            materialize="characterCounter"
-						            maxlength="1000"
-						            minlength="10" 
-						            name="descrip_1" 
-						            [(ngModel)]="notasDetalles.notas.descrip_1"
-						            required 
-						            #descrip_1="ngModel"> </textarea>
-						            <div class="form-control-feedback"
-									     *ngIf="descrip_1.errors && (descrip_1.dirty || descrip_1.touched)">
-										<p class="center" *ngIf="descrip_1.errors.required" >Este campo es obligatorio</p>
-										<p class="center" *ngIf="descrip_1.errors.minlength">El campo no puede estar vacío</p>
-									</div>
-						            <label for="textarea2">FORMACIÓN PERSONAL, SOCIAL Y COMUNICACIÓN:</label>
-						          </div>
+						        	<div class="input-field col s12">
+							            <textarea 
+							            id="textarea1" 
+							            class="materialize-textarea" 
+							            data-length="1000" 
+							            materialize="characterCounter"
+							            maxlength="1000"
+							            minlength="10" 
+							            name="descrip_1" 
+							            [(ngModel)]="notasDetalles.notas.descrip_1"
+							            required 
+							            #descrip_1="ngModel"> </textarea>
+							            <div class="form-control-feedback"
+										     *ngIf="descrip_1.errors && (descrip_1.dirty || descrip_1.touched)">
+											<p class="center red-text" *ngIf="descrip_1.errors.required" >*Este campo es obligatorio</p>
+											<p class="center red-text" *ngIf="descrip_1.errors.minlength">*El campo no puede estar vacío</p>
+										</div>
+							            <label for="textarea2">FORMACIÓN PERSONAL, SOCIAL Y COMUNICACIÓN:</label>
+						          	</div>
 						        </div>
 							    <div class="row">
-						          <div class="input-field col s12">
-						            <textarea id="textarea2" 
-						            class="materialize-textarea" 
-						            data-length="1000" 
-						            maxlength="1000"
-						            minlength="10" 
-						            materialize="characterCounter"
-						            name="descrip_2" 
-						            [(ngModel)]="notasDetalles.notas.descrip_2"
-						            required
-						            #descrip_2="ngModel"> </textarea>
-						            <div class="form-control-feedback"
-									     *ngIf="descrip_2.errors && (descrip_2.dirty || descrip_2.touched)">
-										<p class="center" *ngIf="descrip_2.errors.required" >Este campo es obligatorio</p>
-										<p class="center" *ngIf="descrip_2.errors.minlength">El campo no puede estar vacío</p>
-									</div>
-						            <label for="textarea2">RELACIÓN ENTRE COMPONENTES DEL AMBIENTE:</label>
-						          </div>
+						        	<div class="input-field col s12">
+							            <textarea id="textarea2" 
+							            class="materialize-textarea" 
+							            data-length="1000" 
+							            maxlength="1000"
+							            minlength="10" 
+							            materialize="characterCounter"
+							            name="descrip_2" 
+							            [(ngModel)]="notasDetalles.notas.descrip_2"
+							            required
+							            #descrip_2="ngModel"> </textarea>
+							            <div class="form-control-feedback"
+										     *ngIf="descrip_2.errors && (descrip_2.dirty || descrip_2.touched)">
+											<p class="center red-text" *ngIf="descrip_2.errors.required">*Este campo es obligatorio</p>
+											<p class="center red-text" *ngIf="descrip_2.errors.minlength">*El campo no puede estar vacío</p>
+										</div>
+							            <label for="textarea2">RELACIÓN ENTRE COMPONENTES DEL AMBIENTE:</label>
+						          	</div>
 						        </div>
 							    <div class="row">
 						        	<div class="input-field col s12">
@@ -193,8 +191,8 @@
 							        	</textarea>
 							            <div class="form-control-feedback"
 										     *ngIf="descrip_3.errors && (descrip_3.dirty || descrip_3.touched)">
-											<p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
-											<p class="center" *ngIf="descrip_3.errors.minlength">El campo no puede estar vacío</p>
+											<p class="center red-text" *ngIf="descrip_3.errors.required" >*Este campo es obligatorio</p>
+											<p class="center red-text" *ngIf="descrip_3.errors.minlength">*El campo no puede estar vacío</p>
 										</div>
 							            <label for="textarea2">RECOMENDACIONES AL REPRESENTANTE:</label>
 						            </div>
@@ -202,7 +200,7 @@
 					        </div>
 					        <div class="Basica" *ngIf="hideElement==false">
 					        	<div class="row">
-							          <div class="input-field col s12">
+							        <div class="input-field col s12">
 							            <textarea 
 							            id="textarea1" 
 							            class="materialize-textarea" 
@@ -216,31 +214,31 @@
 							            #descrip_1="ngModel"> </textarea>
 							            <div class="form-control-feedback"
 										     *ngIf="descrip_1.errors && (descrip_1.dirty || descrip_1.touched)">
-											<p class="center" *ngIf="descrip_1.errors.required" >Este campo es obligatorio</p>
-											<p class="center" *ngIf="descrip_1.errors.minlength">El campo no puede estar vacío</p>
+											<p class="center red-text" *ngIf="descrip_1.errors.required" >*Este campo es obligatorio</p>
+											<p class="center red-text" *ngIf="descrip_1.errors.minlength">*El campo no puede estar vacío</p>
 										</div>
 							            <label for="center">RENDIMIENTO ESTUDIANTIL</label>
-							          </div>
+							        </div>
 						        </div>
 							    <div class="row">
-						          <div class="input-field col s12">
-						            <textarea id="textarea2" 
-						            class="materialize-textarea" 
-						            data-length="170" 
-						            maxlength="170"
-						            minlength="10" 
-						            materialize="characterCounter"
-						            name="descrip_2" 
-						            [(ngModel)]="notasDetalles.notas.descrip_2"
-						            required
-						            #descrip_2="ngModel"> </textarea>
-						            <div class="form-control-feedback"
-									     *ngIf="descrip_2.errors && (descrip_2.dirty || descrip_2.touched)">
-										<p class="center" *ngIf="descrip_2.errors.required" >Este campo es obligatorio</p>
-										<p class="center" *ngIf="descrip_2.errors.minlength">El campo no puede estar vacío</p>
-									</div>
-						            <label for="textarea2">RECOMENDACIONES Y/O SUGERENCIAS PARA LOS ESTUDIANTES</label>
-						          </div>
+						        	<div class="input-field col s12">
+							            <textarea id="textarea2" 
+							            class="materialize-textarea" 
+							            data-length="170" 
+							            maxlength="170"
+							            minlength="10" 
+							            materialize="characterCounter"
+							            name="descrip_2" 
+							            [(ngModel)]="notasDetalles.notas.descrip_2"
+							            required
+							            #descrip_2="ngModel"> </textarea>
+							            <div class="form-control-feedback"
+										     *ngIf="descrip_2.errors && (descrip_2.dirty || descrip_2.touched)">
+											<p class="center red-text" *ngIf="descrip_2.errors.required" >*Este campo es obligatorio</p>
+											<p class="center red-text" *ngIf="descrip_2.errors.minlength">*El campo no puede estar vacío</p>
+										</div>
+							            <label for="textarea2">RECOMENDACIONES Y/O SUGERENCIAS PARA LOS ESTUDIANTES</label>
+						          	</div>
 						        </div>
 							    <div class="row">
 							        <div class="input-field col s12">
@@ -256,8 +254,8 @@
 							            #descrip_3="ngModel"> </textarea>
 							            <div class="form-control-feedback"
 										     *ngIf="descrip_3.errors && (descrip_3.dirty || descrip_3.touched)">
-											<p class="center" *ngIf="descrip_3.errors.required" >Este campo es obligatorio</p>
-											<p class="center" *ngIf="descrip_3.errors.minlength">El campo no puede estar vacío</p>
+											<p class="center red-text" *ngIf="descrip_3.errors.required" >*Este campo es obligatorio</p>
+											<p class="center red-text" *ngIf="descrip_3.errors.minlength">*El campo no puede estar vacío</p>
 										</div>
 							            <label for="textarea2">RECOMENDACIONES  PARA LOS REPRESENTANTES</label>
 							        </div>
@@ -277,19 +275,15 @@
 										      <option value="Excelente">Excelente</option>
 										      <option value="Aprobado">Aprobado</option>
 										    </select>
-										    <div class="form-control-feedback"
-										     *ngIf="nota_final.errors && (nota_final.dirty || nota_final.touched)">
-										    	<p class="center" *ngIf="nota_final.errors.required" >Este campo es obligatorio</p>
-										 	</div>
-							        	</div>
-						          	</div>
+										</div>
+							        </div>
 						        </div>
 					        </div>
 					    </form>
 					    <div class="card-action">
-					     <a class="right waves-effect waves-teal modal-trigger" 
+					    	<a class="right waves-effect waves-teal modal-trigger" 
 					      (click)="openModal()" href="#modal_id">Actualizar</a>
-					      <a class=" left waves-effect waves-teal" (click)="goBack()">Regresar</a>
+					     	<a class=" left waves-effect waves-teal" (click)="goBack()">Regresar</a>
 					    </div>
 					</div>
 		  		</div>
@@ -297,56 +291,55 @@
 		</div>
 	</div>
 </div>
- 
 <div id="modal_id" class="modal modal-fixed-footer " materialize="modal" [materializeActions]="modalActions" [materializeParams]="[{dismissible: false}]">
-  <div class="modal-content">
-	<h4 class="center-align">Calificación Cualitativa del Alumno</h4>	        
-	<div class="divider"></div>
-	<div class="row">
-		<p>
-			Antes de continuar... Debes escoger en la escala de calificación para determinar si el alumno supera los niveles de aprendizaje requeridos o no los alcanza.
-		</p>
-	</div>
-	<div class="row center">
-	  <div class="col s6 m3 l3">
-	     <input 
-	     type="image" 
-	     value="10" 
-	     name="nota_cuali" 
-	     (click)="notasDetalles.notas.nota_cuali = 10" 
-	     src="assets/icons/icons8-puzzled-80.png">
-	    <br><span> Recuperación </span>
-	  </div>
-	  <div class="col s6 m3 l3">
-	     <input type="image" 
-	     value="16" 
-	     name="nota_cuali" 
-	     (click)="notasDetalles.notas.nota_cuali = 16" 
-	     src="assets/icons/icons8-happy-80.png">
-	    <br><span> Aprobado</span>
-	  </div>
-	  <div class="col s6 m3 l3">
-	     <input 
-	     type="image" 
-	     value="18" 
-	     name="nota_cuali" 
-	     (click)="notasDetalles.notas.nota_cuali = 18" 
-	     src="assets/icons/icons8-wink-80.png">
-	    <br><span > Destacado </span>
-	  </div>
-	  <div class="col s6 m3 l3">
-		 <input 
-		 type="image" 
-		 value="20" 
-		 name="nota_cuali" 
-		 (click)="notasDetalles.notas.nota_cuali = 20"
-		 src="assets/icons/icons8-cool-80.png">
-	    <br><span> Excelente</span>
-	  </div>
-	</div> 
-  </div>
-  <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Enviar</a>
-  </div>
+	<div class="modal-content">
+		<h4 class="center-align">Calificación Cualitativa del Alumno</h4>	        
+		<div class="divider"></div>
+		<div class="row">
+			<p>
+				Antes de continuar... Debes escoger en la escala de calificación para determinar si el alumno supera los niveles de aprendizaje requeridos o no los alcanza.
+			</p>
+		</div>
+		<div class="row center">
+			<div class="col s6 m3 l3">
+			    <input 
+			     type="image" 
+			     value="10" 
+			     name="nota_cuali" 
+			     (click)="notasDetalles.notas.nota_cuali = 10" 
+			     src="assets/icons/icons8-puzzled-80.png">
+		    	<br><span> Recuperación </span>
+		  	</div>
+		  	<div class="col s6 m3 l3">
+			     <input type="image" 
+			     value="16" 
+			     name="nota_cuali" 
+			     (click)="notasDetalles.notas.nota_cuali = 16" 
+			     src="assets/icons/icons8-happy-80.png">
+			    <br><span> Aprobado</span>
+		  	</div>
+		  	<div class="col s6 m3 l3">
+			     <input 
+			     type="image" 
+			     value="18" 
+			     name="nota_cuali" 
+			     (click)="notasDetalles.notas.nota_cuali = 18" 
+			     src="assets/icons/icons8-wink-80.png">
+			    <br><span > Destacado </span>
+		  	</div>
+		  	<div class="col s6 m3 l3">
+				 <input 
+				 type="image" 
+				 value="20" 
+				 name="nota_cuali" 
+				 (click)="notasDetalles.notas.nota_cuali = 20"
+				 src="assets/icons/icons8-cool-80.png">
+			    <br><span> Excelente</span>
+		  	</div>
+		</div> 
+  	</div>
+	<div class="modal-footer">
+	    <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+	    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Enviar</a>
+  	</div>
 </div>

@@ -12,6 +12,29 @@
 		 top: 30%;
 	}
 }*/
+
+.tabs .tab a {
+	color: #ffab40 ;
+}
+.tabs .tab a:hover, .tabs .tab a.active {
+	color: #ffab40;
+}
+
+
+.lista ul
+{
+   padding-right: 0px;
+   padding-left: 0px;
+   padding-bottom: 0px;
+   padding-top: 0px;
+   margin: 0px;
+}
+.lista li
+{
+   list-style-type: none;
+   display: inline;
+   padding-right: 5px;
+}
 @media only screen and (min-width: 1200px){
 	.leyenda {
 	     margin-top: 200px;

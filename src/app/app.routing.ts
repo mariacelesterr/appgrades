@@ -9,7 +9,10 @@ import { DetallesEstudiantesComponent} from './estudiantes/detalles.estudiantes.
 import { BuscarEstudiantesComponent } from './estudiantes/buscar.estudiantes.component'
 import { PdfComponent } from './pdf/pdf.component'
 import { NotasComponent } from './notas/notas.component'
-import { EstadisticasComponent } from './estadisticas/estadisticas.component'
+
+import { EstadisticasComponent, periodosEstadisticas, gradosEstadisticas, grados_seccionEstadisticas } from './estadisticas/estadisticas.component'
+
+
 import { UsersComponent } from './users/users.component'
 import { PerfilComponent } from './users/perfil/perfil.component'
 import { BoletinDescripComponent } from './notas/boletin-descrip/boletin-descrip.component'
@@ -98,7 +101,19 @@ const APP_ROUTES = [
   },
   { 
     path: 'app-estadisticas', 
-    component: EstadisticasComponent 
+    component:  EstadisticasComponent 
+  },
+  { 
+    path: 'periodos', 
+    component:  periodosEstadisticas 
+  },
+  { 
+    path: 'grados/:id', 
+    component:  gradosEstadisticas
+  },
+  { 
+    path: 'grados-seccion', 
+    component: grados_seccionEstadisticas
   },
   { 
     path: 'app-estadisticas/detalles', 

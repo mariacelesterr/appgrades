@@ -6,28 +6,28 @@
 				<div class="divider"></div>
 				<form #f="ngForm" class="col s12">
 					<div class="row ">
-				      <div class="col s12 m7 l7 offset-l3">
-				        <div class="input-field">
-				          <input placeholder="Ej. Primer grado" 
-				          	id="first_name" 
-				          	type="text" 
-				          	class="validate" 
-				          	pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{4,50}" 
-				          	name="grados" 
-				          	[(ngModel)]="grados_obj.descrip_gra"
-				          	minlength="4"
-				          	required 
-			       			#grados="ngModel"
-			       			>
-			       			<div class="form-control-feedback"
-							     *ngIf="grados.errors && (grados.dirty || grados.touched)">
-								<p class="center" *ngIf="grados.errors.required" >Este campo es obligatorio</p>
-								<p class="center" *ngIf="grados.errors.minlength">El campo no puede estar vacío</p>
-								<p class="center" *ngIf="grados.errors.pattern">Este campo no puede contener números</p>
-							</div>
-				          <label for="first_name">Ingresa el grado</label>
-				        </div>
-				      </div>
+				      	<div class="col s12 m7 l7 offset-l3">
+				        	<div class="input-field">
+					        	<input placeholder="Ej. Primer grado" 
+						          	id="first_name" 
+						          	type="text" 
+						          	class="validate" 
+						          	pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{4,50}" 
+						          	name="grados" 
+						          	[(ngModel)]="grados_obj.descrip_gra"
+						          	minlength="4"
+						          	required 
+					       			#grados="ngModel"
+					       			>
+				       			<div class="form-control-feedback"
+								     *ngIf="grados.errors && (grados.dirty || grados.touched)">
+									<p class="center red-text" *ngIf="grados.errors.required" >*Este campo es obligatorio</p>
+									<p class="center red-text" *ngIf="grados.errors.minlength">*El campo no puede estar vacío</p>
+									<p class="center red-text" *ngIf="grados.errors.pattern">*Este campo no puede contener números</p>
+								</div>
+					          	<label for="first_name">Ingresa el grado</label>
+				        	</div>
+				      	</div>
 				    </div>
 				    <div class="row">
 					    <div class="card-action">
@@ -46,11 +46,11 @@
 	<div class="row grados">
   		<div class="card col s12 m6 l6 offset-m3 offset-l3">
     		<div class="card-content">
-				<h5 class="center">Grados</h5>
-				<div class="divider"></div>
-				<div>
-					<div class="">
-						<table class="centered">
+    			<div class="row">
+					<h5 class="center">Grados</h5>
+					<div class="divider"></div>
+					<p *ngIf="grados.length === 0" class="red-text center"> No hay grados agregados</p>
+					<table  *ngIf="grados.length > 0" class="centered">
 				        <thead>
 				          <tr>
 				              <th>Grados</th>
@@ -59,36 +59,54 @@
 				          </tr>
 				        </thead>
 				        <tbody>
-				          <tr *ngFor="let grado of grados">
-				            <td>{{grado.descrip_gra}}</td>
-				            <td>
-				            	
-				            </td>
-				             <td>
-				             	<swal
-					                #deleteSwal
-					                title="Eliminar grado"
-					                text="¿Esta seguro que desea eliminar este grado?"
-					                type="question"
-					                [showCancelButton]="true"
-					                (confirm)="borrarGra(grado.id_grados)">
-					            </swal>
-				             	<button [swal]="deleteSwal">
-				             		<img src="assets/icons/icons8-cancel-80.png">
-				             	</button>
-				             </td>
-				          </tr>
-				          
+					        <tr *ngFor="let grado of grados | paginate: { itemsPerPage: 5, currentPage: p } ">
+					            <td>{{grado.descrip_gra}}</td>
+					            <td>
+					            	
+					            </td>
+					             <td>
+					             	<swal
+						                #deleteSwal
+						                title="Eliminar grado"
+						                text="¿Esta seguro que desea eliminar este grado?"
+						                type="question"
+						                [showCancelButton]="true"
+						                (confirm)="borrarGra(grado.id_grados)">
+						            </swal>
+					             	<button [swal]="deleteSwal">
+					             		<img src="assets/icons/icons8-cancel-80.png">
+					             	</button>
+					             </td>
+					        </tr>
 				        </tbody>
-				      </table>
-						
+			        </table>
+			        <div class="col s12 m12 l12  offset-s2 offset-m2 offset-l3">
+							<pagination-controls
+						 		(pageChange)="p = $event"
+				                responsive="true"
+				                previousLabel="Anterior"
+				                nextLabel="Siguiente" 
+				                class="pagination my-pagination">       	
+				            </pagination-controls>
 					</div>
-				</div>
+			        <div class="card-action">
+				      <a routerLink='/app-menu' class="right">Ir al menú</a>
+				      <a class="left" (click)="goBack()">Regresar</a>
+				    </div>
+    				
+    			</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col col s12 m12 l6 offset-l3">
-				<a class="btn-floating btn-large waves-effect waves-light black right" routerLink='/app-grados-agregar'><i class="material-icons">add</i></a>
+				<a class="btn-floating btn-large waves-effect waves-light black right tooltipped" 
+				routerLink='/app-grados-agregar'
+				materialize="tooltip" 
+		        data-position="right" 
+		        data-delay="10" 
+		        data-tooltip="Agregar Grados">
+					<i class="material-icons">add</i>
+				</a>
 			</div>
 		</div>
 	</div>

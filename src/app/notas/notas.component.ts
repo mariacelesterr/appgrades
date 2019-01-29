@@ -22,6 +22,7 @@ export class NotasComponent implements OnInit {
   notas: any;
   grupo: any = [];
   @ViewChild('f') form: any;
+  p: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class NotasComponent implements OnInit {
       .subscribe(
         data =>{ 
           this.periodo = data;
-          if (this.periodo.length === null){
+          if (this.periodo.length === 0){
             swal({
                   title: '¡Advertencia!',
                   text: 'No hay peridos para escoger. Dirijase hasta la sección de periodo',
@@ -58,7 +59,7 @@ export class NotasComponent implements OnInit {
       .subscribe(
         data => {
           this.grado = data;
-          if(this.grado.length === null){
+          if(this.grado.length === 0){
             swal({
                   title: '¡Advertencia!',
                   text: 'No hay grados para escoger. Dirijase hasta la sección de grados',
@@ -81,7 +82,7 @@ export class NotasComponent implements OnInit {
       .subscribe(
         data => {
           this.secciones = data;
-          if(this.secciones === null){
+          if(this.secciones.length === 0){
             swal({
                 title: '¡Advertencia!',
                 text: 'No hay secciones para escoger. Dirijase hasta la sección de secciones',
@@ -105,7 +106,7 @@ export class NotasComponent implements OnInit {
       this.notasService.buscarEstudiante(this.estudiantes)
         .subscribe(data => 
           {
-            if(data === 0){
+            if(data.length === 0){
               swal({
                 title: '¡Advertencia!',
                 text: 'No hay estudiantes para mostrar. Dirijase hasta el modulo de agregar estudiantes',
