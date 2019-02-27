@@ -126,10 +126,10 @@
       <div class="incio">
         <h5 class="center">Promedio de todos los alumnos por periodo</h5>
         <div class="divider"></div>
-        <div *ngIf="hideElement === false">
+        <div *ngIf="hideElement === false && promedioPeriodo != 0">
           <div class="row">
             <div class="col-md-6">
-              <canvas baseChart width="400" height="400"
+              <canvas baseChart
                       [datasets]="lineChartData"
                       [labels]="lineChartLabels"
                       [options]="lineChartOptions"
@@ -141,6 +141,7 @@
               </canvas>
             </div>
             <div class="col-md-6">
+              <div class="divider"></div>
               <table class="centered responsive-table">
                 <tr>
                   <th> Periodo:</th>
@@ -153,6 +154,9 @@
               </table>
             </div>
           </div>
+        </div>
+        <div *ngIf="promedioPeriodo.length === 0">
+          <p class="red-text center">  No hay notas en este periodo</p>
         </div>
         <div class="card-action">
           <div class="col s12 m12 l12">
@@ -170,23 +174,35 @@
       <div class="incio">
         <h5 class="center">Promedio de los alumnos por grados </h5>
         <div class="divider"></div>
-        <div *ngIf="hideElement === false"> 
-          <div>
-            <!--<canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType"
+        <div *ngIf="hideElement === false && promedioGrados.length != 0"> 
+          <div class="row">
+            <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)">
-            </canvas>-->
-            <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
+            </canvas>
+          </div>
+          <div class="row">
+            <div class="divider"></div>
+            <div class="col s12 m10 l10 offset-m1 offset-l1">
+              <table class="responsive-table">
+                <tr>
+                  <th> Grado:</th>
+                  <th *ngFor="let label of pieChartLabels">{{label}}</th>
+                </tr>
+                <tr>
+                  <td> Promedio: </td>
+                  <td *ngFor="let d of pieChartData">{{d}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="promedioGrados.length === 0">
+          <div class="row">
+            <p class="red-text center">  No hay notas en este grado</p>
           </div>
         </div>
         <div class="card-action">
@@ -207,16 +223,38 @@
       <div class="incio">
         <h5 class="center">Promedio de todos los alumnos por sección</h5>
         <div class="divider"></div>
-        <div *ngIf="hideElement === false"> 
-          <canvas baseChart
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
-              [options]="barChartOptions"
-              [legend]="barChartLegend"
-              [chartType]="barChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
+        <div *ngIf="hideElement === false && promedio.length != 0"> 
+          <div class="row">
+            <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
             </canvas>
+          </div>
+          <div class="row">
+            <div class="col s12 m10 l10 offset-m1 offset-l1">
+              <div class="divider"></div>
+              <table class="responsive-table">
+                <tr>
+                  <th> Periodo:</th>
+                  <th *ngFor="let label of barChartLabels">{{label}}</th>
+                </tr>
+                <tr *ngFor="let d of barChartData">
+                  <td> Promedio: </td>
+                  <td *ngFor="let label of barChartLabels; let j=index">{{d && d.data[j]}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="promedio.length === 0">
+            <div class="row">
+              <p class="red-text center">  No hay notas en este grado, seccion y periodo</p>
+            </div>
+          </div>
         </div>
         <div class="card-action">
           <div class="col s12 m12 l12">

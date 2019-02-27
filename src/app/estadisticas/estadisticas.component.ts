@@ -41,8 +41,6 @@ export class periodosEstadisticas implements OnInit {
           for (let numero of this.promedioPeriodo ){
               this.lineChartData[0].data.push(numero.data);
               this.lineChartLabels.push(numero.label);
-              console.log(this.lineChartData);
-              console.log(this.lineChartLabels);
             }
             this.hideElement = false;
           },
@@ -137,9 +135,11 @@ export class gradosEstadisticas implements OnInit {
         .subscribe(
           data => {
             this.promedioGrados= data;
+            console.log(this.promedioGrados);
             for (let numero of this.promedioGrados){
               this.pieChartData.push(numero.data);
               this.pieChartLabels.push(numero.label);
+            console.log(this.pieChartData);
             } 
             this.hideElement = false;
 

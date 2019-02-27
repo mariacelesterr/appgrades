@@ -87,7 +87,7 @@ const schema = (db) => {
 		  '`nota_final` varchar(45) COLLATE utf8mb4_spanish_ci DEFAULT NULL,' +
 		  '`nota_cuali` int(10) NOT NULL,' +
 		  'PRIMARY KEY(`id_notas_descrip`),' +
-		  'CONSTRAINT `notas_descrip_ibfk_1` FOREIGN KEY (`id_estudiantes`) REFERENCES `estudiantes` (`id_estudiantes`),' +
+		  'CONSTRAINT `notas_descrip_ibfk_1` FOREIGN KEY (`id_estudiantes`) REFERENCES `estudiantes` (`id_estudiantes`) ON DELETE CASCADE,' +
 		  'CONSTRAINT `notas_descrip_ibfk_7` FOREIGN KEY (`id_lapso`) REFERENCES `lapso` (`id_lapso`)' +
 		') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;';
 
