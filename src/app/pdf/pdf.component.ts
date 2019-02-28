@@ -13,6 +13,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 })
 export class PdfComponent implements OnInit {
   notas: Notas = new Notas;
+  win: any = window.open('', '_blank');
   constructor(
   	private _location: Location,
     private notasService: NotasService,
@@ -32,6 +33,9 @@ export class PdfComponent implements OnInit {
     //boletin incial
     if(this.notas[0].tipo_bole === 1 && this.notas[0].nota_final === null){
       var docDefinition = { 
+        info: {
+          title: this.notas[0].nombres + this.notas[0].apellidos
+        },
         content:[
           {
             columns:[
@@ -151,6 +155,9 @@ export class PdfComponent implements OnInit {
     //boletin basica del 3 lapso
     else if (this.notas[0].tipo_bole === 2 && this.notas[0].nota_final !== null){
       var docDefinition2 = { 
+        info: {
+          title: this.notas[0].nombres + this.notas[0].apellidos
+        },
         content:[
           {
             columns:[
@@ -282,6 +289,9 @@ export class PdfComponent implements OnInit {
     //boletin basica
     else if (this.notas[0].tipo_bole === 2){
       var docDefinition1 = { 
+        info: {
+          title: this.notas[0].nombres + this.notas[0].apellidos
+        },
         content:[
           {
             columns:[
